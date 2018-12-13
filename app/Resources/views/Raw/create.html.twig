@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container body-content span=8 offset=2">
+        <div class="well">
+            <form class="form-horizontal" action="{{ path('raw_create') }}" method="POST">
+                <fieldset>
+                    <legend>New Ingredient</legend>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="article_title">Post Title</label>
+                        <div class="col-sm-4 ">
+                            <input type="text" class="form-control" id="article_title" placeholder="Post Title"
+                                   name="raw[name]">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="article_content">Content</label>
+                        <div class="col-sm-6">
+                        <textarea class="form-control" rows="6" id="article_content"
+                                  name="raw[description]"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="article_price">Price</label>
+                        <div class="col-sm-4 ">
+                           <textarea class="form-control" rows="6" id="article_price"
+                                     name="raw[price]"></textarea>
+                        </div>
+                    </div>
+
+
+
+                    {{ form_row(form._token) }}
+
+                    <div class="form-group">
+                        <div class="col-sm-4 col-sm-offset-4">
+                            <a class="btn btn-default" href="{{ path('homepage') }}">Cancel</a>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

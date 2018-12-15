@@ -15,7 +15,17 @@ class RawType extends AbstractType
 
         $builder->add('name', TextType::class)
             ->add('description', TextType::class)
-            ->add('price', TextType::class);
+            ->add('price', TextType::class)
+
+            ->add('quantity', TextType::class)
+            ->add('picture', TextType::class)
+            ->add('kcal', TextType::class)
+        ->add('fats', TextType::class)
+        ->add('proteins', TextType::class)
+        ->add('carbs', TextType::class)
+        ->add('unSaturatedFats', TextType::class)
+        ->add('saturatedFats', TextType::class)
+        ->add('sugars', TextType::class);
 
     }
 

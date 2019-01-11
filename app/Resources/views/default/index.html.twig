@@ -1,6 +1,31 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-   hello world!
-{% endblock %}
+   <li>
+      <a href="{{ path('raw_create') }}">
+         Add new breakfast
+      </a>
+   </li>
+   <li>
+      <a href="{{ path('snack_create') }}">
+         Add new snack
+      </a>
+   </li>
+   <li>
+      <a href="{{ path('dinner_create') }}">
+         Add new dinner
+      </a>
+   </li>
+   <li>
+      <a href="{{ path('raw_generate') }}">
+Generate
+      </a>
+   </li>
+   <li>
+      <a href="{{ path('week_generate') }}">
+         Generate Week
+      </a>
+   </li>
+
+  {% endblock %}
 

@@ -1,16 +1,20 @@
 <?php
 
+
+
+
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+
 /**
- * Raw
+ * Snack
  *
- * @ORM\Table(name="raw")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\RawRepository")
+ * @ORM\Table(name="snack")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\SnackRepository")
  */
-class Raw
+class Snack
 {
     /**
      * @var int
@@ -162,7 +166,7 @@ class Raw
     private $sugarsPerG;
 
     /**
-     * Raw constructor.
+     * Snack constructor.
 
      */
     public function __construct()
@@ -186,7 +190,7 @@ class Raw
      *
      * @param string $name
      *
-     * @return Raw
+     * @return Snack
      */
     public function setName($name)
     {
@@ -210,7 +214,7 @@ class Raw
      *
      * @param string $description
      *
-     * @return Raw
+     * @return Snack
      */
     public function setDescription($description)
     {
@@ -234,7 +238,7 @@ class Raw
      *
      * @param string $price
      *
-     * @return Raw
+     * @return Snack
      */
     public function setPrice($price)
     {
@@ -261,7 +265,7 @@ class Raw
      *
      * @param string $quantity
      *
-     * @return Raw
+     * @return Snack
      */
     public function setQuantity($quantity)
     {
@@ -308,7 +312,7 @@ class Raw
      *
      * @param string $picture
      *
-     * @return Raw
+     * @return Snack
      */
     public function setPicture($picture)
     {
@@ -332,7 +336,7 @@ class Raw
      *
      * @param string $kcal
      *
-     * @return Raw
+     * @return Snack
      */
     public function setKcal($kcal)
     {
@@ -357,7 +361,7 @@ class Raw
      *
      * @param string $fats
      *
-     * @return Raw
+     * @return Snack
      */
     public function setFats($fats)
     {
@@ -382,7 +386,7 @@ class Raw
      *
      * @param string $saturatedFats
      *
-     * @return Raw
+     * @return Snack
      */
     public function setSaturatedFats($saturatedFats)
     {
@@ -407,7 +411,7 @@ class Raw
      *
      * @param string $unSaturatedFats
      *
-     * @return Raw
+     * @return Snack
      */
     public function setUnSaturatedFats($unSaturatedFats)
     {
@@ -432,7 +436,7 @@ class Raw
      *
      * @param string $proteins
      *
-     * @return Raw
+     * @return Snack
      */
     public function setProteins($proteins)
     {
@@ -457,7 +461,7 @@ class Raw
      *
      * @param string $carbs
      *
-     * @return Raw
+     * @return Snack
      */
     public function setCarbs($carbs)
     {
@@ -482,7 +486,7 @@ class Raw
      *
      * @param string $sugars
      *
-     * @return Raw
+     * @return Snack
      */
     public function setSugars($sugars)
     {

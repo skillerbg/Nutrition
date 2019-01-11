@@ -1,0 +1,121 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container body-content span=8 offset=2">
+        <div class="well">
+            <form class="form-horizontal" action="{{ path('snack_create') }}" method="POST">
+                <fieldset>
+                    <legend>New Ingredient</legend>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="article_title">Name:</label>
+                        <div class="col-sm-4 ">
+                            <input type="text" class="form-control" id="article_title"
+                                   name="snack[name]">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="article_content">Description:</label>
+                        <div class="col-sm-6">
+                        <textarea class="form-control" rows="6" id="article_content"
+                                  name="snack[description]"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="article_price">Price</label>
+                        <div class="col-sm-4 ">
+                            <input type="number" step="0.01" class="form-control" id="article_price"
+                                   name="snack[price]">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="quantity">Grams:</label>
+                        <div class="col-sm-6">
+                            <input type="number" step="0.01" class="form-control" id="quantity"
+                                   name="snack[quantity]">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="picture">Picture URL:</label>
+                        <div class="col-sm-4 ">
+                           <textarea class="form-control" rows="1" id="picture"
+                                     name="snack[picture]"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="kcal">Kcal per 100g:</label>
+                        <div class="col-sm-6">
+                            <input type="number" step="0.01" class="form-control" id="kcal"
+                                   name="snack[kcal]">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="fats">Fats per 100g:</label>
+                        <div class="col-sm-4 ">
+                            <input type="number" step="0.01" class="form-control" id="fats"
+                                   name="snack[fats]">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="ufats">Unsaturated fats  per 100g:</label>
+                        <div class="col-sm-6">
+                            <input type="number" step="0.01" class="form-control" id="ufats"
+                                   name="snack[unSaturatedFats]">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="sfats">Saturated fats  per 100g:</label>
+                        <div class="col-sm-4 ">
+                            <input type="number" step="0.01" class="form-control" id="sfats"
+                                   name="snack[saturatedFats]">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="protein">Proteins per 100g:</label>
+                        <div class="col-sm-6">
+                            <input type="number" step="0.01" class="form-control" id="protein"
+                                   name="snack[proteins]">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="carbs">Carbs per 100g:</label>
+                        <div class="col-sm-4 ">
+                            <input type="number" step="0.01" class="form-control" id="carbs"
+                                   name="snack[carbs]">
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="sugars">Suagars per 100g:</label>
+                        <div class="col-sm-4 ">
+                            <input type="number" step="0.01" class="form-control" id="sugars"
+                                   name="snack[sugars]">
+                        </div>
+                    </div>
+
+
+                    {{ form_row(form._token) }}
+
+                    <div class="form-group">
+                        <div class="col-sm-4 col-sm-offset-4">
+                            <a class="btn btn-default" href="{{ path('homepage') }}">Cancel</a>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

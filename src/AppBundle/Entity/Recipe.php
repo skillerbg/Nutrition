@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Raw
+ * Recipe
  *
- * @ORM\Table(name="raw")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\RawRepository")
+ * @ORM\Table(name="recipe")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\RecipeRepository")
  */
-class Raw
+class Recipe
 {
     /**
      * @var int
@@ -20,12 +20,42 @@ class Raw
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="type", type="string", length=255)
+     */
+    private $type;
 
+    /**
+     * Set type.
+     *
+     * @param string $type
+     *
+     * @return Recipe
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type.
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
     /**
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
      */
+
     private $name;
 
     /**
@@ -162,7 +192,7 @@ class Raw
     private $sugarsPerG;
 
     /**
-     * Raw constructor.
+     * Recipe constructor.
 
      */
     public function __construct()
@@ -186,7 +216,7 @@ class Raw
      *
      * @param string $name
      *
-     * @return Raw
+     * @return Recipe
      */
     public function setName($name)
     {
@@ -210,7 +240,7 @@ class Raw
      *
      * @param string $description
      *
-     * @return Raw
+     * @return Recipe
      */
     public function setDescription($description)
     {
@@ -234,7 +264,7 @@ class Raw
      *
      * @param string $price
      *
-     * @return Raw
+     * @return Recipe
      */
     public function setPrice($price)
     {
@@ -261,7 +291,7 @@ class Raw
      *
      * @param string $quantity
      *
-     * @return Raw
+     * @return Recipe
      */
     public function setQuantity($quantity)
     {
@@ -308,7 +338,7 @@ class Raw
      *
      * @param string $picture
      *
-     * @return Raw
+     * @return Recipe
      */
     public function setPicture($picture)
     {
@@ -332,7 +362,7 @@ class Raw
      *
      * @param string $kcal
      *
-     * @return Raw
+     * @return Recipe
      */
     public function setKcal($kcal)
     {
@@ -357,7 +387,7 @@ class Raw
      *
      * @param string $fats
      *
-     * @return Raw
+     * @return Recipe
      */
     public function setFats($fats)
     {
@@ -382,7 +412,7 @@ class Raw
      *
      * @param string $saturatedFats
      *
-     * @return Raw
+     * @return Recipe
      */
     public function setSaturatedFats($saturatedFats)
     {
@@ -407,7 +437,7 @@ class Raw
      *
      * @param string $unSaturatedFats
      *
-     * @return Raw
+     * @return Recipe
      */
     public function setUnSaturatedFats($unSaturatedFats)
     {
@@ -432,7 +462,7 @@ class Raw
      *
      * @param string $proteins
      *
-     * @return Raw
+     * @return Recipe
      */
     public function setProteins($proteins)
     {
@@ -457,7 +487,7 @@ class Raw
      *
      * @param string $carbs
      *
-     * @return Raw
+     * @return Recipe
      */
     public function setCarbs($carbs)
     {
@@ -482,7 +512,7 @@ class Raw
      *
      * @param string $sugars
      *
-     * @return Raw
+     * @return Recipe
      */
     public function setSugars($sugars)
     {

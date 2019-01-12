@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 
 use AppBundle\AppBundle;
+use Proxies\__CG__\AppBundle\Entity\Recipe;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use AppBundle\Entity\Raw;
@@ -22,10 +23,10 @@ class ViewRecipeController extends Controller
  * @return \Symfony\Component\HttpFoundation\Response
  */
     public function View(Request $request)
-    {   var_dump($request);
+    {
         $id=    $request->query->get('id');
-        $type= "AppBundle:".   $request->query->get('type');
-        $db = $this->getDoctrine()->getRepository($type);
+
+        $db = $this->getDoctrine()->getRepository('AppBundle:Recipe');
           $entity=$db->find($id);
 
         return $this->render('default/view.html.twig.php', array('entity' => $entity));

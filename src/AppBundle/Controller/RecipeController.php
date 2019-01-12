@@ -4,27 +4,27 @@ namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-use AppBundle\Entity\Raw;
-use AppBundle\Form\RawType;
+use AppBundle\Entity\Recipe;
+use AppBundle\Form\RecipeType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 
-class RawController extends Controller
+class RecipeController extends Controller
 {
     /**
      * @param Request $request
      *
-     * @Route("/raw/create", name="raw_create")
+     * @Route("/recipe/create", name="recipe_create")
      * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function create(Request $request)
     {
-        $article = new Raw();
+        $article = new Recipe();
 
-        $form = $this->createForm(RawType::class, $article);
+        $form = $this->createForm(RecipeType::class, $article);
 //        var_dump($form);
 
         $form->handleRequest($request);
@@ -39,7 +39,7 @@ class RawController extends Controller
 
         }
 
-        return $this->render('raw/create.html.twig',
+        return $this->render('recipe/create.html.twig',
             array('form' => $form->createView()));
 
     }

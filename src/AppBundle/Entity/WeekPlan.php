@@ -22,9 +22,9 @@ class WeekPlan
     private $id;
 
     /**
-     * @var int
+     * @var string
      *
-     * @ORM\Column(name="UserId", type="integer")
+     * @ORM\Column(name="UserId", type="string")
      */
     private $userId;
 

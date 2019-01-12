@@ -23,41 +23,41 @@ class DayPlan
     private $id;
 
     /**
-     * @var raw
+     * @var recipe
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Raw", inversedBy="id")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Recipe", inversedBy="id")
      * @ORM\JoinColumn(name="breakfast", referencedColumnName="id")
      */
     private $breakfast;
 
     /**
-     * @var snack
+     * @var recipe
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Snack", inversedBy="id")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Recipe", inversedBy="id")
      * @ORM\JoinColumn(name="snack1", referencedColumnName="id")
      */
     private $snack1;
 
     /**
-     * @var dinner
+     * @var recipe
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Dinner", inversedBy="id")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Recipe", inversedBy="id")
      * @ORM\JoinColumn(name="dinner1", referencedColumnName="id")
      */
     private $dinner1;
 
     /**
-     * @var snack
+     * @var recipe
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Snack", inversedBy="id")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Recipe", inversedBy="id")
      * @ORM\JoinColumn(name="snack2", referencedColumnName="id")
      */
     private $snack2;
 
     /**
-     * @var dinner
+     * @var recipe
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Dinner", inversedBy="id")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Recipe", inversedBy="id")
      * @ORM\JoinColumn(name="dinner2", referencedColumnName="id")
      */
     private $dinner2;
@@ -79,7 +79,7 @@ class DayPlan
     /**
      * Set breakfast.
      *
-     * @param raw $breakfast
+     * @param recipe $breakfast
      *
      * @return DayPlan
      */
@@ -93,7 +93,7 @@ class DayPlan
     /**
      * Get breakfast.
      *
-     * @return raw
+     * @return recipe
      */
     public function getBreakfast()
     {
@@ -103,7 +103,7 @@ class DayPlan
     /**
      * Set snack1.
      *
-     * @param snack $snack1
+     * @param recipe $snack1
      *
      * @return DayPlan
      */
@@ -117,7 +117,7 @@ class DayPlan
     /**
      * Get snack1.
      *
-     * @return snack
+     * @return recipe
      */
     public function getSnack1()
     {
@@ -127,7 +127,7 @@ class DayPlan
     /**
      * Set dinner1.
      *
-     * @param dinner $dinner1
+     * @param recipe $dinner1
      *
      * @return DayPlan
      */
@@ -141,7 +141,7 @@ class DayPlan
     /**
      * Get dinner1.
      *
-     * @return dinner
+     * @return recipe
      */
     public function getDinner1()
     {
@@ -151,7 +151,7 @@ class DayPlan
     /**
      * Set snack2.
      *
-     * @param snack $snack2
+     * @param recipe $snack2
      *
      * @return DayPlan
      */
@@ -165,7 +165,7 @@ class DayPlan
     /**
      * Get snack2.
      *
-     * @return snack
+     * @return recipe
      */
     public function getSnack2()
     {
@@ -175,7 +175,7 @@ class DayPlan
     /**
      * Set dinner2.
      *
-     * @param dinner $dinner2
+     * @param recipe $dinner2
      *
      * @return DayPlan
      */
@@ -189,7 +189,7 @@ class DayPlan
     /**
      * Get dinner2.
      *
-     * @return dinner
+     * @return recipe
      */
     public function getDinner2()
     {

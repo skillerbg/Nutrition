@@ -6,14 +6,15 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use AppBundle\Entity\Dinner;
+use AppBundle\Entity\Recipe;
 
-class DinnerType extends AbstractType
+class RecipeType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
 
-        $builder->add('name', TextType::class)
+        $builder->add('type', TextType::class)
+            ->add('name', TextType::class)
             ->add('description', TextType::class)
             ->add('price', TextType::class)
 
@@ -31,7 +32,7 @@ class DinnerType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array('data_class' => Dinner::class,));
+        $resolver->setDefaults(array('data_class' => Recipe::class,));
     }
 
 

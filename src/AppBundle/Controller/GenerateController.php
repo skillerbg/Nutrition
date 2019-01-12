@@ -16,7 +16,7 @@ class GenerateController extends Controller
 {
      /**
      * @param Request $request
-     * @Route("/raw/generate", name="raw_generate")
+     * @Route("/day/generate", name="day_generate")
      * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
      *
      * @return \Symfony\Component\HttpFoundation\Response
@@ -25,32 +25,88 @@ class GenerateController extends Controller
    {
 
            $day = $this->generateDay();
-
-       return $this->render('raw/view.html.twig'
+       return $this->render('recipe/view.html.twig'
            ,array('day' => $day));
    }
+
+
 
     public function generateDay(){
         $dayPlan= new DayPlan();
 
-        $breakfast =$this->random('AppBundle:Raw');
-        $snack=$this->random('AppBundle:Snack');
-        $dinner=$this->random('AppBundle:Dinner');
-        $snack2=$this->random('AppBundle:Snack');
-        $dinner2=$this->random('AppBundle:Dinner');
-        $dayPlan->setBreakfast($breakfast)
-            ->setSnack1($snack)
-            ->setDinner1($dinner)
-            ->setSnack2($snack2)
-            ->setDinner2($dinner2);
+        $meals[0] =$this->random('breakfast');
+        $meals[1]=$this->random('snack');
+        $meals[2]=$this->random('dinner');
+        $meals[3]=$this->random('snack');
+        $meals[4]=$this->random('dinner');
+
+        $dayPlan->setBreakfast($meals[0])
+            ->setSnack1($meals[1])
+            ->setDinner1($meals[2])
+            ->setSnack2($meals[3])
+            ->setDinner2($meals[4]);
 
         $em = $this->getDoctrine()->getManager();
         $em->persist($dayPlan);
         $em->flush();
 
-       return $dayPlan;
+        return $dayPlan;
 
     }
+    public function random($entity){
+        $repo = $this->getDoctrine()->getRepository('AppBundle:Recipe');
+        $number=$repo->createQueryBuilder('u')
+            ->where('u.type = ?1')
+            ->setParameter(1, $entity)
+            ->select('count(u.id)')
+            ->getQuery()
+            ->getSingleScalarResult();
+
+        $number=intval($number);
+        $number=rand(1,$number);
+        $result= $repo->findBy(array('type' => $entity),array('type' => 'ASC'),1, $number-1)[0];
+
+
+       return $result;
+
+
+
+    }
+
+    /**
+     * @param Request $request
+     * @Route("/day/regenerate", name="day_regenerate")
+     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function regenerateDay(Request $request){
+        $day=    $request->query->get('day');
+        $day="u.".$day;
+        $newDay=$this->generateDay();
+        $em = $this->getDoctrine()
+            ->getRepository(WeekPlan::class);
+
+        $q=$em->createQueryBuilder('u')
+            ->update('AppBundle:WeekPlan','u')
+            ->set($day, $newDay->getId())
+            ->Where('u.userId = 1')
+
+
+            ->getQuery();
+         $q->execute();
+
+        return $this->redirectToRoute('week_view');
+
+
+
+
+    }
+
+
+
+
+
     /**
 
     /* @Route("/week/generateWeek", name="week_generate")
@@ -79,15 +135,7 @@ class GenerateController extends Controller
 
     }
 
-    public function random($entity){
-        $repo = $this->getDoctrine()->getRepository($entity);
-        $number=$repo->createQueryBuilder('u')
-            ->select('count(u.id)')
-            ->getQuery()
-            ->getSingleScalarResult();
-        $number=intval($number);
-        return  $repo->find(rand(1,$number));
-    }
+
     public function dropOld($user){
         $em = $this->getDoctrine()->getManager();
 

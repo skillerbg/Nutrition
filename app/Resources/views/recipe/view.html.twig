@@ -17,8 +17,8 @@
     <td>Breakfast</td>
     <td>{{day.breakfast.name}}</td>
     <td>{{day.breakfast.description}}</td>
-    <td>{{day.breakfast.price}}</td>
-    <th> <a href="{{ path('recipe_view' , {'id': day.breakfast.id,'type': "Raw" }) }}">
+    <td>{{day.breakfast.price|number_format(2, '.', ',')}}</td>
+    <th> <a href="{{ path('recipe_view' , {'id': day.breakfast.id,'type': "day" }) }}">
       View
      </a> </th>
 
@@ -28,7 +28,7 @@
     <td>Snack</td>
     <td>{{day.snack1.name}}</td>
     <td>{{day.snack1.description}}</td>
-    <td>{{day.snack1.price}}</td>
+    <td>{{day.snack1.price|number_format(2, '.', ',')}}</td>
     <th> <a href="{{ path('recipe_view' , {'id': day.snack1.id, 'type': "Snack"}) }}">
       View
      </a> </th>
@@ -39,7 +39,7 @@
     <td>Dinner</td>
     <td>{{day.dinner1.name}}</td>
     <td>{{day.dinner1.description}}</td>
-    <td>{{day.dinner1.price}}</td>
+    <td>{{day.dinner1.price|number_format(2, '.', ',')}}</td>
     <th> <a href="{{ path('recipe_view' , {'id': day.dinner1.id,' type': "Dinner"}) }}">
       View
      </a> </th>
@@ -50,7 +50,7 @@
     <td>Snack</td>
     <td>{{day.snack2.name}}</td>
     <td>{{day.snack2.description}}</td>
-    <td>{{day.snack2.price}}</td>
+    <td>{{day.snack2.price|number_format(2, '.', ',')}}</td>
     <th> <a href="{{ path('recipe_view' , {'id': day.snack2.id,'type': "Snack"}) }}">
       View
      </a> </th>
@@ -61,7 +61,7 @@
     <td>Dinner</td>
     <td>{{day.dinner2.name}}</td>
     <td>{{day.dinner2.description}}</td>
-    <td>{{day.dinner2.price}}</td>
+    <td>{{day.dinner2.price|number_format(2, '.', ',')}}</td>
     <th> <a href="{{ path('recipe_view' , {'id': day.dinner2.id,'type': "Dinner"}) }}">
       View
      </a> </th>

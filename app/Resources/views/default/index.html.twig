@@ -2,28 +2,24 @@
 
 {% block body %}
    <li>
-      <a href="{{ path('raw_create') }}">
-         Add new breakfast
+      <a href="{{ path('recipe_create') }}">
+         Add new meal
       </a>
    </li>
+
    <li>
-      <a href="{{ path('snack_create') }}">
-         Add new snack
-      </a>
-   </li>
-   <li>
-      <a href="{{ path('dinner_create') }}">
-         Add new dinner
-      </a>
-   </li>
-   <li>
-      <a href="{{ path('raw_generate') }}">
+      <a href="{{ path('day_generate') }}">
 Generate
       </a>
    </li>
    <li>
       <a href="{{ path('week_generate') }}">
          Generate Week
+      </a>
+   </li>
+   <li>
+      <a href="{{ path('week_view') }}">
+         View Week
       </a>
    </li>
 

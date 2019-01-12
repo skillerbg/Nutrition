@@ -7938,7 +7938,7 @@ jQuery.extend({
 					return match == null ? null : match;
 				},
 
-				// Raw string
+				// day string
 				getAllResponseHeaders: function() {
 					return state === 2 ? responseHeadersString : null;
 				},

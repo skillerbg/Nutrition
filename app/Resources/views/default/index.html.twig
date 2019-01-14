@@ -1,27 +1,29 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-   <li>
+   <div>
+
+      <a href="{{ path('day_generate') }}">
+         <img src="{{ asset('images/1-day+Meal+Plan+(2).png') }}" alt="day_meal" width="500"height="500">
+      </a>
+   <a href="{{ path('week_view') }}">
+      <img src="{{ asset('images/Weekly_Meal.jpg') }}" alt="weekly_meal"  >
+   </a>
+
+
+   </div>   <li>
       <a href="{{ path('recipe_create') }}">
          Add new meal
       </a>
    </li>
 
-   <li>
-      <a href="{{ path('day_generate') }}">
-Generate
-      </a>
-   </li>
+
    <li>
       <a href="{{ path('week_generate') }}">
          Generate Week
       </a>
    </li>
-   <li>
-      <a href="{{ path('week_view') }}">
-         View Week
-      </a>
-   </li>
+
 
   {% endblock %}
 

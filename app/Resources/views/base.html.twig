@@ -10,14 +10,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>{% block title %}KVO Project{% endblock %}</title>
     {% block stylesheets %}
-        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/bootstrap-datetimepicker.min.css') }}">
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+        <link href="//cdnjs.cloudflare.com/ajax/libs/select2/3.5.4/select2.min.css" rel="stylesheet">
+        <link href="//cdn.rawgit.com/t0m/select2-bootstrap-css/bootstrap3/select2-bootstrap.css" rel="stylesheet">
     {% endblock %}
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
 </head>
 
 <body id="{% block body_id %}{% endblock %}">
 
+<div>
+    {% block fos_user_content %}
+    {% endblock fos_user_content %}
+</div>
 {% block header %}
     <header>
         <div class="navbar navbar-default navbar-static-top" role="navigation">
@@ -61,10 +66,12 @@
                                 </a>
                             </li>
                         {% endif %}
+
                     </ul>
                 </div>
             </div>
         </div>
+
     </header>
 {% endblock %}
 
@@ -72,7 +79,10 @@
     {% block body %}
         <div class="row">
             <div id="main" class="col-sm-9">
-                {% block main %}{% endblock %}
+                {% block main %}
+                    <div class="container"></div>
+
+                {% endblock %}
             </div>
         </div>
     {% endblock %}
@@ -85,12 +95,50 @@
         </div>
     </footer>
 {% endblock %}
-
-{% block javascripts %}
+    {#<div class="container">#}
+        {#{{#}
+        {#render(#}
+            {#controller('AppBundle:Default:index')#}
+        {#)#}
+        {#}}#}
+    {#</div>#}
+{% block javascripts %}{% endblock %}
     <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
     <script src="{{ asset('js/moment.min.js') }}"></script>
+    <script src="{{ asset('js/jquery-ui.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/bloodhound.jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/typeahead.jquery.min.js') }}"></script>
+    <script src="{{ asset('js/autocompleter-jqueryui.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
 
-{% endblock %}
+    {#<script>#}
+        {#$(document).ready(function(){#}
+
+            {#$('#country').typeahead({#}
+                {#source: function(query, result)#}
+                {#{#}
+                    {#$.ajax({#}
+                        {#url:{{ path('raw_search') }},#}
+                        {#method:"POST",#}
+                        {#data:{query:query},#}
+                        {#dataType:"json",#}
+                        {#success:function(data)#}
+                        {#{#}
+                            {#result($.map(data, function(item){#}
+                                {#return item;#}
+                            {#}));#}
+                        {#}#}
+                    {#})#}
+                {#}#}
+            {#});#}
+
+        {#});#}
+        {#</script>#}
+    <link type="text/css" rel="stylesheet" href="{{ asset('css/select2.css') }}">
+    <link type="text/css" rel="stylesheet" href="{{ asset('/css/autocomplete.css') }}">
+
+
+
 
 </body>
 </html>

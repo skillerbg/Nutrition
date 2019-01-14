@@ -1,0 +1,10 @@
+{% extends app.request.get('jqui') ? 'base_jqui.html.twig' : 'base.html.twig' %}
+{% block title %}New Book - {{ parent() }}{% endblock %}
+
+{% block body %}
+    {{
+    render(
+        controller('AppBundle:Default:index')
+    )
+    }}
+{% endblock %}

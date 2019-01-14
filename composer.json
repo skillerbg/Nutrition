@@ -32,7 +32,9 @@
         "symfony/swiftmailer-bundle": "^2.6.4",
         "symfony/symfony": "3.4.*",
         "symfony/templating": "^4.2",
-        "twig/twig": "^1.0||^2.0"
+        "twig/twig": "^1.0||^2.0",
+      "ext-mysqli": "*",
+        "ext-json": "*"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",

@@ -10,4 +10,15 @@ namespace AppBundle\Repository;
  */
 class RecipeRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findByName($value)
+    {
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.name like :query')
+            ->setParameter('query', "%". $value ."%")
+            // ->orderBy('c.id', 'ASC')
+            // ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 }

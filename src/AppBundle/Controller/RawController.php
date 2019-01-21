@@ -3,11 +3,13 @@
 namespace AppBundle\Controller;
 
 
-use AppBundle\Entity\Test;
-use AppBundle\Form\TestType;
+use AppBundle\Entity\GenerateRecipe;
+use AppBundle\Entity\Raw;
+use AppBundle\Entity\RecipeSRaw;
+use AppBundle\Form\RawType;
+use AppBundle\Repository\GenerateRecipeRepository;
 use AppBundle\Repository\RecipeRepository;
 use http\Env\Response;
-use Proxies\__CG__\AppBundle\Entity\Raw;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -30,19 +32,72 @@ class RawController extends Controller
      */
     public function create(Request $request)
     {
-        $data=    $request->request->get('test');
-        $id=$data["id"];
-        $db = $this->getDoctrine()->getRepository('AppBundle:Recipe');
-        $entity=$db->find($id);
+//        $data = $request->request->get('raw');
+//        $id = $data["id"];
+//        $name=$data["name"];
+//        $em = $this->getDoctrine()->getManager();
 
-        $raw=new Test();
-        $raw->setRecipe($entity);
+//        $article = new Raw();
+//
+//        $form = $this->createForm(RawType::class, $article);
+////        var_dump($form);
+//
+//        $form->handleRequest($request);
 
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($raw);
-        $em->flush();
+//
+//        if (isset($form)) {
+////            $recipe = $em->getRepository('AppBundle:Recipe')->find($id);
+//
+//
+//            return $this->render('search/raw.html.twig',  array('name' => $form));
+//
+//        }
+//        else  {
+
+//        $data = $request->request->get('test');
+//        if (isset($data )){
+//        $recipeid=$data['id'];
+//            $id=    $data['id'];
+//
+//            $quantity=    $data['quantity'];
+//
+//
+//
+//
+//            $db = $this->getDoctrine()->getRepository('AppBundle:Recipe');
+//            $entity=$db->find($id);
+//        $generateRecipe=new RecipeSRaw();
+//        var_dump($entity);
+//        $generateRecipe->setRecipeId($entity)
+//        ->setQantity($quantity);
+//            $db2 = $this->getDoctrine()->getRepository('AppBundle:Raw');
+//            if ( isset($data['oldid'])){
+//                $oldid=    $data['oldid'];
+//            $rawdb=$db2->find($oldid);
+//             $rawdb->setRecipe($generateRecipe);
+//
+//            }else{
+//        $raw=new Raw();
+//
+//                $em = $this->getDoctrine()->getManager();
+//                $em->persist($raw);
+//                $em->flush();
+//                $em->persist($generateRecipe);
+//                $em->flush();
+//        $raw->setRecipe($generateRecipe);
+//
+//
+//            }
+//            $rawid=$raw->getId();
+//            return $this->render('search/raw.html.twig',array('oldid'=> $rawid));//
+//        }
+
+        return $this->render('search/search.html.twig');//        }
+    }
+
+    public function createAction(Request $request){
+        var_dump($request);
         return $this->render('search/search.html.twig');
-
     }
 
 
@@ -58,25 +113,42 @@ class RawController extends Controller
     /**
      * @param Request $request
      * @Route("search/search", name="raw_search")
- *
+     *
 
      */
 
-    public function search(Request $request){
-
-
+    public function search(Request $request)
+    {
 
 
         $entityManager = $this->getDoctrine()->getManager();
-        $data=    $request->request->get('query');
+        $data = $request->request->get('query');
 
         $result = $entityManager->getRepository("AppBundle:Recipe")->createQueryBuilder('o')
             ->where('o.name LIKE :n')
-            ->setParameter('n', '%'.$data.'%')
+            ->setParameter('n', '%' . $data . '%')
             ->getQuery()
             ->getArrayResult();
-            return $this->json(array($result));
-    }}
+        return $this->json(array($result));
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @Route("/raw/flush", name="raw_flush")
+     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+
+    public function flushAction(Request $request)
+    {
+        return $this->render('default/index.html.twig');
+
+    }
+
+
+}
 
 
 
@@ -97,9 +169,9 @@ class RawController extends Controller
 //    */
 //    public function create(Request $request)
 //    {
-//        $article = new Test();
+//        $article = new Raw();
 //
-//        $form = $this->createForm(TestType::class, $article);
+//        $form = $this->createForm(RawType::class, $article);
 //
 //        $form->handleRequest($request);
 //

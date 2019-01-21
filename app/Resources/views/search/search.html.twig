@@ -11,7 +11,8 @@
 
         $(document).ready(function(){
 
-            $('#country').typeahead({
+            $('#country').each(function() {
+                $(this).typeahead({
                 source: function(query, result)
                 {
                     $.ajax({
@@ -28,18 +29,265 @@
                         }
                     })
                 }
-           , updater: function (item) {
-                return item;
-            }
-        , afterSelect: function (item) {
-                console.log('afterSelect: ' + item.id);
-                $('#inputtypeHidden').val(item.id); }})
 
 
 
-        });
+
+        }); });})
     </script>
 
+    <script>
+
+        $(document).ready(function(){
+
+            $('#country2').each(function() {
+                $(this).typeahead({
+                    source: function(query, result)
+                    {
+                        $.ajax({
+                            url: '{{ path('raw_search') }}',
+                            method:"POST",
+                            data:{query:query},
+                            dataType:"json",
+                            success:function(data)
+                            {
+                                result($.map(data, function(item){
+
+                                    return item;
+                                }));
+                            }
+                        })
+                    }
+
+
+
+
+                }); });})
+    </script>
+    <script>
+
+        $(document).ready(function(){
+
+            $('#country3').each(function() {
+                $(this).typeahead({
+                    source: function(query, result)
+                    {
+                        $.ajax({
+                            url: '{{ path('raw_search') }}',
+                            method:"POST",
+                            data:{query:query},
+                            dataType:"json",
+                            success:function(data)
+                            {
+                                result($.map(data, function(item){
+
+                                    return item;
+                                }));
+                            }
+                        })
+                    }
+
+
+
+
+                }); });})
+    </script>
+    <script>
+
+        $(document).ready(function(){
+
+            $('#country4').each(function() {
+                $(this).typeahead({
+                    source: function(query, result)
+                    {
+                        $.ajax({
+                            url: '{{ path('raw_search') }}',
+                            method:"POST",
+                            data:{query:query},
+                            dataType:"json",
+                            success:function(data)
+                            {
+                                result($.map(data, function(item){
+
+                                    return item;
+                                }));
+                            }
+                        })
+                    }
+
+
+
+
+                }); });})
+    </script>
+    <script>
+
+        $(document).ready(function(){
+
+            $('#country5').each(function() {
+                $(this).typeahead({
+                    source: function(query, result)
+                    {
+                        $.ajax({
+                            url: '{{ path('raw_search') }}',
+                            method:"POST",
+                            data:{query:query},
+                            dataType:"json",
+                            success:function(data)
+                            {
+                                result($.map(data, function(item){
+
+                                    return item;
+                                }));
+                            }
+                        })
+                    }
+
+
+
+
+                }); });})
+    </script>
+    <script>
+
+        $(document).ready(function(){
+
+            $('#country6').each(function() {
+                $(this).typeahead({
+                    source: function(query, result)
+                    {
+                        $.ajax({
+                            url: '{{ path('raw_search') }}',
+                            method:"POST",
+                            data:{query:query},
+                            dataType:"json",
+                            success:function(data)
+                            {
+                                result($.map(data, function(item){
+
+                                    return item;
+                                }));
+                            }
+                        })
+                    }
+
+
+
+
+                }); });})
+    </script>
+    <script>
+
+        $(document).ready(function(){
+
+            $('#country7').each(function() {
+                $(this).typeahead({
+                    source: function(query, result)
+                    {
+                        $.ajax({
+                            url: '{{ path('raw_search') }}',
+                            method:"POST",
+                            data:{query:query},
+                            dataType:"json",
+                            success:function(data)
+                            {
+                                result($.map(data, function(item){
+
+                                    return item;
+                                }));
+                            }
+                        })
+                    }
+
+
+
+
+                }); });})
+    </script>
+    <script>
+
+        $(document).ready(function(){
+
+            $('#country8').each(function() {
+                $(this).typeahead({
+                    source: function(query, result)
+                    {
+                        $.ajax({
+                            url: '{{ path('raw_search') }}',
+                            method:"POST",
+                            data:{query:query},
+                            dataType:"json",
+                            success:function(data)
+                            {
+                                result($.map(data, function(item){
+
+                                    return item;
+                                }));
+                            }
+                        })
+                    }
+
+
+
+
+                }); });})
+    </script>
+    <script>
+
+        $(document).ready(function(){
+
+            $('#country9').each(function() {
+                $(this).typeahead({
+                    source: function(query, result)
+                    {
+                        $.ajax({
+                            url: '{{ path('raw_search') }}',
+                            method:"POST",
+                            data:{query:query},
+                            dataType:"json",
+                            success:function(data)
+                            {
+                                result($.map(data, function(item){
+
+                                    return item;
+                                }));
+                            }
+                        })
+                    }
+
+
+
+
+                }); });})
+    </script>
+    <script>
+
+        $(document).ready(function(){
+
+            $('#country10').each(function() {
+                $(this).typeahead({
+                    source: function(query, result)
+                    {
+                        $.ajax({
+                            url: '{{ path('raw_search') }}',
+                            method:"POST",
+                            data:{query:query},
+                            dataType:"json",
+                            success:function(data)
+                            {
+                                result($.map(data, function(item){
+
+                                    return item;
+                                }));
+                            }
+                        })
+                    }
+
+
+
+
+                }); });})
+    </script>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
 </head>
@@ -54,9 +302,24 @@
                 <fieldset>
                     <legend>New Ingredient</legend>
 
-                    <input type="text" name="test[name]" id="country" class="form-control input-lg" autocomplete="off" placeholder="Type Country Name" />
+                    <input type="text" name="test[1]" id="country" class="form-control input-lg" autocomplete="off" placeholder="Type Country Name" />
+
+                    <input type="text" name="test[2]" id="country2" class="form-control input-lg" autocomplete="off" placeholder="Type Country Name" />
+                    <input type="text" name="test[3]" id="country3" class="form-control input-lg" autocomplete="off" placeholder="Type Country Name" />
+
+                    <input type="text" name="test[4]" id="country4" class="form-control input-lg" autocomplete="off" placeholder="Type Country Name" />
+                    <input type="text" name="test[5]" id="country5" class="form-control input-lg" autocomplete="off" placeholder="Type Country Name" />
+
+                    <input type="text" name="test[6]" id="country6" class="form-control input-lg" autocomplete="off" placeholder="Type Country Name" />
+                    <input type="text" name="test[7]" id="country7" class="form-control input-lg" autocomplete="off" placeholder="Type Country Name" />
+
+                    <input type="text" name="test[8]" id="country8" class="form-control input-lg" autocomplete="off" placeholder="Type Country Name" />
+                    <input type="text" name="test[9]" id="country9" class="form-control input-lg" autocomplete="off" placeholder="Type Country Name" />
+
+                    <input type="text" name="test[10]" id="country10" class="form-control input-lg" autocomplete="off" placeholder="Type Country Name" />
 
                     <input type="hidden" name="test[id]" id="inputtypeHidden">
+                    <input type="hidden" name="test[oldid]" id="oldid">
                     <div class="form-group">
                         <div class="col-sm-4 col-sm-offset-4">
                             <a class="btn btn-default" href="{{ path('homepage') }}">Cancel</a>

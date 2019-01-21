@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Test
+ * Raw
  *
  * @ORM\Table(name="test")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\TestRepository")
  */
-class Test
+class Raw
 {
     /**
      * @var int
@@ -22,10 +22,9 @@ class Test
     private $id;
 
     /**
-     * @var Recipe
+     * @var RecipeSRaw
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Recipe", inversedBy="id")
-     * @ORM\JoinColumn(name="recipe", referencedColumnName="id")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\RecipeSRaw", mappedBy="rawId")
      */
     private $recipe;
 
@@ -43,9 +42,9 @@ class Test
     /**
      * Set recipe.
      *
-     * @param Recipe $recipe
+     * @param RecipeSRaw $recipe
      *
-     * @return Test
+     * @return Raw
      */
     public function setRecipe($recipe)
     {
@@ -57,7 +56,7 @@ class Test
     /**
      * Get recipe.
      *
-     * @return Recipe
+     * @return RecipeSRaw
      */
     public function getRecipe()
     {

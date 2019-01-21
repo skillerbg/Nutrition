@@ -82,6 +82,7 @@ class GenerateController extends Controller
     public function regenerateDay(Request $request){
         $day=    $request->query->get('day');
         $day="u.".$day;
+        $user = $this->getUser()->getId();
         $newDay=$this->generateDay();
         $em = $this->getDoctrine()
             ->getRepository(WeekPlan::class);
@@ -89,8 +90,8 @@ class GenerateController extends Controller
         $q=$em->createQueryBuilder('u')
             ->update('AppBundle:WeekPlan','u')
             ->set($day, $newDay->getId())
-            ->Where('u.userId = 1')
-
+            ->Where('u.userId = ?1')
+            ->setParameter(1, $user)
 
             ->getQuery();
          $q->execute();

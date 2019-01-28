@@ -24,7 +24,7 @@ class GenerateController extends Controller
    {
 
            $day = $this->generateDay();
-       return $this->render('recipe/view.html.twig'
+       return $this->render('raw/view.html.twig'
            ,array('day' => $day));
    }
 
@@ -54,6 +54,7 @@ class GenerateController extends Controller
     }
     public function random($entity){
         $repo = $this->getDoctrine()->getRepository('AppBundle:Recipe');
+
         $number=$repo->createQueryBuilder('u')
             ->where('u.type = ?1')
             ->setParameter(1, $entity)
@@ -117,7 +118,6 @@ class GenerateController extends Controller
     public function generateWeek(){
        $weekPlan= new WeekPlan();
         $user = $this->getUser()->getId();
-
         $weekPlan->setMonday($this->generateDay())
            ->setTuesday($this->generateDay())
            ->setWednesday($this->generateDay())

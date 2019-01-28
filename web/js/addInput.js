@@ -8,7 +8,7 @@ function addInput(divName){
 
 
         var newdiv = document.createElement('div');
-        newdiv.innerHTML = "Entry " + (counter + 1) + " <input type=\"text\" name=\"raw[]\" id=\"country\" class=\"form-control input-lg\" autocomplete=\"off\" placeholder=\"Type Country Name\" />\n";
+        newdiv.innerHTML = "Entry " + (counter + 1) + " <input type=\"text\" name=\"recipe[]\" id=\"country\" class=\"form-control input-lg\" autocomplete=\"off\" placeholder=\"Type Country Name\" />\n";
         document.getElementById(divName).appendChild(newdiv);
         counter++;
     }

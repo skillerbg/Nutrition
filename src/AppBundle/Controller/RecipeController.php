@@ -2,11 +2,23 @@
 
 namespace AppBundle\Controller;
 
+
+use AppBundle\Entity\GenerateRecipe;
+use AppBundle\Entity\Nutrition_Info;
+use AppBundle\Entity\Raw;
+use AppBundle\Entity\Recipe_Nutrion;
+use AppBundle\Entity\RecipeSRaw;
+use AppBundle\Form\RawType;
+use AppBundle\Repository\GenerateRawRepository;
+use AppBundle\Repository\RawRepository;
+use http\Env\Response;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use AppBundle\Entity\Recipe;
 use AppBundle\Form\RecipeType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -22,25 +34,104 @@ class RecipeController extends Controller
      */
     public function create(Request $request)
     {
-        $article = new Recipe();
 
-        $form = $this->createForm(RecipeType::class, $article);
-//        var_dump($form);
+        $recipe= new Recipe();
+        $nutriInfo=new Recipe_Nutrion();
+        $data =$request->query->get('recipe');
+        if ($data) {
+            $kcal=0;
+            $fats=0;
+            $proteins=0;
+            $carbs=0;
+            $saFats=0;
+            $unFats=0;
+            $sugars=0;
 
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-//            $article->set($this->getUser());
+            $price=0;
+            $amount=0;
             $em = $this->getDoctrine()->getManager();
+            for ($i=1;$i<=10;$i++) {
+                $id='id'.$i;
+                $quantity=intval($data['quantity'.$i]);
+                $amount+=$quantity;
+                if ($data[$id]) {
+                    $raw = $em->getRepository('AppBundle:Raw')->find($data[$id]);
+                    $recipe->getRaws()->add($raw);
+                    $price+=($raw->getPricePerG()*$quantity);
+                    $kcal+=(($raw->getNutritionInfo()->getKcalPerG())*$quantity);
+                    $fats+=(($raw->getNutritionInfo()->getFatsPerG())*$quantity);
+                    $proteins+=(($raw->getNutritionInfo()->getProteinsPerG())*$quantity);
+                    $carbs+=(($raw->getNutritionInfo()->getCarbsPerG())*$quantity);
+                    $saFats+=(($raw->getNutritionInfo()->getSaturatedFatsPerG())*$quantity);
+                    $unFats+=(($raw->getNutritionInfo()->getUnSaturatedFatsPerG())*$quantity);
+                    $sugars+=(($raw->getNutritionInfo()->getSugarsPerG())*$quantity);
 
-            $em->persist($article);
+
+                }
+            }
+            $nutriInfo->setKcal($kcal)
+                ->setSugars($sugars)
+                ->setUnSaturatedFats($unFats)
+                ->setSaturatedFats($saFats)
+                ->setProteins($proteins)
+                ->setFats($fats)
+                ->setCarbs($carbs);
+            $recipe->setName($data['name'])
+                ->setDescription($data['description'])
+                ->setType($data['type'])
+                ->setPicture($data['picture'])
+                ->setPrice($price)
+                ->setQuantity($amount)
+                ->setRecipeNutrition($nutriInfo);
+            $em->persist($recipe);
+            $em->persist($nutriInfo);
+
             $em->flush();
-            return $this->redirectToRoute('homepage');
-
         }
 
-        return $this->render('recipe/create.html.twig',
-            array('form' => $form->createView()));
 
+
+        return $this->render('search/search.html.twig');//        }
     }
+
+
+
+
+
+
+
+    /**
+     * @param Request $request
+     * @Route("search/search", name="recipe_search")
+     *
+
+     */
+
+    public function search(Request $request)
+    {
+
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $data = $request->request->get('query');
+
+        $result = $entityManager->getRepository("AppBundle:Raw")->createQueryBuilder('o')
+            ->where('o.name LIKE :n')
+            ->setParameter('n', '%' . $data . '%')
+            ->getQuery()
+            ->getArrayResult();
+        return $this->json(array($result));
+    }
+
+
+
+
 }
+
+
+
+
+
+
+
+
+

@@ -2,19 +2,20 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Raw
  *
- * @ORM\Table(name="test")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\TestRepository")
+ * @ORM\Table(name="raw")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\RawRepository")
  */
 class Raw
 {
     /**
      * @var int
-     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Nutrition_Info", mappedBy="id")
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -22,11 +23,103 @@ class Raw
     private $id;
 
     /**
-     * @var RecipeSRaw
-     *
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\RecipeSRaw", mappedBy="rawId")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Recipe", mappedBy="raws")
      */
-    private $recipe;
+    private $recipes;
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Nutrition_Info", inversedBy="id")
+     * @ORM\JoinColumn(name="nutrition_info", referencedColumnName="id")
+     */
+
+    private $nutrition_info;
+
+
+
+    /**
+     * @return mixed
+     */
+    public function getRecipes()
+    {
+        return $this->recipes;
+    }
+
+    /**
+     * @param mixed $recipes
+     */
+    public function setRecipes($recipes)
+    {
+        $this->recipes = $recipes;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNutritionInfo()
+    {
+        return $this->nutrition_info;
+    }
+
+    /**
+     * @param mixed $nutrition_info
+     */
+    public function setNutritionInfo($nutrition_info)
+    {
+        $this->nutrition_info = $nutrition_info;
+    }
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255)
+     */
+
+    private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="string", length=255)
+     */
+    private $description;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="price", type="string", length=255)
+     */
+    private $price;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="quantity", type="decimal", precision=20, scale=3)
+     */
+    private $quantity;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="pricePerG", type="decimal", precision=20, scale=10)
+     */
+    private $pricePerG;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="picture", type="string", length=255)
+     */
+    private $picture;
+
+
+
+    /**
+     * Raw constructor.
+
+     */
+    public function __construct()
+    {
+    }
 
 
     /**
@@ -40,26 +133,156 @@ class Raw
     }
 
     /**
-     * Set recipe.
+     * Set name.
      *
-     * @param RecipeSRaw $recipe
+     * @param string $name
      *
      * @return Raw
      */
-    public function setRecipe($recipe)
+    public function setName($name)
     {
-        $this->recipe = $recipe;
+        $this->name = $name;
 
         return $this;
     }
 
     /**
-     * Get recipe.
+     * Get name.
      *
-     * @return RecipeSRaw
+     * @return string
      */
-    public function getRecipe()
+    public function getName()
     {
-        return $this->recipe;
+        return $this->name;
     }
+
+    /**
+     * Set description.
+     *
+     * @param string $description
+     *
+     * @return Raw
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description.
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set price.
+     *
+     * @param string $price
+     *
+     * @return Raw
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
+        if ($this->quantity !== null){
+            $this->setPricePerG();
+        }
+
+        return $this;
+    }
+
+    /**
+     * Get price.
+     *
+     * @return string
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    /**
+     * Set quantity.
+     *
+     * @param string $quantity
+     *
+     * @return Raw
+     */
+    public function setQuantity($quantity)
+    {
+        $this->quantity = $quantity;
+        if ($this->price !== null){
+            $this->setPricePerG();
+        }
+        return $this;
+    }
+
+    /**
+     * Get quantity.
+     *
+     * @return string
+     */
+    public function getQuantity()
+    {
+        return $this->quantity;
+    }
+
+    /**
+     * Set pricePerG.
+     *
+     *
+     */
+    public function setPricePerG()
+    {
+        $this->pricePerG = ($this->price/$this->quantity);
+
+    }
+
+    /**
+     * Get pricePerG.
+     *
+     * @return string
+     */
+    public function getPricePerG()
+    {
+        return $this->pricePerG;
+    }
+
+    /**
+     * Set picture.
+     *
+     * @param string $picture
+     *
+     * @return Raw
+     */
+    public function setPicture($picture)
+    {
+        $this->picture = $picture;
+
+        return $this;
+    }
+
+    /**
+     * Get picture.
+     *
+     * @return string
+     */
+    public function getPicture()
+    {
+        return $this->picture;
+    }
+
+    /**
+     * Set kcal.
+     *
+     * @param string $kcal
+     *
+     * @return Raw
+     */
 }

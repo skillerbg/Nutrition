@@ -1,7 +1,78 @@
 
 <!DOCTYPE html>
 <html>
+
+
+
+<body id="{% block body_id %}{% endblock %}">
+
+<div>
+    {% block fos_user_content %}
+    {% endblock fos_user_content %}
+</div>
+{% block header %}
+    <header>
+        <div class="navbar navbar-default navbar-static-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <a href="{{ path('homepage') }}" class="navbar-brand">KVO Project</a>
+
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        {% if app.user %}
+                            <li>
+                                <a href="{{ path('fos_user_profile_edit') }}">
+                                    Edit Profile
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ path('fos_user_change_password') }}">
+                                    Change Password
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ path('fos_user_security_logout') }}">
+                                    Logout
+                                </a>
+                            </li>
+                        {% else %}
+                            <li>
+                                <a href="{{ path('fos_user_registration_register') }}">
+                                    REGISTER
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ path('fos_user_security_login') }}">
+                                    LOGIN
+                                </a>
+                            </li>
+                        {% endif %}
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </header>
+{% endblock %}
+
+
 <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>{% block title %}KVO Project{% endblock %}</title>
+    {% block stylesheets %}
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+        <link href="//cdnjs.cloudflare.com/ajax/libs/select2/3.5.4/select2.min.css" rel="stylesheet">
+        <link href="//cdn.rawgit.com/t0m/select2-bootstrap-css/bootstrap3/select2-bootstrap.css" rel="stylesheet">
+    {% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
     <title>Webslesson Tutorial | Autocomplete Textbox using Bootstrap Typehead with Ajax PHP</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js"></script>
@@ -16,7 +87,7 @@
                 source: function(query, result)
                 {
                     $.ajax({
-                        url: '{{ path('raw_search') }}',
+                        url: '{{ path('recipe_search') }}',
                         method:"POST",
                         data:{query:query},
                         dataType:"json",
@@ -28,7 +99,12 @@
                             }));
                         }
                     })
-                }
+                }, updater: function (item) {
+                        return item;
+                    }
+                    , afterSelect: function (item) {
+                        console.log('afterSelect: ' + item.id);
+                        $('#inputtypeHidden').val(item.id); }
 
 
 
@@ -45,7 +121,7 @@
                     source: function(query, result)
                     {
                         $.ajax({
-                            url: '{{ path('raw_search') }}',
+                            url: '{{ path('recipe_search') }}',
                             method:"POST",
                             data:{query:query},
                             dataType:"json",
@@ -57,7 +133,12 @@
                                 }));
                             }
                         })
+                    }, updater: function (item) {
+                        return item;
                     }
+                    , afterSelect: function (item) {
+                        console.log('afterSelect: ' + item.id);
+                        $('#inputtypeHidden2').val(item.id); }
 
 
 
@@ -73,7 +154,7 @@
                     source: function(query, result)
                     {
                         $.ajax({
-                            url: '{{ path('raw_search') }}',
+                            url: '{{ path('recipe_search') }}',
                             method:"POST",
                             data:{query:query},
                             dataType:"json",
@@ -85,7 +166,12 @@
                                 }));
                             }
                         })
+                    }, updater: function (item) {
+                        return item;
                     }
+                    , afterSelect: function (item) {
+                        console.log('afterSelect: ' + item.id);
+                        $('#inputtypeHidden3').val(item.id); }
 
 
 
@@ -101,7 +187,7 @@
                     source: function(query, result)
                     {
                         $.ajax({
-                            url: '{{ path('raw_search') }}',
+                            url: '{{ path('recipe_search') }}',
                             method:"POST",
                             data:{query:query},
                             dataType:"json",
@@ -113,7 +199,12 @@
                                 }));
                             }
                         })
+                    }, updater: function (item) {
+                        return item;
                     }
+                    , afterSelect: function (item) {
+                        console.log('afterSelect: ' + item.id);
+                        $('#inputtypeHidden4').val(item.id); }
 
 
 
@@ -129,7 +220,7 @@
                     source: function(query, result)
                     {
                         $.ajax({
-                            url: '{{ path('raw_search') }}',
+                            url: '{{ path('recipe_search') }}',
                             method:"POST",
                             data:{query:query},
                             dataType:"json",
@@ -141,7 +232,12 @@
                                 }));
                             }
                         })
+                    }, updater: function (item) {
+                        return item;
                     }
+                    , afterSelect: function (item) {
+                        console.log('afterSelect: ' + item.id);
+                        $('#inputtypeHidden5').val(item.id); }
 
 
 
@@ -157,7 +253,7 @@
                     source: function(query, result)
                     {
                         $.ajax({
-                            url: '{{ path('raw_search') }}',
+                            url: '{{ path('recipe_search') }}',
                             method:"POST",
                             data:{query:query},
                             dataType:"json",
@@ -169,7 +265,12 @@
                                 }));
                             }
                         })
+                    }, updater: function (item) {
+                        return item;
                     }
+                    , afterSelect: function (item) {
+                        console.log('afterSelect: ' + item.id);
+                        $('#inputtypeHidden6').val(item.id); }
 
 
 
@@ -185,7 +286,7 @@
                     source: function(query, result)
                     {
                         $.ajax({
-                            url: '{{ path('raw_search') }}',
+                            url: '{{ path('recipe_search') }}',
                             method:"POST",
                             data:{query:query},
                             dataType:"json",
@@ -198,7 +299,12 @@
                             }
                         })
                     }
-
+                    , updater: function (item) {
+                        return item;
+                    }
+                    , afterSelect: function (item) {
+                        console.log('afterSelect: ' + item.id);
+                        $('#inputtypeHidden7').val(item.id); }
 
 
 
@@ -213,7 +319,7 @@
                     source: function(query, result)
                     {
                         $.ajax({
-                            url: '{{ path('raw_search') }}',
+                            url: '{{ path('recipe_search') }}',
                             method:"POST",
                             data:{query:query},
                             dataType:"json",
@@ -225,7 +331,12 @@
                                 }));
                             }
                         })
+                    }, updater: function (item) {
+                        return item;
                     }
+                    , afterSelect: function (item) {
+                        console.log('afterSelect: ' + item.id);
+                        $('#inputtypeHidden8').val(item.id); }
 
 
 
@@ -241,7 +352,7 @@
                     source: function(query, result)
                     {
                         $.ajax({
-                            url: '{{ path('raw_search') }}',
+                            url: '{{ path('recipe_search') }}',
                             method:"POST",
                             data:{query:query},
                             dataType:"json",
@@ -253,7 +364,12 @@
                                 }));
                             }
                         })
+                    }, updater: function (item) {
+                        return item;
                     }
+                    , afterSelect: function (item) {
+                        console.log('afterSelect: ' + item.id);
+                        $('#inputtypeHidden9').val(item.id); }
 
 
 
@@ -269,7 +385,7 @@
                     source: function(query, result)
                     {
                         $.ajax({
-                            url: '{{ path('raw_search') }}',
+                            url: '{{ path('recipe_search') }}',
                             method:"POST",
                             data:{query:query},
                             dataType:"json",
@@ -282,7 +398,12 @@
                             }
                         })
                     }
-
+                    , updater: function (item) {
+                        return item;
+                    }
+                    , afterSelect: function (item) {
+                        console.log('afterSelect: ' + item.id);
+                        $('#inputtypeHidden10').val(item.id); }
 
 
 
@@ -297,36 +418,161 @@
     <h2 align="center">Autocomplete Textbox using Bootstrap Typeahead with Ajax PHP</h2>
     <br /><br />
     <div class="container body-content span=8 offset=2">
-        <div class="well">
-            <form class="form-horizontal" action="{{ path('raw_create') }}" method="POST">
-                <fieldset>
-                    <legend>New Ingredient</legend>
+        <form class="well">
+            <form class="form-horizontal" action="{{ path('recipe_create') }}" method="POST">
 
-                    <input type="text" name="test[1]" id="country" class="form-control input-lg" autocomplete="off" placeholder="Type Country Name" />
-
-                    <input type="text" name="test[2]" id="country2" class="form-control input-lg" autocomplete="off" placeholder="Type Country Name" />
-                    <input type="text" name="test[3]" id="country3" class="form-control input-lg" autocomplete="off" placeholder="Type Country Name" />
-
-                    <input type="text" name="test[4]" id="country4" class="form-control input-lg" autocomplete="off" placeholder="Type Country Name" />
-                    <input type="text" name="test[5]" id="country5" class="form-control input-lg" autocomplete="off" placeholder="Type Country Name" />
-
-                    <input type="text" name="test[6]" id="country6" class="form-control input-lg" autocomplete="off" placeholder="Type Country Name" />
-                    <input type="text" name="test[7]" id="country7" class="form-control input-lg" autocomplete="off" placeholder="Type Country Name" />
-
-                    <input type="text" name="test[8]" id="country8" class="form-control input-lg" autocomplete="off" placeholder="Type Country Name" />
-                    <input type="text" name="test[9]" id="country9" class="form-control input-lg" autocomplete="off" placeholder="Type Country Name" />
-
-                    <input type="text" name="test[10]" id="country10" class="form-control input-lg" autocomplete="off" placeholder="Type Country Name" />
-
-                    <input type="hidden" name="test[id]" id="inputtypeHidden">
-                    <input type="hidden" name="test[oldid]" id="oldid">
+                <fieldset >
                     <div class="form-group">
-                        <div class="col-sm-4 col-sm-offset-4">
-                            <a class="btn btn-default" href="{{ path('homepage') }}">Cancel</a>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                        <label class="col-sm-4 control-label" for="article_title">Type:</label>
+                        <div class="col-sm-4 ">
+                            <input type="radio" name="recipe[type]" value="breakfast" checked> Breakfast<br>
+                            <input type="radio" name="recipe[type]" value="dinner"> Dinner<br>
+                            <input type="radio" name="recipe[type]" value="snack"> Snack<br>
                         </div>
                     </div>
+
+                    <br>
+                    <legend>Ingredients</legend>
+
+
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="article_title">Name:</label>
+                        <div class="col-sm-4 ">
+                            <input type="text" class="form-control" id="article_title"
+                                   name="recipe[name]">
+                        </div>
+                    </div>
+                    <table class="table">
+                        <tr>
+                            <th width="150">
+                    <input type="text" name="recipe[quantity1]" class="form-control input-lg" autocomplete="off" placeholder="Grams" />
+                            </th>
+                            <th>
+                        <input type="text" name="recipe[raw1]" id="country" class="form-control input-lg" autocomplete="off" placeholder="Ingredients" />
+                                <input type="hidden" name="recipe[id1]" id="inputtypeHidden">
+
+                            </th>
+
+                        </tr>
+                        <tr>
+                            <th width="150">
+                                <input type="text" name="recipe[quantity2]" class="form-control input-lg" autocomplete="off" placeholder="Grams" />
+                            </th>
+                            <th>
+                                <input type="text" name="recipe[raw2]" id="country2" class="form-control input-lg" autocomplete="off" placeholder="Ingredients" />
+                                <input type="hidden" name="recipe[id2]" id="inputtypeHidden2">
+                            </th>
+
+                        </tr>  <tr>
+                            <th width="150">
+                                <input type="text" name="recipe[quantity3]" class="form-control input-lg" autocomplete="off" placeholder="Grams" />
+                            </th>
+                            <th>
+                                <input type="text" name="recipe[raw3]" id="country3" class="form-control input-lg" autocomplete="off" placeholder="Ingredients" />
+                                <input type="hidden" name="recipe[id3]" id="inputtypeHidden3">
+                            </th>
+
+                        </tr>  <tr>
+                            <th width="150">
+                                <input type="text" name="recipe[quantity4]" class="form-control input-lg" autocomplete="off" placeholder="Grams" />
+                            </th>
+                            <th>
+                                <input type="text" name="recipe[raw4]" id="country4" class="form-control input-lg" autocomplete="off" placeholder="Ingredients" />
+                                <input type="hidden" name="recipe[id4]" id="inputtypeHidden4">
+                            </th>
+
+                        </tr>  <tr>
+                            <th width="150">
+                                <input type="text" name="recipe[quantity5]" class="form-control input-lg" autocomplete="off" placeholder="Grams" />
+                            </th>
+                            <th>
+                                <input type="text" name="recipe[raw5]" id="country5" class="form-control input-lg" autocomplete="off" placeholder="Ingredients" />
+                                <input type="hidden" name="recipe[id5]" id="inputtypeHidden5">
+                            </th>
+
+                        </tr>  <tr>
+                            <th width="150">
+                                <input type="text" name="recipe[quantity6]" class="form-control input-lg" autocomplete="off" placeholder="Grams" />
+                            </th>
+                            <th>
+                                <input type="text" name="recipe[raw6]" id="country6" class="form-control input-lg" autocomplete="off" placeholder="Ingredients" />
+                                <input type="hidden" name="recipe[id6]" id="inputtypeHidden6">
+                            </th>
+
+                        </tr>  <tr>
+                            <th width="150">
+                                <input type="text" name="recipe[quantity7]" class="form-control input-lg" autocomplete="off" placeholder="Grams" />
+                            </th>
+                            <th>
+                                <input type="text" name="recipe[raw7]" id="country7" class="form-control input-lg" autocomplete="off" placeholder="Ingredients" />
+                                <input type="hidden" name="recipe[id7]" id="inputtypeHidden7">
+                            </th>
+
+                        </tr>  <tr>
+                            <th width="150">
+                                <input type="text" name="recipe[quantity8]" class="form-control input-lg" autocomplete="off" placeholder="Grams" />
+                            </th>
+                            <th>
+                                <input type="text" name="recipe[raw8]" id="country8" class="form-control input-lg" autocomplete="off" placeholder="Ingredients" />
+                                <input type="hidden" name="recipe[id8]" id="inputtypeHidden8">
+                            </th>
+
+                        </tr>  <tr>
+                            <th width="150">
+                                <input type="text" name="recipe[quantity9]" class="form-control input-lg" autocomplete="off" placeholder="Grams" />
+                            </th>
+                            <th>
+                                <input type="text" name="recipe[raw9]" id="country9" class="form-control input-lg" autocomplete="off" placeholder="Ingredients" />
+                                <input type="hidden" name="recipe[id9]" id="inputtypeHidden9">
+                            </th>
+
+                        </tr>  <tr>
+                            <th width="150">
+                                <input type="text" name="recipe[quantity10]" class="form-control input-lg" autocomplete="off" placeholder="Grams" />
+                            </th>
+                            <th>
+                                <input type="text" name="recipe[raw10]" id="country10" class="form-control input-lg" autocomplete="off" placeholder="Ingredients" />
+                                <input type="hidden" name="recipe[id10]" id="inputtypeHidden10">
+                            </th>
+
+                        </tr>
+                    </table>
+
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="article_content">Description:</label>
+                        <div class="col-sm-6">
+                        <textarea class="form-control" rows="6" id="article_content"
+                                  name="recipe[description]"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="picture">Picture URL:</label>
+                        <div class="col-sm-4 ">
+                           <textarea class="form-control" rows="1" id="picture"
+                                     name="recipe[picture]"></textarea>
+                        </div>
+                    </div>
+
+
+
                 </fieldset>
+
+<br>
+
+
+
+
+
+
+                <div class="form-group">
+                    <div class="col-sm-4 col-sm-offset-4">
+                        <a class="btn btn-default" href="{{ path('homepage') }}">Cancel</a>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
             </form>
         </div>
     </div>

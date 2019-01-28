@@ -16,7 +16,7 @@ class ViewRecipeController extends Controller
 { /**
  * @param Request $request
  *
- * @Route("/recipe/view", name="recipe_view")
+ * @Route("/raw/view", name="recipe_view")
  * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
  *
  * @return \Symfony\Component\HttpFoundation\Response
@@ -27,7 +27,8 @@ class ViewRecipeController extends Controller
 
         $db = $this->getDoctrine()->getRepository('AppBundle:Recipe');
           $entity=$db->find($id);
+          $nutrition=$entity->getRecipeNutrition();
 
-        return $this->render('default/view.html.twig.php', array('entity' => $entity));
+        return $this->render('default/view.html.twig.php', array('entity' => $entity,'nutrition'=>$nutrition));
     }
 }

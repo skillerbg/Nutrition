@@ -73,7 +73,7 @@
         <link href="//cdn.rawgit.com/t0m/select2-bootstrap-css/bootstrap3/select2-bootstrap.css" rel="stylesheet">
     {% endblock %}
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
-    <title>Webslesson Tutorial | Autocomplete Textbox using Bootstrap Typehead with Ajax PHP</title>
+    <title>Create New Recipe</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js"></script>
 
@@ -415,23 +415,25 @@
 <body>
 <br /><br />
 <div class="container" style="width:1300px;">
-    <h2 align="center">Autocomplete Textbox using Bootstrap Typeahead with Ajax PHP</h2>
+    <h2 align="center">Create New Recipe</h2>
     <br /><br />
     <div class="container body-content span=8 offset=2">
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="article_title">Type:</label>
+            <div class="col-sm-4 ">
+                <input type="radio" name="recipe[type]" value="breakfast" checked> Breakfast<br>
+                <input type="radio" name="recipe[type]" value="dinner"> Dinner<br>
+                <input type="radio" name="recipe[type]" value="snack"> Snack<br>
+            </div>
+        </div>
+
+        <br>
         <form class="well">
+
             <form class="form-horizontal" action="{{ path('recipe_create') }}" method="POST">
 
                 <fieldset >
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label" for="article_title">Type:</label>
-                        <div class="col-sm-4 ">
-                            <input type="radio" name="recipe[type]" value="breakfast" checked> Breakfast<br>
-                            <input type="radio" name="recipe[type]" value="dinner"> Dinner<br>
-                            <input type="radio" name="recipe[type]" value="snack"> Snack<br>
-                        </div>
-                    </div>
 
-                    <br>
                     <legend>Ingredients</legend>
 
 

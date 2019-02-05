@@ -66,13 +66,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label" for="ufats">Unsaturated fats  per 100g:</label>
-                        <div class="col-sm-6">
-                            <input type="number" step="0.01" class="form-control" id="ufats"
-                                   name="raw[unSaturatedFats]">
-                        </div>
-                    </div>
+
 
                     <div class="form-group">
                         <label class="col-sm-4 control-label" for="sfats">Saturated fats  per 100g:</label>
@@ -107,6 +101,34 @@
                         </div>
                     </div>
 
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="salt">Salt  per 100g:</label>
+                        <div class="col-sm-6">
+                            <input type="number" step="0.01" class="form-control" id="salt"
+                                   name="raw[salt]">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label"></label>
+                        <input type="hidden" value="0" name="raw[vegan]" />
+
+                        <input type="checkbox" name="raw[vegan]" id="vegan" value="1" /><label for="vegan">Vegan  &nbsp; </label>
+                        <input type="hidden" value="0" name="raw[vegetarian]" />
+
+                        <input type="checkbox" name="raw[vegetarian]" id="vegetarian" value="1" /><label for="vegetarian"> Vegatarian  &nbsp; </label>
+                        <input type="hidden" value="0" name="raw[glutenfree]" />
+
+                        <input type="checkbox" name="raw[glutenfree]" id="glutenfree" value="1" /><label for="vegan"> Gluten-free &nbsp;  </label>
+                        <input type="hidden" value="0" name="raw[organic]" />
+
+                        <input type="checkbox" name="raw[organic]" id="organic" value="1" /><label for="vegan"> Organic  &nbsp; </label>
+                        <input type="hidden" value="0" name="raw[lactosefree]" />
+
+                        <input type="checkbox" name="raw[lactosefree]" id="lactosefree" value="1" /><label for="lactosefree"> Lactose-free  &nbsp; </label>
+
+
+                    </div>
 
 
                     <div class="form-group">
@@ -115,6 +137,8 @@
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </div>
+
+
                 </fieldset>
             </form>
         </div>

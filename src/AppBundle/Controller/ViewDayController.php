@@ -27,7 +27,7 @@ class ViewDayController extends Controller
 
         $day = $em->getRepository('AppBundle:DayPlan')->find($dayId);
 
-        return $this->render('recipe/view.html.twig'
+        return $this->render('day/view.html.twig'
             ,array('day' => $day));
 
 

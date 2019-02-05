@@ -44,15 +44,17 @@ class RecipeController extends Controller
             $proteins=0;
             $carbs=0;
             $saFats=0;
-            $unFats=0;
+            $salt=0;
             $sugars=0;
 
             $price=0;
             $amount=0;
+            $array=[];
             $em = $this->getDoctrine()->getManager();
             for ($i=1;$i<=10;$i++) {
                 $id='id'.$i;
                 $quantity=intval($data['quantity'.$i]);
+                $array[]=$quantity;
                 $amount+=$quantity;
                 if ($data[$id]) {
                     $raw = $em->getRepository('AppBundle:Raw')->find($data[$id]);
@@ -63,7 +65,7 @@ class RecipeController extends Controller
                     $proteins+=(($raw->getNutritionInfo()->getProteinsPerG())*$quantity);
                     $carbs+=(($raw->getNutritionInfo()->getCarbsPerG())*$quantity);
                     $saFats+=(($raw->getNutritionInfo()->getSaturatedFatsPerG())*$quantity);
-                    $unFats+=(($raw->getNutritionInfo()->getUnSaturatedFatsPerG())*$quantity);
+                    $salt+=(($raw->getNutritionInfo()->getSaltPerG())*$quantity);
                     $sugars+=(($raw->getNutritionInfo()->getSugarsPerG())*$quantity);
 
 
@@ -71,12 +73,13 @@ class RecipeController extends Controller
             }
             $nutriInfo->setKcal($kcal)
                 ->setSugars($sugars)
-                ->setUnSaturatedFats($unFats)
+                ->setSalt($salt)
                 ->setSaturatedFats($saFats)
                 ->setProteins($proteins)
                 ->setFats($fats)
                 ->setCarbs($carbs);
             $recipe->setName($data['name'])
+                ->setArray($array)
                 ->setDescription($data['description'])
                 ->setType($data['type'])
                 ->setPicture($data['picture'])

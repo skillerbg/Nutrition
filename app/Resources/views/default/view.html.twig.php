@@ -25,12 +25,36 @@
             </div>
 
                 <div class="form-group">
-                    <label class="col-sm-4 control-label" for="article_content">Description:</label>
+                    <label class="col-sm-4 control-label" for="article_content">Ingredients:</label>
                     <div class="col-sm-6">
-                        {{entity.description}}
+                        <table>
+                        <tr>
+                        <td> {% for elements in entity.array if elements!=0%}
+                         {{ elements|nl2br }} grams - <br>
+                        {% endfor %}
+                        </td>
 
+
+                        <td>
+                        {% for raws in entity.raws%}
+
+                            <a href="{{}}"> {{ raws.name|nl2br }}<br>}</a>
+
+                        {% endfor %}
+
+                        </td>
+                        </tr>
+                        </table>
                     </div>
                 </div>
+
+            <div class="form-group">
+                <label class="col-sm-4 control-label" for="article_price">Recipe:</label>
+                <div class="col-sm-6 ">
+                    {{entity.description}}
+
+                </div>
+            </div>
 
                 <div class="form-group">
                     <label class="col-sm-4 control-label" for="article_price">Price</label>

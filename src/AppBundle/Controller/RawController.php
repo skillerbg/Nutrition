@@ -31,7 +31,7 @@ class RawController extends Controller
 
 
 
-
+        var_dump($data);
 
         if ($data) {
 
@@ -40,8 +40,11 @@ class RawController extends Controller
             $article->setPicture($data["picture"]);
             $article->setPrice($data["price"]);
             $article->setQuantity($data["quantity"]);
-            $article->setType($data["type"]);
-
+            $article->setGlutenfree($data["glutenfree"]);
+            $article->setOrganic($data["organic"]);
+            $article->setVegan($data["vegan"]);
+            $article->setVegetarian($data["vegetarian"]);
+            $article->setLactosefree($data["lactosefree"]);
 
 
 
@@ -51,7 +54,7 @@ class RawController extends Controller
             $nutri->setFats($data['fats']);
             $nutri->setProteins($data['proteins']);
             $nutri->setSaturatedFats($data['saturatedFats']);
-            $nutri->setUnSaturatedFats($data['unSaturatedFats']);
+            $nutri->setSalt($data['salt']);
             $nutri->setSugars($data['sugars']);
 
             $article->setNutritionInfo($nutri);
@@ -66,6 +69,20 @@ class RawController extends Controller
         }
 
         return $this->render('raw/create.html.twig');
+
+    }
+
+
+    /**
+     * @param Request $request
+     *
+     * @Route("/raw/search", name="raw_search")
+     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function searchRaw(){
+        return $this->render('raw/search.html.twig');
 
     }
 }

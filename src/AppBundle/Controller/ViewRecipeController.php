@@ -16,7 +16,7 @@ class ViewRecipeController extends Controller
 { /**
  * @param Request $request
  *
- * @Route("/raw/view", name="recipe_view")
+ * @Route("/recipe/view", name="recipe_view")
  * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
  *
  * @return \Symfony\Component\HttpFoundation\Response
@@ -28,7 +28,25 @@ class ViewRecipeController extends Controller
         $db = $this->getDoctrine()->getRepository('AppBundle:Recipe');
           $entity=$db->find($id);
           $nutrition=$entity->getRecipeNutrition();
+        return $this->render('recipe/view.html.twig', array('entity' => $entity,'nutrition'=>$nutrition));
+    }
 
-        return $this->render('default/view.html.twig.php', array('entity' => $entity,'nutrition'=>$nutrition));
+    /**
+     * @param Request $request
+     *
+     * @Route("/raw/view", name="raw_view")
+     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function ViewRaw(Request $request)
+    {
+        $id=    $request->query->get('id');
+
+        $db = $this->getDoctrine()->getRepository('AppBundle:Raw');
+        $entity=$db->find($id);
+        $nutrition=$entity->getNutritionInfo();
+
+        return $this->render('raw/view.html.twig', array('entity' => $entity,'nutrition'=>$nutrition));
     }
 }

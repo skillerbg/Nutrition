@@ -54,9 +54,9 @@ class Nutrition_Info
     /**
      * @var string
      *
-     * @ORM\Column(name="unSaturatedFats", type="decimal", precision=20, scale=10)
+     * @ORM\Column(name="salt", type="decimal", precision=20, scale=10)
      */
-    private $unSaturatedFats;
+    private $salt;
 
     /**
      * @var string
@@ -110,9 +110,9 @@ class Nutrition_Info
     /**
      * @var string
      *
-     * @ORM\Column(name="unSaturatedFatsPerG", type="decimal", precision=20, scale=10)
+     * @ORM\Column(name="saltPerG", type="decimal", precision=20, scale=10)
      */
-    private $unSaturatedFatsPerG;
+    private $saltPerG;
 
     /**
      * @var string
@@ -227,28 +227,28 @@ class Nutrition_Info
     }
 
     /**
-     * Set unSaturatedFats.
+     * Set salt.
      *
-     * @param string $unSaturatedFats
+     * @param string $salt
      *
      * @return Nutrition_Info
      */
-    public function setUnSaturatedFats($unSaturatedFats)
+    public function setSalt($salt)
     {
-        $this->unSaturatedFats = $unSaturatedFats;
-        $this->setUnSaturatedFatsPerG();
+        $this->salt = $salt;
+        $this->setSaltPerG();
 
         return $this;
     }
 
     /**
-     * Get unSaturatedFats.
+     * Get salt.
      *
      * @return string
      */
-    public function getUnSaturatedFats()
+    public function getSalt()
     {
-        return $this->unSaturatedFats;
+        return $this->salt;
     }
 
     /**
@@ -411,24 +411,24 @@ class Nutrition_Info
     }
 
     /**
-     * Set unSaturatedFatsPerG.
+     * Set saltPerG.
      *
      *
      */
-    public function setUnSaturatedFatsPerG()
+    public function setSaltPerG()
     {
-        $this->unSaturatedFatsPerG = $this->unSaturatedFats/100;
+        $this->saltPerG = $this->salt/100;
 
     }
 
     /**
-     * Get unSaturatedFatsPerG.
+     * Get saltPerG.
      *
      * @return string
      */
-    public function getUnSaturatedFatsPerG()
+    public function getSaltPerG()
     {
-        return $this->unSaturatedFatsPerG;
+        return $this->saltPerG;
     }
 
     /**

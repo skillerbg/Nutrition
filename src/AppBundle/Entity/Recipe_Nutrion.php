@@ -54,9 +54,9 @@ class Recipe_Nutrion
     /**
      * @var string
      *
-     * @ORM\Column(name="unSaturatedFats", type="decimal", precision=20, scale=10)
+     * @ORM\Column(name="salt", type="decimal", precision=20, scale=10)
      */
-    private $unSaturatedFats;
+    private $salt;
 
     /**
      * @var string
@@ -177,27 +177,27 @@ class Recipe_Nutrion
     }
 
     /**
-     * Set unSaturatedFats.
+     * Set salt.
      *
-     * @param string $unSaturatedFats
+     * @param string $salt
      *
      * @return Recipe_Nutrion
      */
-    public function setUnSaturatedFats($unSaturatedFats)
+    public function setSalt($salt)
     {
-        $this->unSaturatedFats = $unSaturatedFats;
+        $this->salt = $salt;
 
         return $this;
     }
 
     /**
-     * Get unSaturatedFats.
+     * Get salt.
      *
      * @return string
      */
-    public function getUnSaturatedFats()
+    public function getSalt()
     {
-        return $this->unSaturatedFats;
+        return $this->salt;
     }
 
     /**

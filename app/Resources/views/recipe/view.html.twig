@@ -1,77 +1,147 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+ <div class="container body-content span=8 offset=2">
+  <div class="well">
+   <form class="form-horizontal" >
+
+    <fieldset>
 
 
-<div class="container body-content span=8 offset=2">
- <div class="well">
-  <table style="width:100%">
-   <tr>
-    <th></th>
-    <th>Name</th>
-    <th>Description</th>
-    <th>Price</th>
-    <th></th>
-   </tr>
-   <tr>
-    <td>Breakfast</td>
-    <td>{{day.breakfast.name}}</td>
-    <td>{{day.breakfast.description}}</td>
-    <td>{{day.breakfast.price|number_format(2, '.', ',')}}</td>
-    <th> <a href="{{ path('recipe_view' , {'id': day.breakfast.id,'type': "day" }) }}">
-      View
-     </a> </th>
+     <font size="50">
+      <center>
+       <b > {{entity.name}}
+       </b>
+      </center>
+     </font>
 
-   </tr>
 
-   <tr>
-    <td>Snack</td>
-    <td>{{day.snack1.name}}</td>
-    <td>{{day.snack1.description}}</td>
-    <td>{{day.snack1.price|number_format(2, '.', ',')}}</td>
-    <th> <a href="{{ path('recipe_view' , {'id': day.snack1.id, 'type': "Snack"}) }}">
-      View
-     </a> </th>
+     <div class="form-group">
+      <label class="col-sm-4 control-label" for="article_content">Type:</label>
+      <div class="col-sm-6">
+       {{entity.type}}
 
-   </tr>
+      </div>
+     </div>
 
-   <tr>
-    <td>Dinner</td>
-    <td>{{day.dinner1.name}}</td>
-    <td>{{day.dinner1.description}}</td>
-    <td>{{day.dinner1.price|number_format(2, '.', ',')}}</td>
-    <th> <a href="{{ path('recipe_view' , {'id': day.dinner1.id,' type': "Dinner"}) }}">
-      View
-     </a> </th>
+     <div class="form-group">
+      <label class="col-sm-4 control-label" for="article_content">Ingredients:</label>
+      <div class="col-sm-6">
+       <table>
+        <tr>
+         <td> {% for elements in entity.array if elements!=0%}
+           {{ elements|nl2br }} grams - <br>
+          {% endfor %}
+         </td>
 
-   </tr>
 
-   <tr>
-    <td>Snack</td>
-    <td>{{day.snack2.name}}</td>
-    <td>{{day.snack2.description}}</td>
-    <td>{{day.snack2.price|number_format(2, '.', ',')}}</td>
-    <th> <a href="{{ path('recipe_view' , {'id': day.snack2.id,'type': "Snack"}) }}">
-      View
-     </a> </th>
+         <td>
+          {% for raws in entity.raws%}
 
-   </tr>
+        <a href="{{ path('raw_view' , {'id': raws.id }) }}"> {{raws.name}}<br></a>
 
-   <tr>
-    <td>Dinner</td>
-    <td>{{day.dinner2.name}}</td>
-    <td>{{day.dinner2.description}}</td>
-    <td>{{day.dinner2.price|number_format(2, '.', ',')}}</td>
-    <th> <a href="{{ path('recipe_view' , {'id': day.dinner2.id,'type': "Dinner"}) }}">
-      View
-     </a> </th>
+          {% endfor %}
 
-   </tr>
+         </td>
+        </tr>
+       </table>
+      </div>
+     </div>
 
-  </table>
+     <div class="form-group">
+      <label class="col-sm-4 control-label" for="article_price">Recipe:</label>
+      <div class="col-sm-6 ">
+       {{entity.description}}
 
-</div>
+      </div>
+     </div>
+
+     <div class="form-group">
+      <label class="col-sm-4 control-label" for="article_price">Price</label>
+      <div class="col-sm-4 ">
+       {{entity.price|number_format(2, '.', ',')}}
+
+      </div>
+     </div>
+
+     <div class="form-group">
+      <label class="col-sm-4 control-label" for="quantity">Grams:</label>
+      <div class="col-sm-6">
+       {{entity.quantity|number_format(2, '.', ',')}}
+
+      </div>
+     </div>
+
+     <div class="form-group">
+      <label class="col-sm-4 control-label" for="picture">Picture URL:</label>
+      <div class="col-sm-4 ">
+       {{entity.picture}}
+
+      </div>
+     </div>
+
+     <div class="form-group">
+      <label class="col-sm-4 control-label" for="kcal">Kcal:</label>
+      <div class="col-sm-6">
+       {{nutrition.kcal|number_format(1, '.', ',')}}
+
+      </div>
+     </div>
+
+     <div class="form-group">
+      <label class="col-sm-4 control-label" for="fats">Fats: </label>
+      <div class="col-sm-4 ">
+       {{nutrition.fats|number_format(1, '.', ',')}}
+
+      </div>
+     </div>
+
+     <div class="form-group">
+      <label class="col-sm-4 control-label" for="ufats">Salt fats: </label>
+      <div class="col-sm-6">
+       {{nutrition.salt|number_format(1, '.', ',')}}
+
+      </div>
+     </div>
+
+     <div class="form-group">
+      <label class="col-sm-4 control-label" for="sfats">Saturated fats:</label>
+      <div class="col-sm-4 ">
+       {{nutrition.saturatedFats|number_format(1, '.', ',')}}
+
+      </div>
+     </div>
+
+     <div class="form-group">
+      <label class="col-sm-4 control-label" for="protein">Proteins:</label>
+      <div class="col-sm-6">
+       {{nutrition.proteins|number_format(1, '.', ',')}}
+
+      </div>
+     </div>
+
+     <div class="form-group">
+      <label class="col-sm-4 control-label" for="carbs">Carbs:</label>
+      <div class="col-sm-4 ">
+       {{nutrition.carbs|number_format(1, '.', ',')}}
+
+      </div>
+     </div>
+
+
+     <div class="form-group">
+      <label class="col-sm-4 control-label" for="sugars">Suagars:</label>
+      <div class="col-sm-4 ">
+       {{nutrition.sugars|number_format(1, '.', ',')}}
+
+      </div>
+     </div>
+
+
+
+
+    </fieldset>
+  </div>
  </div>
-
 
 {% endblock %}

@@ -79,7 +79,7 @@ class Raw
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="string", length=255)
+     * @ORM\Column(name="description", type="string", length=4080)
      */
     private $description;
 
@@ -110,6 +110,113 @@ class Raw
      * @ORM\Column(name="picture", type="string", length=255)
      */
     private $picture;
+
+
+
+    /**
+     * @ORM\Column(name="vegan", type="boolean")
+     */
+    private $vegan = false;
+
+    /**
+     * @ORM\Column(name="vegetarian", type="boolean")
+     */
+    private $vegetarian = false;
+
+    /**
+     * @ORM\Column(name="glutenfree", type="boolean")
+     */
+    private $glutenfree = false;
+
+    /**
+     * @ORM\Column(name="organic", type="boolean")
+     */
+    private $organic = false;
+
+    /**
+     * @ORM\Column(name="lactosefree", type="boolean")
+     */
+    private $lactosefree = false;
+
+    /**
+     * @return mixed
+     */
+    public function getVegan()
+    {
+        return $this->vegan;
+    }
+
+    /**
+     * @param mixed $vegan
+     */
+    public function setVegan($vegan)
+    {
+        $this->vegan = $vegan;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getVegetarian()
+    {
+        return $this->vegetarian;
+    }
+
+    /**
+     * @param mixed $vegetarian
+     */
+    public function setVegetarian($vegetarian)
+    {
+        $this->vegetarian = $vegetarian;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGlutenfree()
+    {
+        return $this->glutenfree;
+    }
+
+    /**
+     * @param mixed $glutenfree
+     */
+    public function setGlutenfree($glutenfree)
+    {
+        $this->glutenfree = $glutenfree;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOrganic()
+    {
+        return $this->organic;
+    }
+
+    /**
+     * @param mixed $organic
+     */
+    public function setOrganic($organic)
+    {
+        $this->organic = $organic;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLactosefree()
+    {
+        return $this->lactosefree;
+    }
+
+    /**
+     * @param mixed $lactosefree
+     */
+    public function setLactosefree($lactosefree)
+    {
+        $this->lactosefree = $lactosefree;
+    }
 
 
 

@@ -72,6 +72,34 @@ class Recipe
     private $picture;
 
     /**
+     * @var array
+     *
+    @ORM\Column(name="array", type="array", nullable=true)
+     */
+    private $array;
+
+    /**
+     * @return array
+     */
+    public function getArray()
+    {
+        return $this->array;
+    }
+
+    /**
+     *  Set array.
+     *
+     * @param array $array
+     *
+     * @return Recipe
+     */
+    public function setArray($array)
+    {
+        $this->array = $array;
+        return $this;
+    }
+
+    /**
      * @return string
      */
     public function getType()

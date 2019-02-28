@@ -57,7 +57,7 @@
                     } , afterSelect: function (item) {
                         console.log(item);
                         console.log('afterSelect: ' + item.id);
-                        $('.hiddenid').val(item.id); }
+                        $('.hiddenid').eq(0).val(item.id).removeClass('hiddenid' ); }
                     ,
                     updater: function(item) {
                         var parts = item.split('#');
@@ -124,7 +124,7 @@
                             </th>
                             <th>
                                 <input type="text" name="recipe[raw2]" id="country2" class="country form-control  input-lg" autocomplete="off" placeholder="Ingredients" />
-                                <input type="hidden" name="recipe[id2]" id="inputtypeHidden2">
+                                <input type="hidden" name="recipe[id2]" class="hiddenid" id="inputtypeHidden2">
                             </th>
 
                         </tr>  <tr class="hidden">
@@ -133,7 +133,7 @@
                             </th>
                             <th>
                                 <input type="text" name="recipe[raw3]" id="country3" class="country form-control input-lg" autocomplete="off" placeholder="Ingredients" />
-                                <input type="hidden" name="recipe[id3]" id="inputtypeHidden3">
+                                <input type="hidden" class="hiddenid" name="recipe[id3]" id="inputtypeHidden3">
                             </th>
 
                         </tr>  <tr class="hidden">
@@ -142,7 +142,7 @@
                             </th>
                             <th>
                                 <input type="text" name="recipe[raw4]" id="country4" class="country form-control input-lg" autocomplete="off" placeholder="Ingredients" />
-                                <input type="hidden" name="recipe[id4]" id="inputtypeHidden4">
+                                <input type="hidden" class="hiddenid" name="recipe[id4]" id="inputtypeHidden4">
                             </th>
 
                         </tr>  <tr class="hidden">
@@ -151,7 +151,7 @@
                             </th>
                             <th>
                                 <input type="text" name="recipe[raw5]" id="country5" class="country form-control input-lg" autocomplete="off" placeholder="Ingredients" />
-                                <input type="hidden" name="recipe[id5]" id="inputtypeHidden5">
+                                <input type="hidden" class="hiddenid" name="recipe[id5]" id="inputtypeHidden5">
                             </th>
 
                         </tr>  <tr class="hidden">
@@ -160,7 +160,7 @@
                             </th>
                             <th>
                                 <input type="text" name="recipe[raw6]" id="country6" class="country form-control input-lg" autocomplete="off" placeholder="Ingredients" />
-                                <input type="hidden" name="recipe[id6]" id="inputtypeHidden6">
+                                <input type="hidden" class="hiddenid" name="recipe[id6]" id="inputtypeHidden6">
                             </th>
 
                         </tr>  <tr class="hidden">
@@ -169,7 +169,7 @@
                             </th>
                             <th>
                                 <input type="text" name="recipe[raw7]" id="country7" class="country form-control input-lg" autocomplete="off" placeholder="Ingredients" />
-                                <input type="hidden" name="recipe[id7]" id="inputtypeHidden7">
+                                <input type="hidden" class="hiddenid" name="recipe[id7]" id="inputtypeHidden7">
                             </th>
 
                         </tr>  <tr class="hidden">
@@ -178,7 +178,7 @@
                             </th>
                             <th>
                                 <input type="text" name="recipe[raw8]" id="country8" class="country form-control input-lg" autocomplete="off" placeholder="Ingredients" />
-                                <input type="hidden" name="recipe[id8]" id="inputtypeHidden8">
+                                <input type="hidden" class="hiddenid" name="recipe[id8]" id="inputtypeHidden8">
                             </th>
 
                         </tr>  <tr class="hidden">
@@ -187,7 +187,7 @@
                             </th>
                             <th>
                                 <input type="text" name="recipe[raw9]" id="country9" class="country form-control input-lg" autocomplete="off" placeholder="Ingredients" />
-                                <input type="hidden" name="recipe[id9]" id="inputtypeHidden9">
+                                <input type="hidden" class="hiddenid" name="recipe[id9]" id="inputtypeHidden9">
                             </th>
 
                         </tr>  <tr class="hidden">
@@ -196,7 +196,7 @@
                             </th>
                             <th>
                                 <input type="text" name="recipe[raw10]" id="country10" class="country form-control input-lg" autocomplete="off" placeholder="Ingredients" />
-                                <input type="hidden" name="recipe[id10]" id="inputtypeHidden10">
+                                <input type="hidden" class="hiddenid" name="recipe[id10]" id="inputtypeHidden10">
                             </th>
 
                         </tr>

@@ -50,6 +50,7 @@ class RecipeController extends Controller
             for ($i=1;$i<=10;$i++) {
                 $requestRawId='id'.$i;//id of the raws in the form
 
+
                 //find raw entity with the provided id
                 if ($data[$requestRawId]) {//checks if the form has a raw
 
@@ -73,6 +74,9 @@ class RecipeController extends Controller
 
                 }
             }
+
+
+
             //sets the recipe's nutrition info
             $recipesNutriInfo->setKcal($kcal)
                 ->setSugars($sugars)

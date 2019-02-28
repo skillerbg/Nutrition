@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+
+ <div class="container body-content span=8 offset=2">
+  <div class="well">
+   <table style="width:100%">
+    <tr>
+     <th></th>
+     <th>Name</th>
+     <th>Description</th>
+     <th>Price</th>
+     <th></th>
+    </tr>
+    <tr>
+     <td>Breakfast</td>
+     <td>{{day.breakfast.name}}</td>
+     <td>{{day.breakfast.description}}</td>
+     <td>{{day.breakfast.price|number_format(2, '.', ',')}}</td>
+     <th> <a href="{{ path('recipe_view')}}/{{day.breakfast.id }}">
+       View
+      </a> </th>
+
+    </tr>
+
+    <tr>
+     <td>Snack</td>
+     <td>{{day.snack1.name}}</td>
+     <td>{{day.snack1.description}}</td>
+     <td>{{day.snack1.price|number_format(2, '.', ',')}}</td>
+     <th> <a href="{{path('recipe_view')}}/{{ day.snack1.id }}">
+       View
+      </a> </th>
+
+    </tr>
+
+    <tr>
+     <td>Dinner</td>
+     <td>{{day.dinner1.name}}</td>
+     <td>{{day.dinner1.description}}</td>
+     <td>{{day.dinner1.price|number_format(2, '.', ',')}}</td>
+     <th> <a href="{{path('recipe_view')}}/{{day.dinner1.id }}">
+       View
+      </a> </th>
+
+    </tr>
+
+    <tr>
+     <td>Snack</td>
+     <td>{{day.snack2.name}}</td>
+     <td>{{day.snack2.description}}</td>
+     <td>{{day.snack2.price|number_format(2, '.', ',')}}</td>
+     <th> <a href="{{ path('recipe_view')}}/{{ day.snack2.id }}">
+       View
+      </a> </th>
+
+    </tr>
+
+    <tr>
+     <td>Dinner</td>
+     <td>{{day.dinner2.name}}</td>
+     <td>{{day.dinner2.description}}</td>
+     <td>{{day.dinner2.price|number_format(2, '.', ',')}}</td>
+     <th> <a href="{{ path('recipe_view')}}/{{ day.dinner2.id }}">
+       View
+      </a> </th>
+
+    </tr>
+
+   </table>
+
+  </div>
+ </div>
+
+
+{% endblock %}

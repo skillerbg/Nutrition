@@ -1,0 +1,124 @@
+
+<nav id="sidebar" class="sidebar-wrapper">
+    <div class="sidebar-content">
+        <!-- sidebar-brand  -->
+        <div class="sidebar-item sidebar-brand">
+            <a id="pin-sidebar" href="#">
+                <span class="menu-text">Pin menu</span>
+            </a>
+        </div>
+        <!-- sidebar-header  -->
+        <div class="sidebar-item sidebar-header d-flex flex-nowrap ">
+            {% if app.user %}
+
+                <div class="user-info">
+                        <span class="user-name">
+                            <strong>{{ app.user.username }}</strong>
+                        </span>
+                    <span class="user-role">{{ app.user.email }}</span>
+                    <span class="user-status">
+                            <i class="fa fa-circle"></i>
+                            <span>Online</span>
+                        </span>
+                </div>
+            {% endif %}
+
+        </div>
+
+        <div class=" sidebar-item sidebar-menu">
+            <ul>
+                <li class="header-menu">
+                    <span>Account</span>
+                </li>
+                {% if app.user %}
+                    <li class="sidebar-dropdown">
+                        <a href="{{ path('fos_user_profile_edit') }}">
+                            <i class="fa fa-user-edit"></i>
+                            <span class="menu-text">Edit Profile</span>
+                            <span class="badge badge-pill badge-warning">New</span>
+                        </a>
+
+                    </li>
+                    <li class="sidebar-dropdown">
+                        <a href="{{ path('fos_user_change_password') }}">
+                            <i class="fa fa-key"></i>
+                            <span class="menu-text">Change password</span>
+                            <span class="badge badge-pill badge-danger">3</span>
+                        </a>
+
+                    </li>
+                    <li class="sidebar-dropdown">
+                        <a href="{{ path('fos_user_security_logout') }}">
+                            <i class="far fa-sign-out-alt"></i>
+                            <span class="menu-text">Logout</span>
+                        </a>
+
+                    </li>
+                {% else %}
+                    <li class="sidebar-dropdown">
+                        <a href="{{ path('fos_user_registration_register') }}">
+                            <i class="fa fa-shopping-cart"></i>
+                            <span class="menu-text">REGISTER</span>
+                            <span class="badge badge-pill badge-danger">3</span>
+                        </a>
+
+                    </li>
+                    <li class="sidebar-dropdown">
+                        <a href="{{ path('fos_user_security_login') }}">
+                            <i class="far fa-sign-in-alt"></i>
+                            <span class="menu-text">LOGIN</span>
+                        </a>
+
+                    </li>
+
+
+
+
+                {% endif %}
+
+
+                <li class="header-menu">
+                    <span>Plans</span>
+                </li>
+                <li>
+                    <a href="{{ path('week_filter') }}">
+                        <i class="fa fa-walking"></i>
+                        <span class="menu-text">Set filter</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path('day_generate') }}">
+                        <i class="fa fa-utensils"></i>
+                        <span class="menu-text">Generata one-day plan</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path('week_view') }}">
+                        <i class="fa fa-calendar"></i>
+                        <span class="menu-text">View week-plan</span>
+                    </a>
+                </li>
+                <li class="header-menu">
+                    <span>Create new</span>
+                </li>
+                <li>
+                    <a href="{{ path('recipe_create') }}">
+                        <i class="fa fa-bacon "></i>
+                        <span class="menu-text">Add new recipe</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path('raw_create') }}">
+                        <i class="fa fa-apple"></i>
+                        <span class="menu-text">Add new ingredient</span>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+        <!-- sidebar-menu  -->
+    </div>
+
+    <!-- sidebar-footer  -->
+
+</nav>

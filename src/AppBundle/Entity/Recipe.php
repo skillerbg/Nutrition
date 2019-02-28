@@ -2,54 +2,33 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Recipe
  *
- * @ORM\Table(name="recipe")
+ * @ORM\Table(name="recipes")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\RecipeRepository")
  */
 class Recipe
 {
     /**
      * @var int
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\DayPlan")
+     *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="type", type="string", length=255)
-     */
-    private $type;
 
     /**
-     * Set type.
-     *
-     * @param string $type
-     *
-     * @return Recipe
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Raw", inversedBy="recipes")
+     * @ORM\JoinTable(name="recipe_raws")
      */
-    public function setType($type)
-    {
-        $this->type = $type;
+    private $raws;
 
-        return $this;
-    }
 
-    /**
-     * Get type.
-     *
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
     /**
      * @var string
      *
@@ -68,10 +47,16 @@ class Recipe
     /**
      * @var string
      *
+     * @ORM\Column(name="type", type="string", length=255)
+     */
+    private $type;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="price", type="string", length=255)
      */
     private $price;
-
     /**
      * @var string
      *
@@ -82,122 +67,150 @@ class Recipe
     /**
      * @var string
      *
-     * @ORM\Column(name="pricePerG", type="decimal", precision=20, scale=10)
-     */
-    private $pricePerG;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="picture", type="string", length=255)
      */
     private $picture;
 
     /**
-     * @var string
+     * @var array
      *
-     * @ORM\Column(name="kcal", type="decimal", precision=20, scale=10)
+    @ORM\Column(name="array", type="array", nullable=true)
      */
-    private $kcal;
+    private $array;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="fats", type="decimal", precision=20, scale=10)
+     * @return array
      */
-    private $fats;
+    public function getArray()
+    {
+        return $this->array;
+    }
 
     /**
-     * @var string
+     *  Set array.
      *
-     * @ORM\Column(name="saturatedFats", type="decimal", precision=20, scale=10)
+     * @param array $array
+     *
+     * @return Recipe
      */
-    private $saturatedFats;
+    public function setArray($array)
+    {
+        $this->array = $array;
+        return $this;
+    }
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="unSaturatedFats", type="decimal", precision=20, scale=10)
+     * @return string
      */
-    private $unSaturatedFats;
+    public function getType()
+    {
+        return $this->type;
+    }
 
     /**
-     * @var string
+     * Set name.
      *
-     * @ORM\Column(name="proteins", type="decimal", precision=20, scale=10)
+     * @param string $type
+     *
+     * @return Recipe
      */
-    private $proteins;
+    public function setType($type)
+    {
+        $this->type = $type;
+        return $this;
+    }
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="carbs", type="decimal", precision=20, scale=10)
+     * @return string
      */
-    private $carbs;
+    public function getPrice()
+    {
+        return $this->price;
+    }
 
     /**
-     * @var string
+     * Set name.
      *
-     * @ORM\Column(name="sugars", type="decimal", precision=20, scale=10)
+     * @param string $price
+     *
+     * @return Recipe
      */
-    private $sugars;
+    public function setPrice($price)
+    {
+        $this->price = $price;
+        return $this;
+    }
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="kcalPerG", type="decimal", precision=20, scale=10)
+     * @return string
      */
-    private $kcalPerG;
+    public function getQuantity()
+    {
+        return $this->quantity;
+    }
 
     /**
-     * @var string
+     * Set name.
      *
-     * @ORM\Column(name="proteinsPerG", type="decimal", precision=20, scale=10)
+     * @param string $quantity
+     *
+     * @return Recipe
      */
-    private $proteinsPerG;
+    public function setQuantity($quantity)
+    {
+        $this->quantity = $quantity;
+        return $this;
+    }
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="fatsPerG", type="decimal", precision=20, scale=10)
+     * @return string
      */
-    private $fatsPerG;
+    public function getPicture()
+    {
+        return $this->picture;
+    }
 
     /**
-     * @var string
+     * Set name.
      *
-     * @ORM\Column(name="saturatedFatsPerG", type="decimal", precision=20, scale=10)
+     * @param string $picture
+     *
+     * @return Recipe
      */
-    private $saturatedFatsPerG;
+    public function setPicture($picture)
+    {
+        $this->picture = $picture;
+        return $this;
+    }
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="unSaturatedFatsPerG", type="decimal", precision=20, scale=10)
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Recipe_Nutrion", inversedBy="id")
+     * @ORM\JoinColumn(name="recipe_nutrition", referencedColumnName="id")
      */
-    private $unSaturatedFatsPerG;
+
+    private $recipe_nutrition;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="carbsPerG", type="decimal", precision=20, scale=10)
+     * @return mixed
      */
-    private $carbsPerG;
+    public function getRecipeNutrition()
+    {
+        return $this->recipe_nutrition;
+    }
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="sugarsPerG", type="decimal", precision=20, scale=10)
+     * @param mixed $recipe_nutrition
      */
-    private $sugarsPerG;
+    public function setRecipeNutrition($recipe_nutrition)
+    {
+        $this->recipe_nutrition = $recipe_nutrition;
+    }
 
-    /**
-     * Recipe constructor.
 
-     */
+
     public function __construct()
     {
-
+        $this->raws = new ArrayCollection();
     }
 
 
@@ -209,6 +222,27 @@ class Recipe
     public function getId()
     {
         return $this->id;
+    }
+
+    public function addRaw(Raw $raw)
+    {
+        $this->raws[] = $raw;
+
+        return $this;
+    }
+
+    public function setRaws(ArrayCollection $raws)
+    {
+        $this->raws = $raws;
+
+        return $this;
+    }
+
+
+
+    public function getRaws()
+    {
+        return $this->raws;
     }
 
     /**
@@ -257,425 +291,5 @@ class Recipe
     public function getDescription()
     {
         return $this->description;
-    }
-
-    /**
-     * Set price.
-     *
-     * @param string $price
-     *
-     * @return Recipe
-     */
-    public function setPrice($price)
-    {
-        $this->price = $price;
-        if ($this->quantity !== null){
-            $this->setPricePerG();
-        }
-
-        return $this;
-    }
-
-    /**
-     * Get price.
-     *
-     * @return string
-     */
-    public function getPrice()
-    {
-        return $this->price;
-    }
-
-    /**
-     * Set quantity.
-     *
-     * @param string $quantity
-     *
-     * @return Recipe
-     */
-    public function setQuantity($quantity)
-    {
-        $this->quantity = $quantity;
-        if ($this->price !== null){
-            $this->setPricePerG();
-        }
-        return $this;
-    }
-
-    /**
-     * Get quantity.
-     *
-     * @return string
-     */
-    public function getQuantity()
-    {
-        return $this->quantity;
-    }
-
-    /**
-     * Set pricePerG.
-     *
-     *
-     */
-    public function setPricePerG()
-    {
-        $this->pricePerG = ($this->price/$this->quantity);
-
-    }
-
-    /**
-     * Get pricePerG.
-     *
-     * @return string
-     */
-    public function getPricePerG()
-    {
-        return $this->pricePerG;
-    }
-
-    /**
-     * Set picture.
-     *
-     * @param string $picture
-     *
-     * @return Recipe
-     */
-    public function setPicture($picture)
-    {
-        $this->picture = $picture;
-
-        return $this;
-    }
-
-    /**
-     * Get picture.
-     *
-     * @return string
-     */
-    public function getPicture()
-    {
-        return $this->picture;
-    }
-
-    /**
-     * Set kcal.
-     *
-     * @param string $kcal
-     *
-     * @return Recipe
-     */
-    public function setKcal($kcal)
-    {
-        $this->kcal = $kcal;
-        $this->setKcalPerG();
-
-        return $this;
-    }
-
-    /**
-     * Get kcal.
-     *
-     * @return string
-     */
-    public function getKcal()
-    {
-        return $this->kcal;
-    }
-
-    /**
-     * Set fats.
-     *
-     * @param string $fats
-     *
-     * @return Recipe
-     */
-    public function setFats($fats)
-    {
-        $this->fats = $fats;
-        $this->setFatsPerG();
-
-        return $this;
-    }
-
-    /**
-     * Get fats.
-     *
-     * @return string
-     */
-    public function getFats()
-    {
-        return $this->fats;
-    }
-
-    /**
-     * Set saturatedFats.
-     *
-     * @param string $saturatedFats
-     *
-     * @return Recipe
-     */
-    public function setSaturatedFats($saturatedFats)
-    {
-        $this->saturatedFats = $saturatedFats;
-        $this->setSaturatedFatsPerG();
-
-        return $this;
-    }
-
-    /**
-     * Get saturatedFats.
-     *
-     * @return string
-     */
-    public function getSaturatedFats()
-    {
-        return $this->saturatedFats;
-    }
-
-    /**
-     * Set unSaturatedFats.
-     *
-     * @param string $unSaturatedFats
-     *
-     * @return Recipe
-     */
-    public function setUnSaturatedFats($unSaturatedFats)
-    {
-        $this->unSaturatedFats = $unSaturatedFats;
-        $this->setUnSaturatedFatsPerG();
-
-        return $this;
-    }
-
-    /**
-     * Get unSaturatedFats.
-     *
-     * @return string
-     */
-    public function getUnSaturatedFats()
-    {
-        return $this->unSaturatedFats;
-    }
-
-    /**
-     * Set proteins.
-     *
-     * @param string $proteins
-     *
-     * @return Recipe
-     */
-    public function setProteins($proteins)
-    {
-        $this->proteins = $proteins;
-        $this->setProteinsPerG();
-
-        return $this;
-    }
-
-    /**
-     * Get proteins.
-     *
-     * @return string
-     */
-    public function getProteins()
-    {
-        return $this->proteins;
-    }
-
-    /**
-     * Set carbs.
-     *
-     * @param string $carbs
-     *
-     * @return Recipe
-     */
-    public function setCarbs($carbs)
-    {
-        $this->carbs = $carbs;
-        $this->setCarbsPerG();
-
-        return $this;
-    }
-
-    /**
-     * Get carbs.
-     *
-     * @return string
-     */
-    public function getCarbs()
-    {
-        return $this->carbs;
-    }
-
-    /**
-     * Set sugars.
-     *
-     * @param string $sugars
-     *
-     * @return Recipe
-     */
-    public function setSugars($sugars)
-    {
-        $this->sugars = $sugars;
-        $this->setSugarsPerG();
-
-        return $this;
-    }
-
-    /**
-     * Get sugars.
-     *
-     * @return string
-     */
-    public function getSugars()
-    {
-        return $this->sugars;
-    }
-
-    /**
-     * Set kcalPerG.
-     *
-     *
-     */
-    public function setKcalPerG()
-    {
-        $this->kcalPerG = $this->kcal/100;
-
-    }
-
-    /**
-     * Get kcalPerG.
-     *
-     * @return string
-     */
-    public function getKcalPerG()
-    {
-        return $this->kcalPerG;
-    }
-
-    /**
-     * Set proteinsPerG.
-     *
-     *
-     */
-    public function setProteinsPerG()
-    {
-        $this->proteinsPerG = $this->proteins/100;
-
-    }
-
-    /**
-     * Get proteinsPerG.
-     *
-     * @return string
-     */
-    public function getProteinsPerG()
-    {
-        return $this->proteinsPerG;
-    }
-
-    /**
-     * Set fatsPerG.
-     *
-     *
-     */
-    public function setFatsPerG()
-    {
-        $this->fatsPerG = $this->fats/100;
-
-    }
-
-    /**
-     * Get fatsPerG.
-     *
-     * @return string
-     */
-    public function getFatsPerG()
-    {
-        return $this->fatsPerG;
-    }
-
-    /**
-     * Set saturatedFatsPerG.
-     *
-     *
-     */
-    public function setSaturatedFatsPerG()
-    {
-        $this->saturatedFatsPerG = $this->saturatedFats/100;
-
-    }
-
-    /**
-     * Get saturatedFatsPerG.
-     *
-     * @return string
-     */
-    public function getSaturatedFatsPerG()
-    {
-        return $this->saturatedFatsPerG;
-    }
-
-    /**
-     * Set unSaturatedFatsPerG.
-     *
-     *
-     */
-    public function setUnSaturatedFatsPerG()
-    {
-        $this->unSaturatedFatsPerG = $this->unSaturatedFats/100;
-
-    }
-
-    /**
-     * Get unSaturatedFatsPerG.
-     *
-     * @return string
-     */
-    public function getUnSaturatedFatsPerG()
-    {
-        return $this->unSaturatedFatsPerG;
-    }
-
-    /**
-     * Set carbsPerG.
-     *
-     *
-     */
-    public function setCarbsPerG()
-    {
-        $this->carbsPerG = $this->carbs/100;
-
-    }
-
-    /**
-     * Get carbsPerG.
-     *
-     * @return string
-     */
-    public function getCarbsPerG()
-    {
-        return $this->carbsPerG;
-    }
-
-    /**
-     * Set sugarsPerG.
-     *
-     *
-     */
-    public function setSugarsPerG()
-    {
-        $this->sugarsPerG = $this->sugars/100;
-
-    }
-
-    /**
-     * Get sugarsPerG.
-     *
-     * @return string
-     */
-    public function getSugarsPerG()
-    {
-        return $this->sugarsPerG;
     }
 }

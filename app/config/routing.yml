@@ -1,6 +1,17 @@
 # app/config/routing.yml
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+recipe_show:
+        path:     /recipe/view/{slug}
+        defaults: { _controller: AppBundle:ViewRecipe:View }
+raw_show:
+            path:     /raw/view/{slug}
+            defaults: { _controller: AppBundle:ViewRecipe:ViewRaw }
 app:
     resource: '@AppBundle/Controller/'
     type: annotation
+fos_comment_api:
+    type: rest
+    resource: "@FOSCommentBundle/Resources/config/routing.yml"
+    prefix: /api
+    defaults: { _format: html }

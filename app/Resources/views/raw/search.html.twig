@@ -1,0 +1,169 @@
+
+<!DOCTYPE html>
+<html>
+
+
+
+<body id="{% block body_id %}{% endblock %}">
+
+<div>
+    {% block fos_user_content %}
+    {% endblock fos_user_content %}
+</div>
+{% block header %}
+    <header>
+        <div class="navbar navbar-default navbar-static-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <a href="{{ path('homepage') }}" class="navbar-brand">KVO Project</a>
+
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        {% if app.user %}
+                            <li>
+                                <a href="{{ path('fos_user_profile_edit') }}">
+                                    Edit Profile
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ path('fos_user_change_password') }}">
+                                    Change Password
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ path('fos_user_security_logout') }}">
+                                    Logout
+                                </a>
+                            </li>
+                        {% else %}
+                            <li>
+                                <a href="{{ path('fos_user_registration_register') }}">
+                                    REGISTER
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ path('fos_user_security_login') }}">
+                                    LOGIN
+                                </a>
+                            </li>
+                        {% endif %}
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </header>
+{% endblock %}
+
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>{% block title %}KVO Project{% endblock %}</title>
+    {% block stylesheets %}
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+        <link href="//cdnjs.cloudflare.com/ajax/libs/select2/3.5.4/select2.min.css" rel="stylesheet">
+        <link href="//cdn.rawgit.com/t0m/select2-bootstrap-css/bootstrap3/select2-bootstrap.css" rel="stylesheet">
+    {% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+    <title>Create New Recipe</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js"></script>
+
+
+    <script>
+
+        $(document).ready(function(){
+
+            $('#country').each(function() {
+                $(this).typeahead({
+                    source: function(query, result)
+                    {
+                        $.ajax({
+                            url: '{{ path('recipe_search') }}',
+                            method:"POST",
+                            data:{query:query},
+                            dataType:"json",
+                            success:function(data)
+                            {
+                                result($.map(data, function(item){
+
+                                    return item;
+                                }));
+                            }
+                        })
+                    }, updater: function (item) {
+                        return item;
+                    }
+                    , afterSelect: function (item) {
+                        console.log('afterSelect: ' + item.id);
+                        $('#inputtypeHidden').val(item.id); }
+
+
+
+
+                }); });})
+    </script>
+
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+</head>
+<body>
+<br /><br />
+<div class="container" style="width:1300px;">
+    <h2 align="center">Create New Recipe</h2>
+    <br /><br />
+    <div class="container body-content span=8 offset=2">
+        <form class="well">
+            <form class="form-horizontal" action="{{ path('recipe_create') }}" method="POST">
+
+                <fieldset >
+
+                    <legend>Ingredients</legend>
+
+
+
+
+                    <table class="table">
+                        <tr>
+
+                            <th>
+                                <input type="text" name="recipe[raw1]" id="country" class="form-control input-lg" autocomplete="off" placeholder="Ingredients" />
+                                <input type="hidden" name="recipe[id1]" id="inputtypeHidden">
+
+                            </th>
+
+                        </tr>
+                    </table>
+
+
+
+
+
+
+                </fieldset>
+
+                <br>
+
+
+
+
+
+
+
+            </form>
+        </form>
+    </div>
+</div>
+</div>
+</body>
+</body>
+</html>

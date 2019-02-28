@@ -1,0 +1,59 @@
+{% if userIsLogged == true %}
+
+    <div class="container body-content span=8 offset=2">
+        <div class="well">
+
+                <fieldset>
+                    <legend> {{ "now"|date('l') }} </legend>
+
+                    <div class="col-sm-6 col-md-4 item">
+                        <a href="#">
+                            <img src="{{day.breakfast.picture}}" width="200" height="200" class="center-block" alt="Integridient picture">
+                        </a>
+                        <h3 > {{  day.breakfast.name }}</h3>
+                        <p > {{  day.breakfast.description }}</p>
+                    </div>
+
+
+                    <div class="col-sm-6 col-md-4 item">
+                        <a href="#">
+                            <img src="{{day.snack1.picture}}" width="200" height="200" class="center-block" alt="Integridient picture">
+                        </a>
+                        <h3 >    {{  day.snack1.name }}</h3>
+                        <p > {{  day.snack1.description }}</p>
+                    </div>
+
+                    <div class="col-sm-6 col-md-4 item">
+                        <a href="#">
+                            <img src="{{day.dinner1.picture}}" width="200" height="200" class="center-block" alt="Integridient picture">
+                        </a>
+                        <h3 > {{  day.dinner1.name }}</h3>
+                        <p > {{  day.dinner1.description }}</p>
+                    </div>
+                    <div class="col-sm-6 col-md-4 item">
+                        <a href="#">
+                            <img src="{{day.snack2.picture}}" width="200" height="200" class="center-block" alt="Integridient picture">
+                        </a>
+                        <h3 > {{  day.snack2.name }}</h3>
+                        <p > {{  day.snack2.description }}</p>
+                    </div>
+                    <div class="col-sm-6 col-md-4 item">
+                        <a href="#">
+                            <img src="{{day.dinner2.picture}}" width="200" height="200" class="center-block" alt="Integridient picture">
+                        </a>
+                        <h3 > {{  day.dinner2.name }}</h3>
+                        <p > {{  day.dinner2.description }}</p>
+                    </div>
+
+
+
+
+                </fieldset>
+            </form>
+        </div>
+    </div>
+
+{% else %}
+
+
+{% endif %}

@@ -16174,7 +16174,7 @@ var tooltip = $.widget( "ui.tooltip", {
 			// support: IE<9, Opera in jQuery <1.7
 			// .text() can't accept undefined, so coerce to a string
 			var title = $( this ).attr( "title" ) || "";
-			// Escape title, since we're going from an attribute to raw HTML
+			// Escape title, since we're going from an attribute to recipe HTML
 			return $( "<a>" ).text( title ).html();
 		},
 		hide: true,

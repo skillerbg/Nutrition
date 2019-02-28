@@ -1,27 +1,13 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-   <li>
-      <a href="{{ path('recipe_create') }}">
-         Add new meal
-      </a>
-   </li>
+    {% embed "default/dayplan.html.twig" with { 'userIsLogged': is_granted("IS_AUTHENTICATED_FULLY") } %}
 
-   <li>
-      <a href="{{ path('day_generate') }}">
-Generate
-      </a>
-   </li>
-   <li>
-      <a href="{{ path('week_generate') }}">
-         Generate Week
-      </a>
-   </li>
-   <li>
-      <a href="{{ path('week_view') }}">
-         View Week
-      </a>
-   </li>
+    {% endembed %}
+
+
+
+
 
   {% endblock %}
 

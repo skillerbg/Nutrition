@@ -14,24 +14,35 @@ class DefaultController extends Controller
     {
 
         $day=date("l");
-        $datPlan=$this->findDay($day);
+
+
+        if ( $this->getUser() && $this->getDoctrine()->getRepository(WeekPlan::class)
+                ->findOneBy(array('userId' => $this->getUser()->getId()))){
+            $weekController=$this->getWeek2();
+            $datPlan=$this->findDay($day,$weekController);
         return $this->render('default/index.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,'day'=>$datPlan
         ]);
+        }else{
+            return $this->render('default/index.html.twig', [
+                'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR
+            ]);
+        }
     }
+
     public function getWeek2(){
     $user = $this->getUser()->getId();
 
     return $this->getDoctrine()->getRepository(WeekPlan::class)
         ->findOneBy(array('userId' => $user));
 
-}public function findDay($day){
-    $weekController=$this->getWeek2();
+}public function findDay($day,$weekController){
+
 
     $dayPlan=null;
         switch ($day){
             case 'Monday':$dayPlan=$weekController->getMonday();break;
-            case 'Tuesday':$dayPlan=$weekController->getThuesday();break;
+            case 'Tuesday':$dayPlan=$weekController->getTuesday();break;
             case 'Wednesday':$dayPlan=$weekController->getWednesday();break;
             case 'Thursday':$dayPlan=$weekController->getThursday();break;
             case 'Friday':$dayPlan=$weekController->getFriday();break;

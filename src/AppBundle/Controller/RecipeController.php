@@ -52,7 +52,7 @@ class RecipeController extends Controller
 
 
                 //find raw entity with the provided id
-                if ($data[$requestRawId]) {//checks if the form has a raw
+                if ($data[$requestRawId] && $em->getRepository('AppBundle:Raw')->find($data[$requestRawId])) {//checks if the form has a raw 
 
                     $quantity=intval($data['quantity'.$i])/$servings;//gets the quantity of one serving
                     $quantityArray[]=$quantity;

@@ -4,13 +4,9 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Nutrition_Info;
 use AppBundle\Entity\Raw;
-use AppBundle\Form\Nutrition_InfoType;
-use AppBundle\Form\RawType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 class RawController extends Controller
@@ -26,10 +22,9 @@ class RawController extends Controller
     public function create(Request $request)
     {
         $rawEntity = new Raw();
-        $rawNutritionInfo=new Nutrition_Info();
+        $rawNutritionInfo = new Nutrition_Info();
 
         $params = $request->request->get('raw');
-
 
         if ($params) {
 
@@ -54,7 +49,7 @@ class RawController extends Controller
             $rawNutritionInfo->setSalt($params['salt']);
             $rawNutritionInfo->setSugars($params['sugars']);
 
-            $rawEntity->setNutritionInfo($rawNutritionInfo);//binds the nutrition info to the raw entity
+            $rawEntity->setNutritionInfo($rawNutritionInfo); //binds the nutrition info to the raw entity
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($rawEntity);
@@ -69,7 +64,6 @@ class RawController extends Controller
 
     }
 
-
     /**
      * @param Request $request
      * @Route("raw/search", name="recipe_search")
@@ -77,9 +71,9 @@ class RawController extends Controller
 
      */
 
-    public function search(Request $request)//search the Db for recipes entities with the ajax params
-    {
+    public function search(Request $request) //search the Db for recipes entities with the ajax params
 
+    {
 
         $entityManager = $this->getDoctrine()->getManager();
         $ajaxQuery = $request->request->get('query');
@@ -91,6 +85,5 @@ class RawController extends Controller
             ->getArrayResult();
         return $this->json(array($result));
     }
-
 
 }

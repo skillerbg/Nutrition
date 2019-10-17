@@ -1,13 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    {% embed "default/dayplan.html.twig" with { 'userIsLogged': is_granted("IS_AUTHENTICATED_FULLY") } %}
-
-    {% endembed %}
+    {% embed "default/dayplan.html.twig" with { 'userIsLogged': is_granted("IS_AUTHENTICATED_FULLY") } %}{% endembed %}
 
 
-
-
-
-  {% endblock %}
-
+{% endblock %}

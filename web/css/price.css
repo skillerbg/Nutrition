@@ -1,0 +1,134 @@
+.price-table {
+    margin-top: 16px;
+}
+.pricing {
+ 
+    padding: 20px;
+    border-radius: 5px;
+   
+  margin-bottom:30px;
+}
+.pricing-top {
+    width: 140px;
+    height: 140px;
+    border-radius: 100%;
+    border: 5px solid #fff;
+    margin: 0 auto;  
+}
+.pricing-top p{
+    margin-top: 20px;
+}
+.pricing-top sup {
+    font-size: 40px;
+    top: -5px;
+    left: 0px;
+}
+.pricing-top em {
+    font-size: 47px;
+    font-family: fantasy;
+}
+.pricing-top span {
+    text-transform: uppercase;
+    font-size: 16px;
+    margin-left: 3px;
+}
+.pricing ul{
+    padding: 0; 
+}
+.pricing ul li{
+    max-width: 140px;
+    border-bottom: 1px solid #fff;
+    list-style: none;
+    margin: 0 auto;
+    padding: 10px 0;
+    font-size: 15px;
+}
+
+.pricing-top.on {
+    background: #0a9c3a;
+    color: white;
+    cursor: pointer;
+}
+
+.pricing-top.two {
+    background: #0071bc;
+    color: white;
+    cursor: pointer;
+}
+.pricing-top.three {
+    background: #d4145a;
+    color: white;
+    cursor: pointer;
+}
+
+
+
+.pricing.text-center.on {
+    border: 5px solid #0a9c3a;
+    color: #0a9c3a;
+        background: white;
+}
+.pricing.text-center.on ul li {
+    border-bottom: 1px solid #0a9c3a;
+    cursor: pointer;
+}
+
+.pricing.text-center.two {
+    border: 5px solid #0071bc;
+    color: #0071bc;
+        background: white;
+}
+.pricing.text-center.two ul li {
+    border-bottom: 1px solid #0071bc;
+    cursor: pointer;
+}
+.pricing.text-center.three {
+   
+    background: white;
+    border: 5px solid #d4145a;
+    color: #d4145a;
+    
+}
+
+
+.pricing.text-center.three ul li {
+    border-bottom: 1px solid #d4145a;
+    cursor: pointer;
+}
+
+.btn.on {
+    background: #0a9c3a;
+    color: white;
+    width: 50%;
+    padding: 8px;
+    font-size: 15px;
+    letter-spacing: 1px;
+    word-spacing: 2px;
+}
+.btn.two {
+ color: white;
+    background: #0071bc;
+    color: white;
+    width: 50%;
+    padding: 8px;
+    font-size: 15px;
+    letter-spacing: 1px;
+    word-spacing: 2px;
+}
+
+.btn.three {
+ color: white;
+    background: #d4145a;
+    color: white;
+    width: 50%;
+    padding: 8px;
+    font-size: 15px;
+    letter-spacing: 1px;
+    word-spacing: 2px;
+}
+.detalis.holder.about.image.price h2 {
+    font-size: 46px;
+}
+.recipe_name{
+    color:green;
+}

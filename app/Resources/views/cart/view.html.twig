@@ -5,99 +5,96 @@
 
     <div class="container body-content span=8 offset=2">
         <div class="well">
-            <form class="form-horizontal" >
+            <form class="form-horizontal">
 
                 <fieldset>
                     {% if entity[1].rawId is defined %}
 
-                    {% set  totalprice=0 %}
-                    {% for elements in entity %}
-                        <div class="well">
-                            <form class="form-horizontal" >
+                        {% set  totalprice=0 %}
+                        {% for elements in entity %}
+                            <div class="well">
+                                <form class="form-horizontal">
 
-                                <fieldset>
+                                    <fieldset>
 
 
-                                    <font size="50">
-                                        <center>
-                                            <b > {{elements.rawId.name}}
-                                            </b>
-                                        </center>
-                                    </font>
+                                        <font size="50">
+                                            <center>
+                                                <b>
+                                                    {{elements.rawId.name}}
+                                                </b>
+                                            </center>
+                                        </font>
 
-                                    <div class="form-group " >
-                                        <div class="img-thumbnail center-block" >
-                                            <img src="{{elements.rawId.picture}}" width="300" height="300" class="center-block" alt="Integridient picture">
+                                        <div class="form-group ">
+                                            <div class="img-thumbnail center-block">
+                                                <img src="{{elements.rawId.picture}}" width="300" height="300" class="center-block" alt="Integridient picture">
 
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group" >
+                                        <div class="form-group">
 
-                                        <label class="col-sm-4 control-label" for="article_price">Description:</label>
-                                        <div class="col-sm-6 ">
-                                            {{elements.rawId.description}}
+                                            <label class="col-sm-4 control-label" for="article_price">Description:</label>
+                                            <div class="col-sm-6 ">
+                                                {{elements.rawId.description}}
 
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div class="form-group">
-                                        <label class="col-sm-4 control-label" for="article_price">Price</label>
-                                        <div class="col-sm-4 ">
-
-
-                                            {% set price = elements.grams * elements.rawId.priceperg %}
-
-                                            {{ price|number_format(2,',') }} lv.
-                                            {%  set totalprice=totalprice+ price %}
+                                        <div class="form-group">
+                                            <label class="col-sm-4 control-label" for="article_price">Price</label>
+                                            <div class="col-sm-4 ">
 
 
+                                                {% set price = elements.grams * elements.rawId.priceperg %}
+
+                                                {{ price|number_format(2,',') }}
+                                                lv.
+                                                {%  set totalprice=totalprice+ price %}
+
+
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div class="form-group">
-                                        <label class="col-sm-4 control-label" for="quantity">Grams:</label>
-                                        <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label class="col-sm-4 control-label" for="quantity">Grams:</label>
+                                            <div class="col-sm-6">
 
-                                            {{ elements.grams|number_format }} gr.
+                                                {{ elements.grams|number_format }}
+                                                gr.
 
+                                            </div>
                                         </div>
-                                    </div>
 
 
-
-
-
-
-
-
-                                </fieldset>
-                            </form>
-                        </div>
-                    {% endfor %}
-
-                    <form class="form-horizontal" >
-
-                        <fieldset>
-
-
-
-                            <div class="form-group">
-                                <label class="col-sm-4 control-label" for="quantity">Total Price:</label>
-                                <div class="col-sm-6">
-
-                                    {{ totalprice|number_format(2,',') }} lv.
-
-                                </div>
+                                    </fieldset>
+                                </form>
                             </div>
+                        {% endfor %}
 
-                        </fieldset>
-                    </form>
+                        <form class="form-horizontal">
+
+                            <fieldset>
+
+
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label" for="quantity">Total Price:</label>
+                                    <div class="col-sm-6">
+
+                                        {{ totalprice|number_format(2,',') }}
+                                        lv.
+
+                                    </div>
+                                </div>
+
+                            </fieldset>
+                        </form>
 
                     {% else %}
 
-                            <div class="col-sm-4 col-sm-offset-4">
-                                <a  class="btn btn-success" href="{{ path('cart_generate') }}">Generate cart!</a>
-                            </div>
+                        <div class="col-sm-4 col-sm-offset-4">
+                            <a class="btn btn-success" href="{{ path('cart_generate') }}">Generate cart!</a>
+                        </div>
 
                     {% endif %}
 

@@ -1,151 +1,172 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    <link rel="stylesheet" href="{{ asset('css/nutritionfacts.css') }}"/>
 
 
- <div class="container body-content span=8 offset=2">
-  <div class="well">
-   <form class="form-horizontal" >
+    <div class="container body-content span=8 offset=2">
+        <div class="well">
+            <form class="form-horizontal">
 
-    <fieldset>
-
-
-     <font size="50">
-      <center>
-       <b > {{entity.name}}
-       </b>
-      </center>
-     </font>
-
-     <div class="form-group " >
-      <div class="img-thumbnail center-block" >
-       <img src="{{entity.picture}}" width="300" height="300" class="center-block" alt="Integridient picture">
-
-      </div>
-     </div>
-     <div class="form-group">
-      <label class="col-sm-4 control-label" for="article_content">Type:</label>
-      <div class="col-sm-6">
-       {{entity.type}}
-
-      </div>
-     </div>
-
-     <div class="form-group">
-      <label class="col-sm-4 control-label" for="article_content">Ingredients:</label>
-      <div class="col-sm-6">
-       <table>
-        <tr>
-         <td> {% for elements in entity.array if elements!=0%}
-           {{ elements|round  }} grams - <br>
-          {% endfor %}
-         </td>
+                <fieldset>
 
 
-         <td>
-          {% for raws in entity.raws%}
+                    <font size="50">
+                        <center>
+                            <b>
+                                {{entity.name}}
+                            </b>
+                        </center>
+                    </font>
 
-        <a href="{{ path('raw_view' )}}/{{raws.id}}"> {{raws.name}}<br></a>
+                    <div class="form-group ">
+                        <div class="img-thumbnail center-block">
+                            <img src="{{entity.picture}}" width="300" height="300" class="center-block" alt="Integridient picture">
 
-          {% endfor %}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="article_content">Type:</label>
+                        <div class="col-sm-6">
+                            {{entity.type}}
 
-         </td>
-        </tr>
-       </table>
-      </div>
-     </div>
+                        </div>
+                    </div>
 
-     <div class="form-group">
-      <label class="col-sm-4 control-label" for="article_price">Recipe:</label>
-      <div class="col-sm-6 ">
-       {{entity.description}}
-
-      </div>
-     </div>
-
-     <div class="form-group">
-      <label class="col-sm-4 control-label" for="article_price">Price</label>
-      <div class="col-sm-4 ">
-       {{entity.price|number_format(2, '.', ',')}}
-
-      </div>
-     </div>
-
-     <div class="form-group">
-      <label class="col-sm-4 control-label" for="quantity">Grams:</label>
-      <div class="col-sm-6">
-       {{entity.quantity|number_format(2, '.', ',')}}
-
-      </div>
-     </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="article_content">Ingredients:</label>
+                        <div class="col-sm-6">
+                            <table>
+                                <tr>
+                                    <td>
+                                        {% for elements in entity.array if elements!=0%}
+                                            {{ elements|round  }}
+                                            grams -
+                                            <br>
+                                        {% endfor %}
+                                    </td>
 
 
+                                    <td>
+                                        {% for raws in entity.raws%}
 
-     <div class="form-group">
-      <label class="col-sm-4 control-label" for="kcal">Kcal:</label>
-      <div class="col-sm-6">
-       {{nutrition.kcal|number_format(1, '.', ',')}}
+                                            <a href="{{ path('raw_view' )}}/{{raws.id}}">
+                                                {{raws.name}}<br></a>
 
-      </div>
-     </div>
+                                        {% endfor %}
 
-     <div class="form-group">
-      <label class="col-sm-4 control-label" for="fats">Fats: </label>
-      <div class="col-sm-4 ">
-       {{nutrition.fats|number_format(1, '.', ',')}}
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
 
-      </div>
-     </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="article_price">Recipe:</label>
+                        <div class="col-sm-6 ">
+                            {{entity.description}}
 
-     <div class="form-group">
-      <label class="col-sm-4 control-label" for="ufats">Salt fats: </label>
-      <div class="col-sm-6">
-       {{nutrition.salt|number_format(1, '.', ',')}}
+                        </div>
+                    </div>
 
-      </div>
-     </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="article_price">Price</label>
+                        <div class="col-sm-4 ">
+                            {{entity.price|number_format(2, '.', ',')}}
 
-     <div class="form-group">
-      <label class="col-sm-4 control-label" for="sfats">Saturated fats:</label>
-      <div class="col-sm-4 ">
-       {{nutrition.saturatedFats|number_format(1, '.', ',')}}
+                        </div>
+                    </div>
 
-      </div>
-     </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="quantity">Grams:</label>
+                        <div class="col-sm-6">
+                            {{entity.quantity|number_format(2, '.', ',')}}
 
-     <div class="form-group">
-      <label class="col-sm-4 control-label" for="protein">Proteins:</label>
-      <div class="col-sm-6">
-       {{nutrition.proteins|number_format(1, '.', ',')}}
+                        </div>
+                    </div>
 
-      </div>
-     </div>
+                    <div style="padding-left: 280px;">
+                        <section class="performance-facts">
+                            <header class="performance-facts__header">
+                                <h1 class="performance-facts__title">Nutrition Facts</h1>
+                                <p>Serving Size about
+                                    {{entity.quantity|round(1, 'floor') }}g</p>
+                            </header>
+                            <table class="performance-facts__table">
+                                <thead></thead>
+                                <tbody>
+                                    <th colspan="2">
+                                        <b>Calories</b>
 
-     <div class="form-group">
-      <label class="col-sm-4 control-label" for="carbs">Carbs:</label>
-      <div class="col-sm-4 ">
-       {{nutrition.carbs|number_format(1, '.', ',')}}
+                                    </th>
+                                    <td>
+                                        <b>
+                                            {{nutrition.kcal|round(1, 'floor') }}
+                                        </b>
+                                    </td>
+                                    <tr>
+                                        <th colspan="2">
+                                            <b>Total Fat</b>
 
-      </div>
-     </div>
+                                        </th>
+                                        <td>
+                                            <b>{{nutrition.fats|round (1, 'floor')}}</b>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="blank-cell"></td>
+                                        <th>
+                                            Saturated Fat
+
+                                        </th>
+                                        <td>
+                                            <b>{{nutrition.saturatedFats|round(1, 'floor')}}</b>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <th colspan="2">
+                                            <b>Total Carbohydrate</b>
+
+                                        </th>
+                                        <td>
+                                            <b>{{nutrition.carbs|round (1, 'floor')}}</b>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="blank-cell"></td>
+                                        <th>
+                                            Sugars
+
+                                        </th>
+                                        <td>
+                                            <b>{{nutrition.sugars|round (1, 'floor')}}</b>
+                                        </td>
+                                    </tr>
+                                    <tr class="thick-end">
+                                        <th colspan="2">
+                                            <b>Protein</b>
+
+                                        </th>
+                                        <td>
+                                            <b>{{nutrition.proteins|round (1, 'floor')}}</b>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
 
 
-     <div class="form-group">
-      <label class="col-sm-4 control-label" for="sugars">Suagars:</label>
-      <div class="col-sm-4 ">
-       {{nutrition.sugars|number_format(1, '.', ',')}}
+                        </section>
+                    </div>
+                </fieldset>
+            </form>
+            <div style="background: #d6d6d6;">
+                {% include 'FOSCommentBundle:Thread:async.html.twig' with {'id': 'recipes'~entity.id } %}
+            </div>
 
-      </div>
-     </div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
 
-
-
-
-    </fieldset>
-   </form>
-  </div>
- </div>
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
-
- {% include 'FOSCommentBundle:Thread:async.html.twig' with {'id': 'recipes'~entity.id } %}
 {% endblock %}

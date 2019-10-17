@@ -8,7 +8,7 @@
         var fos_comment_thread_api_base_url = '{{ path('fos_comment_get_threads') }}';
 
         // Snippet for asynchronously loading the comments
-        (function() {
+        (function () {
             var fos_comment_script = document.createElement('script');
             fos_comment_script.async = true;
             fos_comment_script.src = '{{ asset('bundles/foscomment/js/comments.js') }}';

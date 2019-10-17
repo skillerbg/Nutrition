@@ -380,7 +380,7 @@
   .ice-theme .sidebar-wrapper .sidebar-menu .sidebar-dropdown div {
     background-color: #3a4d56; }
   .ice-theme .sidebar-wrapper .sidebar-menu .header-menu span {
-    color: #6c7b88; }
+    color: green; }
   .ice-theme .sidebar-wrapper .sidebar-footer {
     background-color: #2f3f48;
     -webkit-box-shadow: 0px -1px 5px #2b3a42;
@@ -468,7 +468,7 @@
   .light-theme .sidebar-wrapper .sidebar-menu .sidebar-dropdown div {
     background-color: #f9f9f9; }
   .light-theme .sidebar-wrapper .sidebar-menu .header-menu span {
-    color: #6c7b88; }
+    color: green; }
   .light-theme .sidebar-wrapper .sidebar-footer {
     background-color: #f9f9f9;
     -webkit-box-shadow: 0px -1px 5px #ececec;
@@ -501,7 +501,7 @@
 .light-theme.sidebar-bg .sidebar-wrapper .sidebar-header,
 .light-theme.sidebar-bg .sidebar-wrapper .sidebar-search input,
 .light-theme.sidebar-bg .sidebar-wrapper .sidebar-search i {
-  color: #8e8c87; }
+  color: green; }
 
 .light-theme.sidebar-bg .sidebar-wrapper a:not(.dropdown-item):hover,
 .light-theme.sidebar-bg .sidebar-wrapper .sidebar-menu li.active > a {

@@ -1,6 +1,6 @@
-
 <nav id="sidebar" class="sidebar-wrapper">
-    <div class="sidebar-content">
+    <div
+        class="sidebar-content">
         <!-- sidebar-brand  -->
         <div class="sidebar-item sidebar-brand">
             <a id="pin-sidebar" href="#">
@@ -12,14 +12,11 @@
             {% if app.user %}
 
                 <div class="user-info">
-                        <span class="user-name">
-                            <strong>{{ app.user.username }}</strong>
-                        </span>
+                    <span class="user-name">
+                        <strong>{{ app.user.username }}</strong>
+                    </span>
                     <span class="user-role">{{ app.user.email }}</span>
-                    <span class="user-status">
-                            <i class="fa fa-circle"></i>
-                            <span>Online</span>
-                        </span>
+                    
                 </div>
             {% endif %}
 
@@ -69,8 +66,6 @@
                     </li>
 
 
-
-
                 {% endif %}
 
 
@@ -95,7 +90,7 @@
                         <span class="menu-text">View week-plan</span>
                     </a>
                 </li>
-                 <li>
+                <li>
                     <a href="{{ path('cart_view') }}">
                         <i class="fa fa-calendar"></i>
                         <span class="menu-text">Weekly shoping list</span>

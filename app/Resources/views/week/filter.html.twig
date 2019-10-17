@@ -4,7 +4,6 @@
     <link href="{{ asset('css/slider.css') }}" rel="stylesheet">
 
 
-
     <div class="container body-content span=8 offset=2">
         <div class="well">
 
@@ -17,7 +16,9 @@
                         <label class="col-sm-4 control-label" for="article_title">Kcal per Day:</label>
                         <div class="col-sm-4 ">
                             <input type="range" min="1000" max="5000" value="{{ filter.kcal }}" class="slider" id="myRange" name="filter[kcal]">
-                            <p> <span id="demo"></span> Kcal</p>
+                            <p>
+                                <span id="demo"></span>
+                                Kcal</p>
 
                         </div>
                     </div>
@@ -26,7 +27,7 @@
                         var output = document.getElementById("demo");
                         output.innerHTML = slider.value;
 
-                        slider.oninput = function() {
+                        slider.oninput = function () {
                             output.innerHTML = this.value;
                         }
                     </script>
@@ -36,11 +37,12 @@
                         <label class="col-sm-4 control-label" for="article_title">Budget:</label>
                         <div class="col-sm-4 ">
                             <input type="range" min="5" max="50" value="{{ filter.budget }}" class="slider" id="myRange2" name="filter[price]">
-                            <p> <span id="demo2"></span> lv.</p>
+                            <p>
+                                <span id="demo2"></span>
+                                lv.</p>
 
                         </div>
                     </div>
-
 
 
                     <script>
@@ -48,11 +50,10 @@
                         var output2 = document.getElementById("demo2");
                         output2.innerHTML = slider2.value;
 
-                        slider2.oninput = function() {
+                        slider2.oninput = function () {
                             output2.innerHTML = this.value;
                         }
                     </script>
-
 
 
                     <div class="form-group">
@@ -66,4 +67,3 @@
         </div>
     </div>
 {% endblock %}
-

@@ -1,14 +1,13 @@
 <?php
 
 namespace AppBundle\Controller;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Annotation\Route;
+
 use AppBundle\AppBundle;
 use Proxies\__CG__\AppBundle\Entity\Recipe;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-
-use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 
 class ViewRecipeController extends Controller
 {
@@ -22,11 +21,11 @@ class ViewRecipeController extends Controller
      */
     public function ViewAction($slug)
     {
-        $id=   $slug;
+        $id = $slug;
         $db = $this->getDoctrine()->getRepository('AppBundle:Recipe');
-          $entity=$db->find($id);
-          $nutrition=$entity->getRecipeNutrition();
-        return $this->render('recipe/view.html.twig', array('entity' => $entity,'nutrition'=>$nutrition));
+        $entity = $db->find($id);
+        $nutrition = $entity->getRecipeNutrition();
+        return $this->render('recipe/view.html.twig', array('entity' => $entity, 'nutrition' => $nutrition));
     }
 
     /**
@@ -39,12 +38,12 @@ class ViewRecipeController extends Controller
      */
     public function ViewRawAction($slug)
     {
-        $id=   $slug;
+        $id = $slug;
 
         $db = $this->getDoctrine()->getRepository('AppBundle:Raw');
-        $entity=$db->find($id);
-        $nutrition=$entity->getNutritionInfo();
+        $entity = $db->find($id);
+        $nutrition = $entity->getNutritionInfo();
 
-        return $this->render('raw/view.html.twig', array('entity' => $entity,'nutrition'=>$nutrition));
+        return $this->render('raw/view.html.twig', array('entity' => $entity, 'nutrition' => $nutrition));
     }
 }

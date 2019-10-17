@@ -1,0 +1,73 @@
+<link rel="stylesheet" href="{{ asset('css/nutritionfacts.css') }}"/>
+<section class="performance-facts">
+    <header class="performance-facts__header">
+        <h1 class="performance-facts__title">Nutrition Facts</h1>
+        <p>Serving Size about {{nutrition.quantity|round(1, 'floor') }}g</p>
+    </header>
+    <table class="performance-facts__table">
+        <thead>
+           
+        </thead>
+        <tbody>
+            <th colspan="2">
+                <b>Calories</b>
+               
+            </th>
+           <td>
+                    <b> {{nutrition.getRecipeNutrition.kcal|round(1, 'floor') }}
+</b>
+                </td>
+            <tr>
+                <th colspan="2">
+                    <b>Total Fat</b>
+                    
+                </th>
+                <td>
+                    <b>{{nutrition.getRecipeNutrition.fats|round (1, 'floor')}}</b>
+                </td>
+            </tr>
+            <tr>
+                <td class="blank-cell"></td>
+                <th>
+                    Saturated Fat
+                              
+                </th>
+                <td>
+                    <b>{{nutrition.getRecipeNutrition.saturatedFats|round(1, 'floor')}}</b>
+                </td>
+            </tr>
+
+            <tr>
+                <th colspan="2">
+                    <b>Total Carbohydrate</b>
+                    
+                </th>
+                <td>
+                    <b>{{nutrition.getRecipeNutrition.carbs|round (1, 'floor')}}</b>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="blank-cell"></td>
+                <th>
+                    Sugars
+                            
+                </th>
+                <td>
+                 <b>{{nutrition.getRecipeNutrition.sugars|round (1, 'floor')}}</b>
+                </td>
+            </tr>
+            <tr class="thick-end">
+                <th colspan="2">
+                    <b>Protein</b>
+                    
+                </th>
+                <td>
+                 <b>{{nutrition.getRecipeNutrition.proteins|round (1, 'floor')}}</b>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+</section>

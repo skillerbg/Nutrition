@@ -72,7 +72,8 @@
 
 
 <br /><br />
-<div class="container" style="width:1300px;">
+<div class="container body-content span=8 offset=2">
+        <div class="well">
     <h2 align="center">Create New Recipe</h2>
     <br /><br />
     <div class="container body-content span=8 offset=2">
@@ -104,15 +105,18 @@
                         </div>
                     </div>
 <br><br>
-
+<div class="row no-gutters">
+  <div class="col-12 col-sm-6 col-md-10">
+ 
                     <table class="table">
+                            
                         <label class="form-check-label" style="align-content: center" >Ingredients</label>
                         <tr>
                             <th width="150">
-                    <input type="text" name="recipe[quantity1]" class="form-control  input-lg" autocomplete="off" placeholder="Grams" />
-                            </th>
-                            <th>
-                        <input type="text" name="recipe[raw1]" class="country form-control  input-lg" autocomplete="off" placeholder="Ingredients" />
+                    <input type="text" name="recipe[quantity1]" class="form-control  input-lg " autocomplete="off" placeholder="Grams" />
+                            </th >
+                            <th >
+                        <input type="text" name="recipe[raw1]"  class="country form-control input-lg " autocomplete="off" placeholder="Ingredients" />
                                 <input type="hidden" class="hiddenid" name="recipe[id1]" id="inputtypeHidden">
 
                             </th>
@@ -201,13 +205,22 @@
 
                         </tr>
                     </table>
-
+ </div>
+  
+</div>
+<div class="row no-gutters">
+  <div class="col-12 col-sm-6 col-md-10">
                     <div class="form-group">
                         <div class="col-sm-4 col-sm-offset-4">
                             <a class="btn btn-success" id="newfield" >Add new field</a>
                         </div>
                     </div>
+                     </div>
+  
+</div>
 <br>
+<div class="row no-gutters">
+  <div class="col-12 col-sm-6 col-md-10">
                     <div class="form-group">
                         <label class="col-sm-4 control-label" for="article_content">Description:</label>
                         <div class="col-sm-6">
@@ -215,6 +228,13 @@
                                   name="recipe[description]"></textarea>
                         </div>
                     </div>
+                        </div>
+  
+</div>
+<br>
+
+<div class="row no-gutters">
+  <div class="col-12 col-sm-6 col-md-10">
                     <div class="form-group">
                         <label class="col-sm-4 control-label" for="servings">Servings:</label>
                         <div class="col-sm-4 ">
@@ -222,12 +242,21 @@
                                      name="recipe[servings]"></textarea>
                         </div>
                     </div>
+                     </div>
+  
+</div>
+<br>
+
+<div class="row no-gutters">
+  <div class="col-12 col-sm-6 col-md-10">
                     <div class="form-group">
                         <label class="col-sm-4 control-label" for="picture">Picture URL:</label>
                         <div class="col-sm-4 ">
                            <textarea class="form-control" rows="1" id="picture"
                                      name="recipe[picture]"></textarea>
                         </div>
+                    </div>
+                      </div>
                     </div>
 
 
@@ -250,7 +279,7 @@
             </form>
         </form>
         </div>
-
+    </div>
     </div>
 </div>
 

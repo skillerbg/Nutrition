@@ -13,6 +13,7 @@
 <html lang="en-US">
 <head>
     <meta charset="UTF-8"/>
+    
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>{% block title %}Nutrition Planer{% endblock %}</title>
     {% block stylesheets %}
@@ -102,46 +103,38 @@
 
 </head>
 
-<body id="{% block body_id %}{% endblock %}">
-
-
-
-{% include 'navbar.html.twig'  %}
-
-
-
-<div class="page-wrapper light-theme sidebar-bg bg1 portfolio" >
-    {% include 'sidebar.html.twig'  %}
-
-    <main class="page-content pt-2">
-        <div id="overlay" class="overlay"></div>
-        <div class="container">
-
-
-            {% block body %}
 
 
 
 
-            {% endblock %}
-        </div>
-    </main>
 
 
-</div>
 
-{% block footer %}
-    <footer>
-        <div class="container modal-footer">
-            <p>&copy; 2018 - Manja Project</p>
-        </div>
-    </footer>
-{% endblock %}
+
+
+
+
+<body id="bigwrapper">
+    <div class="page-wrapper light-theme sidebar-bg portfolio" >
+        {% include 'navbar.html.twig'  %}
+        {% include 'sidebar.html.twig'  %}
+        <main class="main-wraper page-content pt-2">
+          
+                         {% block body %}
+                        {% endblock %}
+               <div class="push"></div> 
+        </main>
+        
+                <div class="container footer navbar-fixed-bottom">
+                    <p>Copyright © 2019 Yonko Lozanov | Powered by Yonko Lozanov</p>
+                </div>
+          
+    </div>
+</body>
+
 
 
 
 <script src="{{ asset('js/main.js') }}"></script>
-
-</body>
 <script type="text/javascript"> var infolinks_pid = 3163288; var infolinks_wsid = 0; </script> <script type="text/javascript" src="//resources.infolinks.com/js/infolinks_main.js"></script>
 </html>

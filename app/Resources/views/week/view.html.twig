@@ -1,118 +1,303 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="{{ asset('css/viewweek.css') }}">
+
 
     <div class="container body-content span=8 offset=2">
         <div class="well">
-            <table style="width:100%">
-                <tr>
-                    <th></th>
-                    <th>Monday</th>
-                    <th>Tuesday</th>
-                    <th>Wednesday</th>
-                    <th>Thursday</th>
-                    <th>Friday</th>
-                    <th>Saturday</th>
-                    <th>Sunday</th>
-
-                    <th></th>
-                </tr>
-                <tr>
-                    <td>Breakfast</td>
-                    <th> <a href="{{ path('recipe_view')}}/{{ plan.monday.breakfast.id  }}">
+ <div class="row m-auto text-center w-75">
+           <div class="col-4 princing-item green" style="padding-right: 10">
+          <div class="pricing-divider ">
+              <h3 class="text-light">Monday</h3>
+            <h4 class="my-0 display-2 text-light font-weight-normal mb-3"><span class="h3"></span> </h4>
+             <svg class='pricing-divider-img' enable-background='new 0 0 300 100' height='100px' id='Layer_1' preserveAspectRatio='none' version='1.1' viewBox='0 0 300 100' width='300px' x='0px' xml:space='preserve' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns='http://www.w3.org/2000/svg' y='0px'>
+          <path class='deco-layer deco-layer--1' d='M30.913,43.944c0,0,42.911-34.464,87.51-14.191c77.31,35.14,113.304-1.952,146.638-4.729
+	c48.654-4.056,69.94,16.218,69.94,16.218v54.396H30.913V43.944z' fill='#FFFFFF' opacity='0.6'></path>
+          <path class='deco-layer deco-layer--2' d='M-35.667,44.628c0,0,42.91-34.463,87.51-14.191c77.31,35.141,113.304-1.952,146.639-4.729
+	c48.653-4.055,69.939,16.218,69.939,16.218v54.396H-35.667V44.628z' fill='#FFFFFF' opacity='0.6'></path>
+          <path class='deco-layer deco-layer--3' d='M43.415,98.342c0,0,48.283-68.927,109.133-68.927c65.886,0,97.983,67.914,97.983,67.914v3.716
+	H42.401L43.415,98.342z' fill='#FFFFFF' opacity='0.7'></path>
+          <path class='deco-layer deco-layer--4' d='M-34.667,62.998c0,0,56-45.667,120.316-27.839C167.484,57.842,197,41.332,232.286,30.428
+	c53.07-16.399,104.047,36.903,104.047,36.903l1.333,36.667l-372-2.954L-34.667,62.998z' fill='#FFFFFF'></path>
+        </svg>
+          </div>
+          <div class="card-body bg-white mt-0 shadow">
+            <ul class="list-unstyled mb-5 position-relative">
+              <li><b>Breakfast</b><br><a href="{{ path('recipe_view')}}/{{ plan.monday.breakfast.id  }}">
                             {{plan.monday.breakfast.name}}
-                        </a> </th>
+                        </a></li>
+              <li><b>Snack</b><br><a href="{{ path('recipe_view')}}/{{ plan.monday.snack1.id  }}">
+                            {{plan.monday.snack1.name}}
+                        </a> </li>
+              <li><b>Lunch</b><br><a href="{{ path('recipe_view')}}/{{ plan.monday.dinner1.id  }}">
+                            {{plan.monday.dinner1.name}}
+                        </a> </li>
+              <li><b>Snack</b><br><a href="{{ path('recipe_view')}}/{{ plan.monday.snack2.id  }}">
+                            {{plan.monday.snack2.name}}
+                        </a> </li>
+              <li><b>Dinner</b><br><a href="{{ path('recipe_view')}}/{{ plan.monday.dinner2.id  }}">
+                            {{plan.monday.dinner2.name}}
+                        </a> </li>
 
 
-                     <th> <a href="{{ path('recipe_view' )}}/{{plan.tuesday.breakfast.id}}"> {{plan.tuesday.breakfast.name}}</a> </th>
-                     <th> <a href="{{ path('recipe_view')}}/{{ plan.wednesday.breakfast.id  }}">{{plan.wednesday.breakfast.name}}</a> </th>
-                     <th> <a href="{{ path('recipe_view')}}/{{ plan.thursday.breakfast.id  }}">{{plan.thursday.breakfast.name}}</a> </th>
-                     <th> <a href="{{ path('recipe_view')}}/{{ plan.friday.breakfast.id }}">{{plan.friday.breakfast.name}}</a> </th>
-                     <th> <a href="{{ path('recipe_view')}}/{{ plan.saturday.breakfast.id  }}">{{plan.saturday.breakfast.name}}</a> </th>
-                     <th> <a href="{{ path('recipe_view')}}/{{ plan.sunday.breakfast.id  }}">{{plan.sunday.breakfast.name}}</a> </th>
+            </ul>
+            
+            <a class="btn btn-lg btn-block  btn-custom " role="button" href="{{ path('day_regenerate' , {'day': 'monday'}) }}">REGENERATE</a> 
+            <a class="btn btn-lg btn-block  btn-custom2" role="button" href="{{ path('day_view' , {'day': plan.monday.id}) }}">OPEN</a>
 
-                </tr>
+            
+          </div>
+        </div>
 
-                <tr>
-
-                    <td>Snack</td>
-                     <th><a href="{{ path('recipe_view')}}/{{ plan.monday.snack1.id  }}">{{plan.monday.snack1.name}}</a> </th>
-                     <th> <a href="{{ path('recipe_view')}}/{{ plan.tuesday.snack1.id  }}">{{plan.tuesday.snack1.name}}</a> </th>
-                     <th> <a href="{{ path('recipe_view')}}/{{ plan.wednesday.snack1.id  }}">{{plan.wednesday.snack1.name}}</a> </th>
-                     <th> <a href="{{ path('recipe_view')}}/{{ plan.thursday.snack1.id  }}">{{plan.thursday.snack1.name}}</a> </th>
-                     <th> <a href="{{ path('recipe_view')}}/{{ plan.friday.snack1.id  }}">{{plan.friday.snack1.name}}</a> </th>
-                     <th> <a href="{{ path('recipe_view')}}/{{ plan.saturday.snack1.id  }}">{{plan.saturday.snack1.name}}</a> </th>
-                     <th> <a href="{{ path('recipe_view')}}/{{ plan.sunday.snack1.id  }}">{{plan.sunday.snack1.name}}</a> </th>
-
-                </tr>
-
-                <tr>
-                    <td>Meal</td>
-                    <th><a href="{{ path('recipe_view')}}/{{ plan.monday.dinner1.id  }}">{{plan.monday.dinner1.name}}</a> </th>
-                    <th> <a href="{{ path('recipe_view')}}/{{ plan.tuesday.dinner1.id  }}">{{plan.tuesday.dinner1.name}}</a> </th>
-                    <th> <a href="{{ path('recipe_view')}}/{{ plan.wednesday.dinner1.id  }}">{{plan.wednesday.dinner1.name}}</a> </th>
-                    <th> <a href="{{ path('recipe_view')}}/{{ plan.thursday.dinner1.id  }}">{{plan.thursday.dinner1.name}}</a> </th>
-                    <th> <a href="{{ path('recipe_view')}}/{{ plan.friday.dinner1.id  }}">{{plan.friday.dinner1.name}}</a> </th>
-                    <th> <a href="{{ path('recipe_view')}}/{{ plan.saturday.dinner1.id  }}">{{plan.saturday.dinner1.name}}</a> </th>
-                    <th> <a href="{{ path('recipe_view')}}/{{ plan.sunday.dinner1.id  }}">{{plan.sunday.dinner1.name}}</a> </th>
-
-                </tr>
-
-                <tr>
-
-                    <td>Snack</td>
-                    <th><a href="{{ path('recipe_view')}}/{{ plan.monday.snack2.id  }}">{{plan.monday.snack2.name}}</a> </th>
-                    <th> <a href="{{ path('recipe_view')}}/{{ plan.tuesday.snack2.id  }}">{{plan.tuesday.snack2.name}}</a> </th>
-                    <th> <a href="{{ path('recipe_view')}}/{{ plan.wednesday.snack2.id  }}">{{plan.wednesday.snack2.name}}</a> </th>
-                    <th> <a href="{{ path('recipe_view')}}/{{ plan.thursday.snack2.id  }}">{{plan.thursday.snack2.name}}</a> </th>
-                    <th> <a href="{{ path('recipe_view')}}/{{ plan.friday.snack2.id  }}">{{plan.friday.snack2.name}}</a> </th>
-                    <th> <a href="{{ path('recipe_view')}}/{{ plan.saturday.snack2.id  }}">{{plan.saturday.snack2.name}}</a> </th>
-                    <th> <a href="{{ path('recipe_view')}}/{{ plan.sunday.snack2.id  }}">{{plan.sunday.snack2.name}}</a> </th>
-
-                </tr>
-
-                <tr>
-                    <td>Meal</td>
-                    <th><a href="{{ path('recipe_view')}}/{{ plan.monday.dinner2.id  }}">{{plan.monday.dinner2.name}}</a> </th>
-                    <th> <a href="{{ path('recipe_view')}}/{{ plan.tuesday.dinner2.id  }}">{{plan.tuesday.dinner2.name}}</a> </th>
-                    <th> <a href="{{ path('recipe_view')}}/{{ plan.wednesday.dinner2.id  }}">{{plan.wednesday.dinner2.name}}</a> </th>
-                    <th> <a href="{{ path('recipe_view')}}/{{ plan.thursday.dinner2.id  }}">{{plan.thursday.dinner2.name}}</a> </th>
-                    <th> <a href="{{ path('recipe_view')}}/{{ plan.friday.dinner2.id }}">{{plan.friday.dinner2.name}}</a> </th>
-                    <th> <a href="{{ path('recipe_view')}}/{{ plan.saturday.dinner2.id  }}">{{plan.saturday.dinner2.name}}</a> </th>
-                    <th> <a href="{{ path('recipe_view')}}/{{ plan.sunday.dinner2.id  }}">{{plan.sunday.dinner2.name}}</a> </th>
-
-                </tr>
-                <tr> <th></th></tr>
-
-                <tr >
-                    <th> </th>
-
-                    <th> <a class="btn btn-primary " role="button" href="{{ path('day_view' , {'day': plan.monday.id}) }}">open</a> </th>
+        <div class="col-4 princing-item green" style="padding-right: 10">
+          <div class="pricing-divider ">
+              <h3 class="text-light">Tuesday</h3>
+            <h4 class="my-0 display-2 text-light font-weight-normal mb-3"><span class="h3"></span> </h4>
+             <svg class='pricing-divider-img' enable-background='new 0 0 300 100' height='100px' id='Layer_1' preserveAspectRatio='none' version='1.1' viewBox='0 0 300 100' width='300px' x='0px' xml:space='preserve' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns='http://www.w3.org/2000/svg' y='0px'>
+          <path class='deco-layer deco-layer--1' d='M30.913,43.944c0,0,42.911-34.464,87.51-14.191c77.31,35.14,113.304-1.952,146.638-4.729
+	c48.654-4.056,69.94,16.218,69.94,16.218v54.396H30.913V43.944z' fill='#FFFFFF' opacity='0.6'></path>
+          <path class='deco-layer deco-layer--2' d='M-35.667,44.628c0,0,42.91-34.463,87.51-14.191c77.31,35.141,113.304-1.952,146.639-4.729
+	c48.653-4.055,69.939,16.218,69.939,16.218v54.396H-35.667V44.628z' fill='#FFFFFF' opacity='0.6'></path>
+          <path class='deco-layer deco-layer--3' d='M43.415,98.342c0,0,48.283-68.927,109.133-68.927c65.886,0,97.983,67.914,97.983,67.914v3.716
+	H42.401L43.415,98.342z' fill='#FFFFFF' opacity='0.7'></path>
+          <path class='deco-layer deco-layer--4' d='M-34.667,62.998c0,0,56-45.667,120.316-27.839C167.484,57.842,197,41.332,232.286,30.428
+	c53.07-16.399,104.047,36.903,104.047,36.903l1.333,36.667l-372-2.954L-34.667,62.998z' fill='#FFFFFF'></path>
+        </svg>
+          </div>
+          <div class="card-body bg-white mt-0 shadow">
+            <ul class="list-unstyled mb-5 position-relative">
+              <li><b>Breakfast</b><br><a href="{{ path('recipe_view')}}/{{ plan.tuesday.breakfast.id  }}">
+                            {{plan.tuesday.breakfast.name}}
+                        </a></li>
+              <li><b>Snack</b><br><a href="{{ path('recipe_view')}}/{{ plan.tuesday.snack1.id  }}">
+                            {{plan.tuesday.snack1.name}}
+                        </a> </li>
+              <li><b>Lunch</b><br><a href="{{ path('recipe_view')}}/{{ plan.tuesday.dinner1.id  }}">
+                            {{plan.tuesday.dinner1.name}}
+                        </a> </li>
+              <li><b>Snack</b><br><a href="{{ path('recipe_view')}}/{{ plan.tuesday.snack2.id  }}">
+                            {{plan.tuesday.snack2.name}}
+                        </a> </li>
+              <li><b>Dinner</b><br><a href="{{ path('recipe_view')}}/{{ plan.tuesday.dinner2.id  }}">
+                            {{plan.tuesday.dinner2.name}}
+                        </a> </li>
 
 
-                    <th> <a class="btn btn-primary " role="button" href="{{ path('day_view' , {'day': plan.tuesday.id}) }}">open</a>
-                      </th>
-                    <th> <a class="btn btn-primary " role="button" href="{{ path('day_view' , {'day': plan.wednesday.id}) }}">open</a> </th>
-                    <th> <a class="btn btn-primary " role="button" href="{{ path('day_view' , {'day': plan.thursday.id}) }}">open</a> </th>
-                    <th> <a class="btn btn-primary " role="button" href="{{ path('day_view' , {'day': plan.friday.id}) }}">open</a> </th>
-                    <th> <a class="btn btn-primary " role="button" href="{{ path('day_view' , {'day': plan.saturday.id}) }}">open</a> </th>
-                    <th> <a class="btn btn-primary " role="button" href="{{ path('day_view' , {'day': plan.sunday.id}) }}">open</a> </th>
+            </ul>
+             <a class="btn btn-lg btn-block  btn-custom " role="button" href="{{ path('day_regenerate' , {'day': 'tuesday'}) }}">REGENERATE</a> 
+            <a class="btn btn-lg btn-block  btn-custom2" role="button" href="{{ path('day_view' , {'day': plan.tuesday.id}) }}">OPEN</a>
+          </div>
+        </div>
+
+        <div class="col-4 princing-item green" style="padding-right: 10">
+          <div class="pricing-divider ">
+              <h3 class="text-light">Wednesday</h3>
+            <h4 class="my-0 display-2 text-light font-weight-normal mb-3"><span class="h3"></span> </h4>
+             <svg class='pricing-divider-img' enable-background='new 0 0 300 100' height='100px' id='Layer_1' preserveAspectRatio='none' version='1.1' viewBox='0 0 300 100' width='300px' x='0px' xml:space='preserve' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns='http://www.w3.org/2000/svg' y='0px'>
+          <path class='deco-layer deco-layer--1' d='M30.913,43.944c0,0,42.911-34.464,87.51-14.191c77.31,35.14,113.304-1.952,146.638-4.729
+	c48.654-4.056,69.94,16.218,69.94,16.218v54.396H30.913V43.944z' fill='#FFFFFF' opacity='0.6'></path>
+          <path class='deco-layer deco-layer--2' d='M-35.667,44.628c0,0,42.91-34.463,87.51-14.191c77.31,35.141,113.304-1.952,146.639-4.729
+	c48.653-4.055,69.939,16.218,69.939,16.218v54.396H-35.667V44.628z' fill='#FFFFFF' opacity='0.6'></path>
+          <path class='deco-layer deco-layer--3' d='M43.415,98.342c0,0,48.283-68.927,109.133-68.927c65.886,0,97.983,67.914,97.983,67.914v3.716
+	H42.401L43.415,98.342z' fill='#FFFFFF' opacity='0.7'></path>
+          <path class='deco-layer deco-layer--4' d='M-34.667,62.998c0,0,56-45.667,120.316-27.839C167.484,57.842,197,41.332,232.286,30.428
+	c53.07-16.399,104.047,36.903,104.047,36.903l1.333,36.667l-372-2.954L-34.667,62.998z' fill='#FFFFFF'></path>
+        </svg>
+          </div>
+          <div class="card-body bg-white mt-0 shadow">
+            <ul class="list-unstyled mb-5 position-relative">
+              <li><b>Breakfast</b><br><a href="{{ path('recipe_view')}}/{{ plan.wednesday.breakfast.id  }}">
+                            {{plan.wednesday.breakfast.name}}
+                        </a></li>
+              <li><b>Snack</b><br><a href="{{ path('recipe_view')}}/{{ plan.wednesday.snack1.id  }}">
+                            {{plan.wednesday.snack1.name}}
+                        </a> </li>
+              <li><b>Lunch</b><br><a href="{{ path('recipe_view')}}/{{ plan.wednesday.dinner1.id  }}">
+                            {{plan.wednesday.dinner1.name}}
+                        </a> </li>
+              <li><b>Snack</b><br><a href="{{ path('recipe_view')}}/{{ plan.wednesday.snack2.id  }}">
+                            {{plan.wednesday.snack2.name}}
+                        </a> </li>
+              <li><b>Dinner</b><br><a href="{{ path('recipe_view')}}/{{ plan.wednesday.dinner2.id  }}">
+                            {{plan.wednesday.dinner2.name}}
+                        </a> </li>
 
 
-                </tr>
-                <tr>
-                    <th> </th>
-                    <th> <a class="btn btn-primary " role="button" href="{{ path('day_regenerate' , {'day': 'monday'}) }}">Regenerate</a> </th>
-                    <th> <a class="btn btn-primary " role="button" href="{{ path('day_regenerate' , {'day': 'tuesday'}) }}">Regenerate</a> </th>
-                    <th> <a class="btn btn-primary " role="button" href="{{ path('day_regenerate' , {'day': 'wednesday'}) }}">Regenerate</a> </th>
-                    <th> <a class="btn btn-primary " role="button" href="{{ path('day_regenerate' , {'day': 'thursday'}) }}">Regenerate</a> </th>
-                    <th> <a class="btn btn-primary " role="button" href="{{ path('day_regenerate' , {'day': 'friday'}) }}">Regenerate</a> </th>
-                    <th> <a class="btn btn-primary " role="button" href="{{ path('day_regenerate' , {'day': 'saturday'}) }}">Regenerate</a> </th>
-                    <th> <a class="btn btn-primary " role="button" href="{{ path('day_regenerate' , {'day': 'sunday'}) }}">Regenerate</a> </th>
+            </ul>
+            <a class="btn btn-lg btn-block  btn-custom " role="button" href="{{ path('day_regenerate' , {'day': 'wednesday'}) }}">REGENERATE</a> 
+            <a class="btn btn-lg btn-block  btn-custom2" role="button" href="{{ path('day_view' , {'day': plan.wednesday.id}) }}">OPEN</a>
+          </div>
+        </div>
 
-                </tr>
+        <div class="col-4 princing-item green" style="padding-right: 10">
+          <div class="pricing-divider ">
+              <h3 class="text-light">Thursday</h3>
+            <h4 class="my-0 display-2 text-light font-weight-normal mb-3"><span class="h3"></span> </h4>
+             <svg class='pricing-divider-img' enable-background='new 0 0 300 100' height='100px' id='Layer_1' preserveAspectRatio='none' version='1.1' viewBox='0 0 300 100' width='300px' x='0px' xml:space='preserve' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns='http://www.w3.org/2000/svg' y='0px'>
+          <path class='deco-layer deco-layer--1' d='M30.913,43.944c0,0,42.911-34.464,87.51-14.191c77.31,35.14,113.304-1.952,146.638-4.729
+	c48.654-4.056,69.94,16.218,69.94,16.218v54.396H30.913V43.944z' fill='#FFFFFF' opacity='0.6'></path>
+          <path class='deco-layer deco-layer--2' d='M-35.667,44.628c0,0,42.91-34.463,87.51-14.191c77.31,35.141,113.304-1.952,146.639-4.729
+	c48.653-4.055,69.939,16.218,69.939,16.218v54.396H-35.667V44.628z' fill='#FFFFFF' opacity='0.6'></path>
+          <path class='deco-layer deco-layer--3' d='M43.415,98.342c0,0,48.283-68.927,109.133-68.927c65.886,0,97.983,67.914,97.983,67.914v3.716
+	H42.401L43.415,98.342z' fill='#FFFFFF' opacity='0.7'></path>
+          <path class='deco-layer deco-layer--4' d='M-34.667,62.998c0,0,56-45.667,120.316-27.839C167.484,57.842,197,41.332,232.286,30.428
+	c53.07-16.399,104.047,36.903,104.047,36.903l1.333,36.667l-372-2.954L-34.667,62.998z' fill='#FFFFFF'></path>
+        </svg>
+          </div>
+          <div class="card-body bg-white mt-0 shadow">
+            <ul class="list-unstyled mb-5 position-relative">
+              <li><b>Breakfast</b><br><a href="{{ path('recipe_view')}}/{{ plan.thursday.breakfast.id  }}">
+                            {{plan.thursday.breakfast.name}}
+                        </a></li>
+              <li><b>Snack</b><br><a href="{{ path('recipe_view')}}/{{ plan.thursday.snack1.id  }}">
+                            {{plan.thursday.snack1.name}}
+                        </a> </li>
+              <li><b>Lunch</b><br><a href="{{ path('recipe_view')}}/{{ plan.thursday.dinner1.id  }}">
+                            {{plan.thursday.dinner1.name}}
+                        </a> </li>
+              <li><b>Snack</b><br><a href="{{ path('recipe_view')}}/{{ plan.thursday.snack2.id  }}">
+                            {{plan.thursday.snack2.name}}
+                        </a> </li>
+              <li><b>Dinner</b><br><a href="{{ path('recipe_view')}}/{{ plan.thursday.dinner2.id  }}">
+                            {{plan.thursday.dinner2.name}}
+                        </a> </li>
 
-            </table>
+
+            </ul>
+             <a class="btn btn-lg btn-block  btn-custom " role="button" href="{{ path('day_regenerate' , {'day': 'thursday'}) }}">REGENERATE</a> 
+            <a class="btn btn-lg btn-block  btn-custom2" role="button" href="{{ path('day_view' , {'day': plan.thursday.id}) }}">OPEN</a>
+          </div>
+        </div>
+
+        <div class="col-4 princing-item green" style="padding-right: 10">
+          <div class="pricing-divider ">
+              <h3 class="text-light">Friday</h3>
+            <h4 class="my-0 display-2 text-light font-weight-normal mb-3"><span class="h3"></span> </h4>
+             <svg class='pricing-divider-img' enable-background='new 0 0 300 100' height='100px' id='Layer_1' preserveAspectRatio='none' version='1.1' viewBox='0 0 300 100' width='300px' x='0px' xml:space='preserve' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns='http://www.w3.org/2000/svg' y='0px'>
+          <path class='deco-layer deco-layer--1' d='M30.913,43.944c0,0,42.911-34.464,87.51-14.191c77.31,35.14,113.304-1.952,146.638-4.729
+	c48.654-4.056,69.94,16.218,69.94,16.218v54.396H30.913V43.944z' fill='#FFFFFF' opacity='0.6'></path>
+          <path class='deco-layer deco-layer--2' d='M-35.667,44.628c0,0,42.91-34.463,87.51-14.191c77.31,35.141,113.304-1.952,146.639-4.729
+	c48.653-4.055,69.939,16.218,69.939,16.218v54.396H-35.667V44.628z' fill='#FFFFFF' opacity='0.6'></path>
+          <path class='deco-layer deco-layer--3' d='M43.415,98.342c0,0,48.283-68.927,109.133-68.927c65.886,0,97.983,67.914,97.983,67.914v3.716
+	H42.401L43.415,98.342z' fill='#FFFFFF' opacity='0.7'></path>
+          <path class='deco-layer deco-layer--4' d='M-34.667,62.998c0,0,56-45.667,120.316-27.839C167.484,57.842,197,41.332,232.286,30.428
+	c53.07-16.399,104.047,36.903,104.047,36.903l1.333,36.667l-372-2.954L-34.667,62.998z' fill='#FFFFFF'></path>
+        </svg>
+          </div>
+          <div class="card-body bg-white mt-0 shadow">
+            <ul class="list-unstyled mb-5 position-relative">
+              <li><b>Breakfast</b><br><a href="{{ path('recipe_view')}}/{{ plan.friday.breakfast.id  }}">
+                            {{plan.friday.breakfast.name}}
+                        </a></li>
+              <li><b>Snack</b><br><a href="{{ path('recipe_view')}}/{{ plan.friday.snack1.id  }}">
+                            {{plan.friday.snack1.name}}
+                        </a> </li>
+              <li><b>Lunch</b><br><a href="{{ path('recipe_view')}}/{{ plan.friday.dinner1.id  }}">
+                            {{plan.friday.dinner1.name}}
+                        </a> </li>
+              <li><b>Snack</b><br><a href="{{ path('recipe_view')}}/{{ plan.friday.snack2.id  }}">
+                            {{plan.friday.snack2.name}}
+                        </a> </li>
+              <li><b>Dinner</b><br><a href="{{ path('recipe_view')}}/{{ plan.friday.dinner2.id  }}">
+                            {{plan.friday.dinner2.name}}
+                        </a> </li>
+
+
+            </ul>
+ <a class="btn btn-lg btn-block  btn-custom " role="button" href="{{ path('day_regenerate' , {'day': 'friday'}) }}">REGENERATE</a> 
+            <a class="btn btn-lg btn-block  btn-custom2" role="button" href="{{ path('day_view' , {'day': plan.friday.id}) }}">OPEN</a>          </div>
+        </div>
+
+        <div class="col-4 princing-item green" style="padding-right: 10">
+          <div class="pricing-divider ">
+              <h3 class="text-light">Saturday</h3>
+            <h4 class="my-0 display-2 text-light font-weight-normal mb-3"><span class="h3"></span> </h4>
+             <svg class='pricing-divider-img' enable-background='new 0 0 300 100' height='100px' id='Layer_1' preserveAspectRatio='none' version='1.1' viewBox='0 0 300 100' width='300px' x='0px' xml:space='preserve' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns='http://www.w3.org/2000/svg' y='0px'>
+          <path class='deco-layer deco-layer--1' d='M30.913,43.944c0,0,42.911-34.464,87.51-14.191c77.31,35.14,113.304-1.952,146.638-4.729
+	c48.654-4.056,69.94,16.218,69.94,16.218v54.396H30.913V43.944z' fill='#FFFFFF' opacity='0.6'></path>
+          <path class='deco-layer deco-layer--2' d='M-35.667,44.628c0,0,42.91-34.463,87.51-14.191c77.31,35.141,113.304-1.952,146.639-4.729
+	c48.653-4.055,69.939,16.218,69.939,16.218v54.396H-35.667V44.628z' fill='#FFFFFF' opacity='0.6'></path>
+          <path class='deco-layer deco-layer--3' d='M43.415,98.342c0,0,48.283-68.927,109.133-68.927c65.886,0,97.983,67.914,97.983,67.914v3.716
+	H42.401L43.415,98.342z' fill='#FFFFFF' opacity='0.7'></path>
+          <path class='deco-layer deco-layer--4' d='M-34.667,62.998c0,0,56-45.667,120.316-27.839C167.484,57.842,197,41.332,232.286,30.428
+	c53.07-16.399,104.047,36.903,104.047,36.903l1.333,36.667l-372-2.954L-34.667,62.998z' fill='#FFFFFF'></path>
+        </svg>
+          </div>
+          <div class="card-body bg-white mt-0 shadow">
+            <ul class="list-unstyled mb-5 position-relative">
+              <li><b>Breakfast</b><br><a href="{{ path('recipe_view')}}/{{ plan.saturday.breakfast.id  }}">
+                            {{plan.saturday.breakfast.name}}
+                        </a></li>
+              <li><b>Snack</b><br><a href="{{ path('recipe_view')}}/{{ plan.saturday.snack1.id  }}">
+                            {{plan.saturday.snack1.name}}
+                        </a> </li>
+              <li><b>Lunch</b><br><a href="{{ path('recipe_view')}}/{{ plan.saturday.dinner1.id  }}">
+                            {{plan.saturday.dinner1.name}}
+                        </a> </li>
+              <li><b>Snack</b><br><a href="{{ path('recipe_view')}}/{{ plan.saturday.snack2.id  }}">
+                            {{plan.saturday.snack2.name}}
+                        </a> </li>
+              <li><b>Dinner</b><br><a href="{{ path('recipe_view')}}/{{ plan.saturday.dinner2.id  }}">
+                            {{plan.saturday.dinner2.name}}
+                        </a> </li>
+
+
+            </ul>
+ <a class="btn btn-lg btn-block  btn-custom " role="button" href="{{ path('day_regenerate' , {'day': 'saturday'}) }}">REGENERATE</a> 
+            <a class="btn btn-lg btn-block  btn-custom2" role="button" href="{{ path('day_view' , {'day': plan.saturday.id}) }}">OPEN</a>          </div>
+        </div>
+
+
+        <div class="col-4 princing-item green" style="padding-right: 10">
+          <div class="pricing-divider ">
+              <h3 class="text-light">Sunday</h3>
+            <h4 class="my-0 display-2 text-light font-weight-normal mb-3"><span class="h3"></span> </h4>
+             <svg class='pricing-divider-img' enable-background='new 0 0 300 100' height='100px' id='Layer_1' preserveAspectRatio='none' version='1.1' viewBox='0 0 300 100' width='300px' x='0px' xml:space='preserve' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns='http://www.w3.org/2000/svg' y='0px'>
+          <path class='deco-layer deco-layer--1' d='M30.913,43.944c0,0,42.911-34.464,87.51-14.191c77.31,35.14,113.304-1.952,146.638-4.729
+	c48.654-4.056,69.94,16.218,69.94,16.218v54.396H30.913V43.944z' fill='#FFFFFF' opacity='0.6'></path>
+          <path class='deco-layer deco-layer--2' d='M-35.667,44.628c0,0,42.91-34.463,87.51-14.191c77.31,35.141,113.304-1.952,146.639-4.729
+	c48.653-4.055,69.939,16.218,69.939,16.218v54.396H-35.667V44.628z' fill='#FFFFFF' opacity='0.6'></path>
+          <path class='deco-layer deco-layer--3' d='M43.415,98.342c0,0,48.283-68.927,109.133-68.927c65.886,0,97.983,67.914,97.983,67.914v3.716
+	H42.401L43.415,98.342z' fill='#FFFFFF' opacity='0.7'></path>
+          <path class='deco-layer deco-layer--4' d='M-34.667,62.998c0,0,56-45.667,120.316-27.839C167.484,57.842,197,41.332,232.286,30.428
+	c53.07-16.399,104.047,36.903,104.047,36.903l1.333,36.667l-372-2.954L-34.667,62.998z' fill='#FFFFFF'></path>
+        </svg>
+          </div>
+          <div class="card-body bg-white mt-0 shadow">
+            <ul class="list-unstyled mb-5 position-relative">
+              <li><b>Breakfast</b><br><a href="{{ path('recipe_view')}}/{{ plan.sunday.breakfast.id  }}">
+                            {{plan.sunday.breakfast.name}}
+                        </a></li>
+              <li><b>Snack</b><br><a href="{{ path('recipe_view')}}/{{ plan.sunday.snack1.id  }}">
+                            {{plan.sunday.snack1.name}}
+                        </a> </li>
+              <li><b>Lunch</b><br><a href="{{ path('recipe_view')}}/{{ plan.sunday.dinner1.id  }}">
+                            {{plan.sunday.dinner1.name}}
+                        </a> </li>
+              <li><b>Snack</b><br><a href="{{ path('recipe_view')}}/{{ plan.sunday.snack2.id  }}">
+                            {{plan.sunday.snack2.name}}
+                        </a> </li>
+              <li><b>Dinner</b><br><a href="{{ path('recipe_view')}}/{{ plan.sunday.dinner2.id  }}">
+                            {{plan.sunday.dinner2.name}}
+                        </a> </li>
+
+
+            </ul>
+ <a class="btn btn-lg btn-block  btn-custom " role="button" href="{{ path('day_regenerate' , {'day': 'sunday'}) }}">REGENERATE</a> 
+            <a class="btn btn-lg btn-block  btn-custom2" role="button" href="{{ path('day_view' , {'day': plan.sunday.id}) }}">OPEN</a>          </div>
+        </div>
+
+
+        
+
+</div>
+
+
+
+
 
         </div>
     </div>

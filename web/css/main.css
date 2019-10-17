@@ -1,3 +1,4 @@
+
 @-webkit-keyframes swing {
   0%, 30%, 50%, 70%, 100% {
     -webkit-transform: rotate(0deg);
@@ -484,3 +485,39 @@ body {
 .boder-radius-on .sidebar-search .input-group-append .input-group-text {
   border-top-right-radius: 4px;
   border-bottom-right-radius: 4px; }
+.food1 img {
+    width:250px;
+    height: 250px;
+}
+.card {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+#bigwrapper{
+  background-image: url("../../images/color-diet-food-255501.jpg");
+  background-repeat: no-repeat;
+   background-position: top left;
+   background-attachment: fixed;
+  width: 100%;
+  height: 100%;
+}
+html, body {
+  height: 100%;
+  
+}
+.wrapper {
+  min-height: 100%;
+  height: 100%;
+  margin: 0 auto -155px; /* the bottom margin is the negative value of the footer's height */
+}
+.footer {
+  background: #0d8236;
+  color: white;
+  font-size: 20px;
+  height: 50px; /* .push must be the same height as .footer */
+}
+.push {
+  
+  height: 50px; /* .push must be the same height as .footer */
+}

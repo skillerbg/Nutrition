@@ -5,70 +5,112 @@
 
  <div class="container body-content span=8 offset=2">
   <div class="well">
-   <table style="width:100%">
-    <tr>
-     <th></th>
-     <th>Name</th>
-     <th>Description</th>
-     <th>Price</th>
-     <th></th>
-    </tr>
-    <tr>
-     <td>Breakfast</td>
-     <td>{{day.breakfast.name}}</td>
-     <td>{{day.breakfast.description}}</td>
-     <td>{{day.breakfast.price|number_format(2, '.', ',')}}</td>
-     <th> <a href="{{ path('recipe_view')}}/{{day.breakfast.id }}">
-       View
-      </a> </th>
+  <!-- Card Start -->
+  <div class="card well">
+    <div class="row ">
 
-    </tr>
+      <div class="col-md-7 px-3">
+        <div class="card-block px-6">
+          <h4 class="card-title">{{  day.breakfast.name }}</h4>
+          <p class="card-text">
+            The Carousel code can be replaced with an img src, no problem. The added CSS brings shadow to the card and some adjustments to the prev/next buttons and the indicators is rounded now. As in Bootstrap 3
+          </p>
+          <p class="card-text">Made for usage, commonly searched for. Fork, like and use it. Just move the carousel div above the col containing the text for left alignment of images</p>
+          <br>
+          <a href="#" class="mt-auto btn btn-primary  ">Read More</a>
+        </div>
+      </div> <div class="food1">
+              <img class="rounded " src="{{day.breakfast.picture}}" alt="">
+            </div>
+     
+    </div>
+  </div>
+  <!-- End of card -->
+   <!-- Card Start -->
+  <div class="card well" >
+    <div class="row ">
 
-    <tr>
-     <td>Snack</td>
-     <td>{{day.snack1.name}}</td>
-     <td>{{day.snack1.description}}</td>
-     <td>{{day.snack1.price|number_format(2, '.', ',')}}</td>
-     <th> <a href="{{path('recipe_view')}}/{{ day.snack1.id }}">
-       View
-      </a> </th>
+      <div class="col-md-7 px-3">
+        <div class="card-block px-6">
+          <h4 class="card-title">{{  day.snack1.name }}</h4>
+          <p class="card-text">
+            The Carousel code can be replaced with an img src, no problem. The added CSS brings shadow to the card and some adjustments to the prev/next buttons and the indicators is rounded now. As in Bootstrap 3
+          </p>
+          <p class="card-text">Made for usage, commonly searched for. Fork, like and use it. Just move the carousel div above the col containing the text for left alignment of images</p>
+          <br>
+          <a href="#" class="mt-auto btn btn-primary  ">Read More</a>
+        </div>
+      </div> <div class="food1">
+              <img class="rounded " src="{{day.snack1.picture}}" alt="">
+            </div>
+     
+    </div>
+  </div>
+  <!-- End of card -->
+   <!-- Card Start -->
+  <div class="card well">
+    <div class="row ">
 
-    </tr>
+      <div class="col-md-7 px-3">
+        <div class="card-block px-6">
+          <h4 class="card-title">{{  day.dinner1.name }}</h4>
+          <p class="card-text">
+            The Carousel code can be replaced with an img src, no problem. The added CSS brings shadow to the card and some adjustments to the prev/next buttons and the indicators is rounded now. As in Bootstrap 3
+          </p>
+          <p class="card-text">Made for usage, commonly searched for. Fork, like and use it. Just move the carousel div above the col containing the text for left alignment of images</p>
+          <br>
+          <a href="#" class="mt-auto btn btn-primary  ">Read More</a>
+        </div>
+      </div> <div class="food1">
+              <img class="rounded " src="{{day.dinner1.picture}}" alt="">
+            </div>
+     
+    </div>
+  </div>
+  <!-- End of card -->
+   <!-- Card Start -->
+  <div class="card well">
+    <div class="row ">
 
-    <tr>
-     <td>Dinner</td>
-     <td>{{day.dinner1.name}}</td>
-     <td>{{day.dinner1.description}}</td>
-     <td>{{day.dinner1.price|number_format(2, '.', ',')}}</td>
-     <th> <a href="{{path('recipe_view')}}/{{day.dinner1.id }}">
-       View
-      </a> </th>
+      <div class="col-md-7 px-3">
+        <div class="card-block px-6">
+          <h4 class="card-title">{{  day.snack2.name }}</h4>
+          <p class="card-text">
+            The Carousel code can be replaced with an img src, no problem. The added CSS brings shadow to the card and some adjustments to the prev/next buttons and the indicators is rounded now. As in Bootstrap 3
+          </p>
+          <p class="card-text">Made for usage, commonly searched for. Fork, like and use it. Just move the carousel div above the col containing the text for left alignment of images</p>
+          <br>
+          <a href="#" class="mt-auto btn btn-primary  ">Read More</a>
+        </div>
+      </div> <div class="food1">
+              <img class="rounded " src="{{day.snack2.picture}}" alt="">
+            </div>
+     
+    </div>
+  </div>
+  <!-- End of card -->
+   <!-- Card Start -->
+  <div class="card well">
+    <div class="row ">
 
-    </tr>
-
-    <tr>
-     <td>Snack</td>
-     <td>{{day.snack2.name}}</td>
-     <td>{{day.snack2.description}}</td>
-     <td>{{day.snack2.price|number_format(2, '.', ',')}}</td>
-     <th> <a href="{{ path('recipe_view')}}/{{ day.snack2.id }}">
-       View
-      </a> </th>
-
-    </tr>
-
-    <tr>
-     <td>Dinner</td>
-     <td>{{day.dinner2.name}}</td>
-     <td>{{day.dinner2.description}}</td>
-     <td>{{day.dinner2.price|number_format(2, '.', ',')}}</td>
-     <th> <a href="{{ path('recipe_view')}}/{{ day.dinner2.id }}">
-       View
-      </a> </th>
-
-    </tr>
-
-   </table>
+      <div class="col-md-7 px-3">
+        <div class="card-block px-6">
+          <h4 class="card-title">{{  day.dinner2.name }}</h4>
+          <p class="card-text">
+            The Carousel code can be replaced with an img src, no problem. The added CSS brings shadow to the card and some adjustments to the prev/next buttons and the indicators is rounded now. As in Bootstrap 3
+          </p>
+          <p class="card-text">Made for usage, commonly searched for. Fork, like and use it. Just move the carousel div above the col containing the text for left alignment of images</p>
+          <br>
+          <a href="#" class="mt-auto btn btn-primary  ">Read More</a>
+        </div>
+      </div> <div class="food1">
+              <img class="rounded " src="{{day.dinner2.picture}}" alt="">
+            </div>
+     
+    </div>
+  </div>
+  <!-- End of card -->
+  
 
   </div>
  </div>

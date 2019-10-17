@@ -31,21 +31,21 @@
                     <span>Account</span>
                 </li>
                 {% if app.user %}
-                    <li class="sidebar-dropdown">
+                    <li class="sidebar">
                         <a href="{{ path('fos_user_profile_edit') }}">
                             <i class="fa fa-user-edit"></i>
                             <span class="menu-text">Edit Profile</span>
                         </a>
 
                     </li>
-                    <li class="sidebar-dropdown">
+                    <li class="sidebar">
                         <a href="{{ path('fos_user_change_password') }}">
                             <i class="fa fa-key"></i>
                             <span class="menu-text">Change password</span>
                         </a>
 
                     </li>
-                    <li class="sidebar-dropdown">
+                    <li class="sidebar">
                         <a href="{{ path('fos_user_security_logout') }}">
                             <i class="far fa-sign-out-alt"></i>
                             <span class="menu-text">Logout</span>
@@ -53,14 +53,14 @@
 
                     </li>
                 {% else %}
-                    <li class="sidebar-dropdown">
+                    <li class="sidebar">
                         <a href="{{ path('fos_user_registration_register') }}">
                             <i class="fa fa-shopping-cart"></i>
                             <span class="menu-text">REGISTER</span>
                         </a>
 
                     </li>
-                    <li class="sidebar-dropdown">
+                    <li class="sidebar">
                         <a href="{{ path('fos_user_security_login') }}">
                             <i class="far fa-sign-in-alt"></i>
                             <span class="menu-text">LOGIN</span>

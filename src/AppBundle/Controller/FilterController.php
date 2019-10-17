@@ -39,6 +39,8 @@ public function filterWeek(Request $request )
         //saves the new filter
         $em->persist($filter);
         $em->flush();
+        return $this->redirectToRoute('homepage');
+
     }
 
     //renders the the filter with user's current params or the default params

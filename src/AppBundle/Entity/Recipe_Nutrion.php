@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Recipe_Nutrion
  *
- * @ORM\Table(name="recipe_Nutrion")
+ * @ORM\Table(name="recipe_nutrion")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\Recipe_NutrionRepository")
  */
 class Recipe_Nutrion

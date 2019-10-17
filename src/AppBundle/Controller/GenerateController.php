@@ -27,11 +27,14 @@ class GenerateController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $filter = $em->getRepository('AppBundle:Filter')->findOneBy(array('userId'=> $userId));  //Gets user's filter
-
+        if(isset($filter)){
         $day = $this->generateDay($filter->getKcal(),$filter->getBudget()); //Generates dat plan
 
         return $this->render('day/view.html.twig'
             ,array('day' => $day));
+        }else{
+            return $this->redirectToRoute('week_filter');
+        }
     }
 
 
@@ -127,6 +130,11 @@ class GenerateController extends Controller
         $em = $this->getDoctrine()->getManager();
         $filter = $em->getRepository('AppBundle:Filter')->findOneBy(array('userId'=> $user));//get the users filter
 
+        if(!isset($filter)){
+           
+            return $this->redirectToRoute('week_filter');
+            }
+
         $kcal=$filter->getKcal();
         $price=$filter->getBudget();
         $newDay=$this->generateDay($kcal,$price);//generate new day plan with the user's filter
@@ -168,6 +176,10 @@ class GenerateController extends Controller
         $user = $this->getUser()->getId();
         $em = $this->getDoctrine()->getManager();
         $filter = $em->getRepository('AppBundle:Filter')->findOneBy(array('userId'=> $user));//gets the user's filter params
+        if(!isset($filter)){
+           
+            return $this->redirectToRoute('week_filter');
+        }
         $kcal=$filter->getKcal();
         $price=$filter->getBudget();
 

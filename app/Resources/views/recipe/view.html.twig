@@ -37,7 +37,7 @@
        <table>
         <tr>
          <td> {% for elements in entity.array if elements!=0%}
-           {{ elements|nl2br }} grams - <br>
+           {{ elements|round  }} grams - <br>
           {% endfor %}
          </td>
 

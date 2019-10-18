@@ -121,8 +121,7 @@ class CartController extends Controller
             $id = $raws[$i]->getId();
             $db = $this->getDoctrine()->getRepository('AppBundle:Raw');
             $cartR = $this->getDoctrine()->getRepository('AppBundle:Cart');
-            $products = "kur";
-            var_dump($products);
+            
             $entity = $db->find($id);
 
             $repository = $this->getDoctrine()
@@ -184,6 +183,8 @@ class CartController extends Controller
     public function viewCartAction()
     {
         $user = $this->getUser();
+        $userHasWeekPlan= ($this->getDoctrine()->getRepository(WeekPlan::class)
+        ->findOneBy(array('userId' => $this->getUser()->getId()))) ? true : false;
         $repository = $this->getDoctrine()
             ->getRepository(Cart::class);
 
@@ -197,6 +198,6 @@ class CartController extends Controller
         ;
 
         $products = $q->getResult();
-        return $this->render('cart/view.html.twig', array('entity' => $products));
+        return $this->render('cart/view.html.twig', array('entity' => $products,'userhasweek' => $userHasWeekPlan));
     }
 }

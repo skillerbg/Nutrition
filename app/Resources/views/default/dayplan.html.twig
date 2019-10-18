@@ -1,6 +1,8 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
 <link rel="stylesheet" href="{{ asset('css/price.css') }}">
 
-{% if userIsLogged == true %}
     {% if day is defined%}
         <div class="container body-content span=8 offset=2">
             <div class="well">
@@ -198,4 +200,5 @@
             </form>
         </div>
     </div>
-{% endif %}{% endif %}
+{% endif %}
+{% endblock %}

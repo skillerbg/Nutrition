@@ -1,7 +1,12 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    {% embed "default/dayplan.html.twig" with { 'userIsLogged': is_granted("IS_AUTHENTICATED_FULLY") } %}{% endembed %}
+{% if is_granted('IS_AUTHENTICATED_REMEMBERED')  %}
+          {% include 'default/loggeduser.html.twig'  %}
+{% else %}
+          {% include 'default/notlogged.html.twig'  %}
+
+{% endif %}
 
 
 {% endblock %}

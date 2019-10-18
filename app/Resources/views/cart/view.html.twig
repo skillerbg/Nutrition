@@ -91,11 +91,15 @@
                         </form>
 
                     {% else %}
-
+                        {% if userhasweek%}
                         <div class="col-sm-4 col-sm-offset-4">
-                            <a class="btn btn-success" href="{{ path('cart_generate') }}">Generate cart!</a>
-                        </div>
-
+                                    <a class="btn btn-success" href="{{ path('cart_generate') }}">Generate cart!</a>
+                                </div>
+                            {% else %}
+                                <div class="col-sm-4 col-sm-offset-4">
+                                    <a class="btn btn-success" href="{{ path('week_generate') }}">Get a week plan!</a>
+                                </div>
+                        {% endif %}
                     {% endif %}
 
 

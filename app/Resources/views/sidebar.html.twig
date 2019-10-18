@@ -1,10 +1,12 @@
+        <link rel="stylesheet" href="{{ asset('css/sidebar-themes.css') }}">
+
 <nav id="sidebar" class="sidebar-wrapper">
     <div
-        class="sidebar-content">
+        class="sidebar-content ">
         <!-- sidebar-brand  -->
         <div class="sidebar-item sidebar-brand">
             <a id="pin-sidebar" href="#">
-                <span class="menu-text">Pin menu</span>
+                <span class="side menu-text">Pin menu</span>
             </a>
         </div>
         <!-- sidebar-header  -->
@@ -12,10 +14,10 @@
             {% if app.user %}
 
                 <div class="user-info">
-                    <span class="user-name">
+                    <span class="side user-name ">
                         <strong>{{ app.user.username }}</strong>
                     </span>
-                    <span class="user-role">{{ app.user.email }}</span>
+                    <span class="side user-role">{{ app.user.email }}</span>
                     
                 </div>
             {% endif %}
@@ -24,28 +26,28 @@
 
         <div class=" sidebar-item sidebar-menu">
             <ul>
-                <li class="header-menu">
+                <li class="side header-menu">
                     <span>Account</span>
                 </li>
                 {% if app.user %}
                     <li class="sidebar">
                         <a href="{{ path('fos_user_profile_edit') }}">
                             <i class="fa fa-user-edit"></i>
-                            <span class="menu-text">Edit Profile</span>
+                            <span class="side menu-text">Edit Profile</span>
                         </a>
 
                     </li>
                     <li class="sidebar">
                         <a href="{{ path('fos_user_change_password') }}">
                             <i class="fa fa-key"></i>
-                            <span class="menu-text">Change password</span>
+                            <span class="side menu-text">Change password</span>
                         </a>
 
                     </li>
                     <li class="sidebar">
                         <a href="{{ path('fos_user_security_logout') }}">
                             <i class="far fa-sign-out-alt"></i>
-                            <span class="menu-text">Logout</span>
+                            <span class="side menu-text">Logout</span>
                         </a>
 
                     </li>
@@ -53,14 +55,14 @@
                     <li class="sidebar">
                         <a href="{{ path('fos_user_registration_register') }}">
                             <i class="fa fa-shopping-cart"></i>
-                            <span class="menu-text">REGISTER</span>
+                            <span class="side menu-text">REGISTER</span>
                         </a>
 
                     </li>
                     <li class="sidebar">
                         <a href="{{ path('fos_user_security_login') }}">
                             <i class="far fa-sign-in-alt"></i>
-                            <span class="menu-text">LOGIN</span>
+                            <span class="side menu-text">LOGIN</span>
                         </a>
 
                     </li>
@@ -69,46 +71,46 @@
                 {% endif %}
 
 
-                <li class="header-menu">
+                <li class="side header-menu">
                     <span>Plans</span>
                 </li>
                 <li>
                     <a href="{{ path('week_filter') }}">
                         <i class="fa fa-walking"></i>
-                        <span class="menu-text">Set filter</span>
+                        <span class="side menu-text">Set filter</span>
                     </a>
                 </li>
                 <li>
                     <a href="{{ path('day_generate') }}">
                         <i class="fa fa-utensils"></i>
-                        <span class="menu-text">Generata one-day plan</span>
+                        <span class="side menu-text">Generata one-day plan</span>
                     </a>
                 </li>
                 <li>
                     <a href="{{ path('week_view') }}">
                         <i class="fa fa-calendar"></i>
-                        <span class="menu-text">View week-plan</span>
+                        <span class="side menu-text">View week-plan</span>
                     </a>
                 </li>
                 <li>
                     <a href="{{ path('cart_view') }}">
                         <i class="fa fa-calendar"></i>
-                        <span class="menu-text">Weekly shoping list</span>
+                        <span class="side menu-text">Weekly shoping list</span>
                     </a>
                 </li>
-                <li class="header-menu">
+                <li class="side header-menu">
                     <span>Create new</span>
                 </li>
                 <li>
                     <a href="{{ path('recipe_create') }}">
                         <i class="fa fa-bacon "></i>
-                        <span class="menu-text">Add new recipe</span>
+                        <span class="side menu-text">Add new recipe</span>
                     </a>
                 </li>
                 <li>
                     <a href="{{ path('raw_create') }}">
                         <i class="fa fa-apple"></i>
-                        <span class="menu-text">Add new ingredient</span>
+                        <span class="side menu-text">Add new ingredient</span>
                     </a>
                 </li>
 

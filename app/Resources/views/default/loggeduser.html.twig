@@ -1,0 +1,114 @@
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link
+rel="stylesheet" href="{{ asset('css/homepage.css') }}">
+
+<!------ Include the above in your HEAD tag ---------->
+
+
+<div class="container">
+
+    <div
+        id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+            {% if userdata['filter'] %}
+                {% if userdata['weekplan'] %}
+                    <div class="item active carousel-img">
+                        <img class="new-week" src="{{ asset('images/beans-close-up-cuisine-1640771.jpg') }}"  alt="...">
+                        <div class="carousel-caption">
+                            <h2>VIEW YOUR WEEK PLAN</h2>
+                        </div>
+                    </div>
+                    <div class="item carousel-img">
+                        <img class="today" src="{{ asset('images/bowl-close-up-cooking-3071816.jpg') }}" alt="...">
+                        <div class="carousel-caption">
+                            <h2>VIEW TODAY'S PLAN</h2>
+                        </div>
+                    </div>
+                    <div class="item carousel-img">
+                        <img class="new-recipe" src="{{ asset('images/cook-cuisine-food-33242.jpg') }}" alt="...">
+                        <div class="carousel-caption">
+                            <h2>ADD NEW RECIPES</h2>
+                        </div>
+                    </div>
+                    <div class="item carousel-img">
+                        <img class=" shoping_list" src="{{ asset('images/abundance-agriculture-arranged-2733918.jpg') }}" alt="...">
+                        <div class="carousel-caption">
+                            <h2>GET SHOPPING LIST</h2>
+                        </div>
+                    </div>
+                    {% else %}
+                     <div class="item active carousel-img">
+                        <img class="new-week" src="{{ asset('images/beans-close-up-cuisine-1640771.jpg') }}" alt="...">
+                        <div class="carousel-caption">
+                            <h2>GET CUSTOM DIET PLAN FOR THE WHOLE WEEK</h2>
+                        </div>
+                    </div>
+                    <div class="item carousel-img">
+                        <img class="new-recipe" src="{{ asset('images/cook-cuisine-food-33242.jpg') }}" alt="...">
+                        <div class="carousel-caption">
+                            <h2>ADD NEW RECIPES</h2>
+                        </div>
+                    </div>
+                    <div class="item carousel-img">
+                        <img class=" shoping_list" src="{{ asset('images/abundance-agriculture-arranged-2733918.jpg') }}" alt="...">
+                        <div class="carousel-caption">
+                            <h2>GET SHOPPING LIST</h2>
+                        </div>
+                    </div>
+                {% endif %}
+
+            {% else %}
+                <div class="item active carousel-img">
+                    <img class="filter" src="{{ asset('images/bread-calories-diet-37417.jpg') }}" alt="...">
+                    <div class="carousel-caption">
+                        <h2>CHOSE DAILY CALORIE INTAKE AND BUDGET</h2>
+                    </div>
+                </div>
+                <div class="item carousel-img">
+                    <img class="new-week" src="{{ asset('images/beans-close-up-cuisine-1640771.jpg') }}" alt="...">
+                    <div class="carousel-caption">
+                        <h2>GET CUSTOM DIET PLAN FOR THE WHOLE WEEK</h2>
+                    </div>
+                </div>
+                <div class="item carousel-img">
+                    <img class="new-recipe" src="{{ asset('images/cook-cuisine-food-33242.jpg') }}" alt="...">
+                    <div class="carousel-caption">
+                        <h2>ADD NEW RECIPES</h2>
+                    </div>
+                </div>
+                <div class="item carousel-img">
+                    <img class=" shoping_list" src="{{ asset('images/abundance-agriculture-arranged-2733918.jpg') }}" alt="...">
+                    <div class="carousel-caption">
+                        <h2>GET SHOPPING LIST</h2>
+                    </div>
+                </div>
+            {% endif %}
+
+        </div>
+
+        <!-- Controls -->
+        <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+        <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+        </a>
+    </div>
+
+</div>
+
+
+
+<script src="{{ asset('js/homepage.js') }}"></script>

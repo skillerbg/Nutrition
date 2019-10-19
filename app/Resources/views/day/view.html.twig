@@ -1,14 +1,19 @@
-
 {% extends 'base.html.twig' %}
+{% block title %}Day Plan - Nutrition Planer{% endblock %}
 
 {% block body %}
 <link rel="stylesheet" href="{{ asset('css/price.css') }}">
 
+    {% if day is defined%}
+        <div class="container body-content span=8 offset=2">
+            <div class="well">
 
-    <div class="container body-content span=8 offset=2">
-        <div
-            class="well">
-             <!-- Card Start -->
+                <fieldset>
+                    <legend>
+                        {{ "now"|date('l') }}
+                    </legend>
+
+                    <!-- Card Start -->
                     <div class="card well">
                         <div class="row ">
                             <h2  class="text-center recipe_name">{{  day.breakfast.name }}</h2>
@@ -188,9 +193,13 @@
 
                     </div>
                     <!-- End of card -->
+                 
+                    
 
+
+                </fieldset>
+            </form>
         </div>
     </div>
-
-
+{% endif %}
 {% endblock %}

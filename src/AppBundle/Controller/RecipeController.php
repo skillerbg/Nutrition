@@ -85,9 +85,11 @@ class RecipeController extends Controller
             $em->persist($recipesNutriInfo);
 
             $em->flush();
+            return $this->render('recipe/view.html.twig', array('entity' => $recipe, 'nutrition' => $recipesNutriInfo));
+
         }
 
-        return $this->render('search/search.html.twig'); //        }
+        return $this->render('search/search.html.twig');
     }
 
     /**

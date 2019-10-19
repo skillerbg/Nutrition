@@ -20,86 +20,84 @@ class CartController extends Controller
     public function cartGenerateAction()
     {
         $user = $this->getUser()->getId();
-
+        $deleteCart = $this->getDoctrine()
+            ->getRepository(Cart::class)
+            ->deleteCart();
         $plan = $this->getDoctrine()->getRepository(WeekPlan::class)
             ->findOneBy(array('userId' => $user));
 
-        $monday = $plan->getMonday()->getBreakfast();
-        $this->foreEachDays($monday, $user);
-        $monday = $plan->getMonday()->getDinner1();
-        $this->foreEachDays($monday, $user);
-        $monday = $plan->getMonday()->getDinner2();
-        $this->foreEachDays($monday, $user);
-        $monday = $plan->getMonday()->getSnack1();
-        $this->foreEachDays($monday, $user);
-        $monday = $plan->getMonday()->getSnack2();
-        $this->foreEachDays($monday, $user);
+        $sql = "SELECT Recipes.Id
+        FROM
+        (SELECT monday
+        from week_plan
+         WHERE
+         userId = {$user}
+        UNION
+        SELECT tuesday
+        FROM week_plan
+         WHERE
+         userId = {$user}
+         UNION ALL
+        SELECT wednesday
+        FROM week_plan
+         WHERE
+         userId = {$user}
+         UNION ALL
+        SELECT thursday
+        FROM week_plan
+         WHERE
+         userId = {$user}
+         UNION ALL
+        SELECT friday
+        FROM week_plan
+         WHERE
+         userId = {$user}
+         UNION ALL
+        SELECT saturday
+        FROM week_plan
+         WHERE
+         userId = {$user}
+         UNION ALL
+        SELECT sunday
+        FROM week_plan
+         WHERE
+         userId = {$user}
+        ) Week
 
-        $tuesday = $plan->getTuesday()->getBreakfast();
-        $this->foreEachDays($tuesday, $user);
-        $tuesday = $plan->getTuesday()->getDinner1();
-        $this->foreEachDays($tuesday, $user);
-        $tuesday = $plan->getTuesday()->getDinner2();
-        $this->foreEachDays($tuesday, $user);
-        $tuesday = $plan->getTuesday()->getSnack1();
-        $this->foreEachDays($tuesday, $user);
-        $tuesday = $plan->getTuesday()->getSnack2();
-        $this->foreEachDays($tuesday, $user);
+        JOIN (
+        SELECT breakfast, id
+        FROM day_plan
+         UNION ALL
+        SELECT snack1, id
+        FROM day_plan
+             UNION ALL
+        SELECT dinner1, id
+        FROM day_plan
+             UNION ALL
+        SELECT snack2, id
+        FROM day_plan
+             UNION ALL
+        SELECT dinner2, id
+        FROM day_plan
 
-        $wednesday = $plan->getWednesday()->getBreakfast();
-        $this->foreEachDays($wednesday, $user);
-        $wednesday = $plan->getWednesday()->getDinner1();
-        $this->foreEachDays($wednesday, $user);
-        $wednesday = $plan->getWednesday()->getDinner2();
-        $this->foreEachDays($wednesday, $user);
-        $wednesday = $plan->getWednesday()->getSnack1();
-        $this->foreEachDays($wednesday, $user);
-        $wednesday = $plan->getWednesday()->getSnack2();
-        $this->foreEachDays($wednesday, $user);
 
-        $thursday = $plan->getThursday()->getBreakfast();
-        $this->foreEachDays($thursday, $user);
-        $thursday = $plan->getThursday()->getDinner1();
-        $this->foreEachDays($thursday, $user);
-        $thursday = $plan->getThursday()->getDinner2();
-        $this->foreEachDays($thursday, $user);
-        $thursday = $plan->getThursday()->getSnack1();
-        $this->foreEachDays($thursday, $user);
-        $thursday = $plan->getThursday()->getSnack2();
-        $this->foreEachDays($thursday, $user);
+        ) Day ON Week.monday = Day.id
+        JOIN recipes Recipes ON Day.breakfast = Recipes.id";
 
-        $friday = $plan->getFriday()->getBreakfast();
-        $this->foreEachDays($friday, $user);
-        $friday = $plan->getFriday()->getDinner1();
-        $this->foreEachDays($friday, $user);
-        $friday = $plan->getFriday()->getDinner2();
-        $this->foreEachDays($friday, $user);
-        $friday = $plan->getFriday()->getSnack1();
-        $this->foreEachDays($friday, $user);
-        $friday = $plan->getFriday()->getSnack2();
-        $this->foreEachDays($friday, $user);
+        $em = $this->getDoctrine()->getManager();
+        $conn = $em->getConnection();
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
 
-        $saturday = $plan->getSaturday()->getBreakfast();
-        $this->foreEachDays($saturday, $user);
-        $saturday = $plan->getSaturday()->getDinner1();
-        $this->foreEachDays($saturday, $user);
-        $saturday = $plan->getSaturday()->getDinner2();
-        $this->foreEachDays($saturday, $user);
-        $saturday = $plan->getSaturday()->getSnack1();
-        $this->foreEachDays($saturday, $user);
-        $saturday = $plan->getSaturday()->getSnack2();
-        $this->foreEachDays($saturday, $user);
+        $result = $stmt->fetchAll();
+        foreach ($result as $recipe) {
+            $repo = $this->getDoctrine()->getRepository('AppBundle:Recipe');
 
-        $sunday = $plan->getSunday()->getBreakfast();
-        $this->foreEachDays($sunday, $user);
-        $sunday = $plan->getSunday()->getDinner1();
-        $this->foreEachDays($sunday, $user);
-        $sunday = $plan->getSunday()->getDinner2();
-        $this->foreEachDays($sunday, $user);
-        $sunday = $plan->getSunday()->getSnack1();
-        $this->foreEachDays($sunday, $user);
-        $sunday = $plan->getSunday()->getSnack2();
-        $this->foreEachDays($sunday, $user);
+// this returns a single item
+            $found = $repo->find($recipe["Id"]);
+            $this->foreEachDays($found, $user);
+
+        }
 
         return $this->redirect('view');
 
@@ -108,20 +106,14 @@ class CartController extends Controller
     {
         $raws = $day->getRaws();
         $grams = $day->getArray();
-
-        $rawsLenght = 0;
-
-        foreach ($raws as $item) {
-            $rawsLenght++;
-
-        }
-        for ($i = 0; $i < $rawsLenght; $i++) {
+        for ($i = 0; $i < count($raws); $i++) {
 
             $em = $this->getDoctrine()->getManager();
             $id = $raws[$i]->getId();
+
             $db = $this->getDoctrine()->getRepository('AppBundle:Raw');
             $cartR = $this->getDoctrine()->getRepository('AppBundle:Cart');
-            
+
             $entity = $db->find($id);
 
             $repository = $this->getDoctrine()
@@ -139,12 +131,11 @@ class CartController extends Controller
             ;
 
             $products = $q->getResult();
+
             if ($products) {
 
                 $oldGrams = $products[0]->getGrams();
-                var_dump($oldGrams);
                 $newGrams = $oldGrams += $grams[$i];
-                var_dump($newGrams);
                 $q2 = $repository->createQueryBuilder('p')
                     ->where('p.rawId = :raw')
                     ->andWhere('p.userId = :user')
@@ -160,7 +151,6 @@ class CartController extends Controller
                 $q2->execute();
 
             } else {
-
                 $cartEntity = new Cart();
                 $cartEntity->setRawId($entity)->setUserId($user);
                 $cartEntity->setGrams($grams[$i]);
@@ -183,8 +173,8 @@ class CartController extends Controller
     public function viewCartAction()
     {
         $user = $this->getUser();
-        $userHasWeekPlan= ($this->getDoctrine()->getRepository(WeekPlan::class)
-        ->findOneBy(array('userId' => $this->getUser()->getId()))) ? true : false;
+        $userHasWeekPlan = ($this->getDoctrine()->getRepository(WeekPlan::class)
+                ->findOneBy(array('userId' => $this->getUser()->getId()))) ? true : false;
         $repository = $this->getDoctrine()
             ->getRepository(Cart::class);
 
@@ -198,6 +188,7 @@ class CartController extends Controller
         ;
 
         $products = $q->getResult();
-        return $this->render('cart/view.html.twig', array('entity' => $products,'userhasweek' => $userHasWeekPlan));
+        return $this->render('cart/view.html.twig', array('entity' => $products, 'userhasweek' => $userHasWeekPlan));
     }
+
 }

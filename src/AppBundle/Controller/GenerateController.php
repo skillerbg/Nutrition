@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Cart;
 use AppBundle\Entity\DayPlan;
 use AppBundle\Entity\WeekPlan;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -158,6 +159,9 @@ class GenerateController extends Controller
      */
     public function generateWeek(Request $request)
     {
+        $deleteCart = $this->getDoctrine()
+            ->getRepository(Cart::class)
+            ->deleteCart();
         $weekPlan = new WeekPlan();
         $user = $this->getUser()->getId();
         $em = $this->getDoctrine()->getManager();

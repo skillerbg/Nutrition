@@ -1,4 +1,5 @@
 {% extends 'base.html.twig' %}
+{% block title %}New Ingredient - Nutrition Planer{% endblock %}
 
 {% block body %}
     <div class="container body-content span=8 offset=2">
@@ -11,7 +12,7 @@
                     <div class="form-group">
                         <label class="col-sm-4 control-label" for="article_title">Name:</label>
                         <div class="col-sm-4 ">
-                            <input type="text" class="form-control" id="article_title" name="raw[name]">
+                            <input required type="text" class="form-control" id="article_title" name="raw[name]">
                         </div>
                     </div>
 
@@ -25,35 +26,35 @@
                     <div class="form-group">
                         <label class="col-sm-4 control-label" for="article_price">Price</label>
                         <div class="col-sm-4 ">
-                            <input type="number" step="0.01" class="form-control" id="article_price" name="raw[price]">
+                            <input required type="number" step="0.01" class="form-control" id="article_price" name="raw[price]">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-sm-4 control-label" for="quantity">Grams:</label>
                         <div class="col-sm-6">
-                            <input type="number" step="0.01" class="form-control" id="quantity" name="raw[quantity]">
+                            <input required type="number" step="0.01" class="form-control" id="quantity" name="raw[quantity]">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-sm-4 control-label" for="picture">Picture URL:</label>
                         <div class="col-sm-4 ">
-                            <textarea class="form-control" rows="1" id="picture" name="raw[picture]"></textarea>
+                            <textarea required class="form-control" rows="1" id="picture" name="raw[picture]"></textarea>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-sm-4 control-label" for="kcal">Kcal per 100g:</label>
                         <div class="col-sm-6">
-                            <input type="number" step="0.01" class="form-control" id="kcal" name="raw[kcal]">
+                            <input required type="number" step="0.01" class="form-control" id="kcal" name="raw[kcal]">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-sm-4 control-label" for="fats">Fats per 100g:</label>
                         <div class="col-sm-4 ">
-                            <input type="number" step="0.01" class="form-control" id="fats" name="raw[fats]">
+                            <input required type="number" step="0.01" class="form-control" id="fats" name="raw[fats]">
                         </div>
                     </div>
 
@@ -61,21 +62,21 @@
                     <div class="form-group">
                         <label class="col-sm-4 control-label" for="sfats">Saturated fats  per 100g:</label>
                         <div class="col-sm-4 ">
-                            <input type="number" step="0.01" class="form-control" id="sfats" name="raw[saturatedFats]">
+                            <input required type="number" step="0.01" class="form-control" id="sfats" name="raw[saturatedFats]">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-sm-4 control-label" for="protein">Proteins per 100g:</label>
                         <div class="col-sm-6">
-                            <input type="number" step="0.01" class="form-control" id="protein" name="raw[proteins]">
+                            <input required type="number" step="0.01" class="form-control" id="protein" name="raw[proteins]">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-sm-4 control-label" for="carbs">Carbs per 100g:</label>
                         <div class="col-sm-4 ">
-                            <input type="number" step="0.01" class="form-control" id="carbs" name="raw[carbs]">
+                            <input required type="number" step="0.01" class="form-control" id="carbs" name="raw[carbs]">
                         </div>
                     </div>
 
@@ -83,14 +84,14 @@
                     <div class="form-group">
                         <label class="col-sm-4 control-label" for="sugars">Suagars per 100g:</label>
                         <div class="col-sm-4 ">
-                            <input type="number" step="0.01" class="form-control" id="sugars" name="raw[sugars]">
+                            <input required type="number" step="0.01" class="form-control" id="sugars" name="raw[sugars]">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-sm-4 control-label" for="salt">Salt  per 100g:</label>
                         <div class="col-sm-6">
-                            <input type="number" step="0.01" class="form-control" id="salt" name="raw[salt]">
+                            <input required type="number" step="0.01" class="form-control" id="salt" name="raw[salt]">
                         </div>
                     </div>
 

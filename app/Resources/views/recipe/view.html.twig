@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-
+{% block title %}Recipe - Nutrition Planer{% endblock %}
 {% block body %}
     <link rel="stylesheet" href="{{ asset('css/nutritionfacts.css') }}"/>
 
@@ -9,7 +9,6 @@
             <form class="form-horizontal">
 
                 <fieldset>
-
 
                     <font size="50">
                         <center>
@@ -63,7 +62,7 @@
 
                     <div class="form-group">
                         <label class="col-sm-4 control-label" for="article_price">Recipe:</label>
-                        <div class="col-sm-6s ">
+                        <div class="col-sm-6 ">
                             {{entity.description}}
 
                         </div>

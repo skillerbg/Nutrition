@@ -32,6 +32,8 @@ class ViewDayController extends Controller
 
     /**
      * @Route("day/today", name="view_today")
+     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
+     * 
      */
     public function viewTodayAction(Request $request)
     {
@@ -41,7 +43,7 @@ class ViewDayController extends Controller
         
             $weekController = $this->getWeek2();
             $datPlan = $this->findDay($day, $weekController);
-            return $this->render('default/dayplan.html.twig', [
+            return $this->render('day/view.html.twig', [
                 'base_dir' => realpath($this->getParameter('kernel.project_dir')) . DIRECTORY_SEPARATOR, 'day' => $datPlan,
             ]);
         

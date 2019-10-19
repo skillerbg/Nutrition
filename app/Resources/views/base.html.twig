@@ -1,140 +1,103 @@
-{#
-   This is the base template used as the application layout which contains the
-   common elements and decorates all the other templates.
-   See http://symfony.com/doc/current/book/templating.html#template-inheritance-and-layouts
-#}
-<!-- CSS -->
+
 {% stylesheets '@FOSCommentBundle/Resources/public/css/comments.css' %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-
     <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
 {% endstylesheets %}
 <!DOCTYPE html>
 <html lang="en-US">
-<head>
-    <meta charset="UTF-8"/>
-    
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>{% block title %}Nutrition Planer{% endblock %}</title>
-    {% block stylesheets %}
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <title>
+            {% block title %}Nutrition Planer{% endblock %}
+        </title>
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}" />
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" type='text/css'>
+            <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js"></script>
+            <script>
+                var $j = jQuery.noConflict();
+                var productNames = [];
+
+                $j(document).ready(function(){
+                
+                    $j('.search').each(function() {
+                        $j(this).typeahead({
+                        
+                            source: function(query, result)
+                            {
+                                $j.ajax({
+                                    url: '{{ path('recipe_search') }}',
+                                    method:"POST",
+                                    data:{query:query},
+                                    dataType:"json",
+                                    success:function(data)
+                                    {
+                                        result($j.map(data, function(item){
+                                            var productNames = [];
+
+                                            $j.each(item, function(index, product) {
+                                                productNames.push(product.name + "#" + product.picture + "#" + product.id + "#" + product.price + "#" + product.pricePerG);
+                                            });
+                                            return productNames;
+                                        }));
+
+                                    }
+                                })
+                            },
+
+                            highlighter: function(item) {
+                                console.log(item);
+                                var parts = item.split('#'),
+                                    html = '<div><div class="typeahead-inner" id="' + parts[2] + '">';
+                                html += '<img src="' + parts[1] + '" width="50" height="50" alt="ingredient img">';
+                                html += '<div class="item-body">';
+                                html += '<p class="item-heading">' + parts[0] + '</p>';
+                                html += '<p class="item-heading">Price:' + parts[3] + '&emsp; Price per G:' + Math.round(parts[4] * 100) / 100 + '</p>';
+                                html += '<p><a href="http://127.0.0.1:8000/raw/view?id='+parts[2]+'">View</a></p>';
+
+                                html += '</div>';
+                                html += '</div><hr></div>';
 
 
 
-        <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}" />
+                                return html;
+                            } , afterSelect: function (item) {
+                                console.log(item);
+                                console.log('afterSelect: ' + item.id);
+                                $j('.hiddenid').val(item.id); }
+                            ,
+                            updater: function(item) {
+                                var parts = item.split('#');
+                                window.location.assign("http://127.0.0.1:8000/recipe/view/"+parts[2]) ;
 
+                                return item={name:parts[0], id:parts[2]};
 
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
-              crossorigin="anonymous">
-        <link rel="stylesheet" href="//malihu.github.io/custom-scrollbar/jquery.mCustomScrollbar.min.css">
-
-        <link rel="stylesheet" href="{{ asset('css/main.css') }}">
-        <link rel="shortcut icon" type="image/png" href="{{ asset('images/favicon.png') }}" />
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js"></script>
-
-        <script>
-            var $j = jQuery.noConflict();
-            var productNames = [];
-
-            $j(document).ready(function(){
-
-                $j('.search').each(function() {
-                    $j(this).typeahead({
-
-                        source: function(query, result)
-                        {
-                            $j.ajax({
-                                url: '{{ path('recipe_search') }}',
-                                method:"POST",
-                                data:{query:query},
-                                dataType:"json",
-                                success:function(data)
-                                {
-                                    result($j.map(data, function(item){
-                                        var productNames = [];
-
-                                        $j.each(item, function(index, product) {
-                                            productNames.push(product.name + "#" + product.picture + "#" + product.id + "#" + product.price + "#" + product.pricePerG);
-                                        });
-                                        return productNames;
-                                    }));
-
-                                }
-                            })
-                        },
-
-                        highlighter: function(item) {
-                            console.log(item);
-                            var parts = item.split('#'),
-                                html = '<div><div class="typeahead-inner" id="' + parts[2] + '">';
-                            html += '<img src="' + parts[1] + '" width="50" height="50" alt="ingredient img">';
-                            html += '<div class="item-body">';
-                            html += '<p class="item-heading">' + parts[0] + '</p>';
-                            html += '<p class="item-heading">Price:' + parts[3] + '&emsp; Price per G:' + Math.round(parts[4] * 100) / 100 + '</p>';
-                            html += '<p><a href="http://127.0.0.1:8000/raw/view?id='+parts[2]+'">View</a></p>';
-
-                            html += '</div>';
-                            html += '</div><hr></div>';
+                            }
 
 
 
-                            return html;
-                        } , afterSelect: function (item) {
-                            console.log(item);
-                            console.log('afterSelect: ' + item.id);
-                            $j('.hiddenid').val(item.id); }
-                        ,
-                        updater: function(item) {
-                            var parts = item.split('#');
-                            window.location.assign("http://127.0.0.1:8000/recipe/view/"+parts[2]) ;
+                        }); });})</script>
+            <script src="{{ asset('js/main.js') }}"></script>
+            <script type="text/javascript"> var infolinks_pid = 3163288; var infolinks_wsid = 0; </script> <script type="text/javascript" src="//resources.infolinks.com/js/infolinks_main.js"></script>
+        {% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('images/output_onlinepngtools_mSY_icon.ico') }}"/>
 
-                            return item={name:parts[0], id:parts[2]};
-
-                        }
-
-
-
-                    }); });})
-        </script>
-
-    {% endblock %}
-    <link rel="icon" type="image/x-icon" href="{{ asset('images/output_onlinepngtools_mSY_icon.ico') }}"/>
-
-</head>
-
-
-
-
-
-
-
-
-
-
-
-
-<body id="bigwrapper">
-    <div class="page-wrapper light-theme sidebar-bg portfolio" >
-        {% include 'navbar.html.twig'  %}
-        {% include 'sidebar.html.twig'  %}
-        <main class="main-wraper page-content pt-2">
-          
-                         {% block body %}
-                        {% endblock %}
+    </head>
+    <body id="bigwrapper">
+       <div class="page-wrapper light-theme sidebar-bg portfolio" >
+            {% include 'navbar.html.twig'  %}
+            {% include 'sidebar.html.twig'  %}
+            <main class="main-wraper page-content pt-2">
+                {% block body %}
+                {% endblock %}
                <div class="push"></div> 
-        </main>
-        
-                <div class="container footer navbar-fixed-bottom">
-                    
-                    <p>Copyright © 2019 Yonko Lozanov | Powered by Yonko Lozanov</p>
-                </div>
-          
-    </div>
-</body>
-
-
-
-
-<script src="{{ asset('js/main.js') }}"></script>
-<script type="text/javascript"> var infolinks_pid = 3163288; var infolinks_wsid = 0; </script> <script type="text/javascript" src="//resources.infolinks.com/js/infolinks_main.js"></script>
+            </main>
+            <div class="container footer navbar-fixed-bottom">
+                <p>Copyright © 2019 Yonko Lozanov | Powered by Yonko Lozanov</p>
+            </div>
+        </div>
+    </body>
 </html>

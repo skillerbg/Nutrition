@@ -35,5 +35,4 @@ services:
     #         $someArgument: 'some_value'
     get_week_plan:
          class: AppBundle\Controller\WeekController
-    default_controller:
-         class: AppBundle\Controller\DefaultController
+  

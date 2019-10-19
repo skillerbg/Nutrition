@@ -1,4 +1,3 @@
-
 function cambiar_login() {
     window.open("login", "_self");
 }

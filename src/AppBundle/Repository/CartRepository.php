@@ -14,6 +14,16 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  */
 class CartRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function deleteCart(){
 
+$em = $this->getEntityManager();
+        $repository = $em->getRepository('AppBundle:Cart');
+        $entities = $repository->findAll();
+
+        foreach ($entities as $entity) {
+            $em->remove($entity);
+        }
+        $em->flush();
+    }
 
 }

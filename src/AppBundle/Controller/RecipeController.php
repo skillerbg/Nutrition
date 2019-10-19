@@ -23,11 +23,10 @@ class RecipeController extends Controller
      */
     public function create(Request $request)
     {
-
         $recipe = new Recipe();
         $recipesNutriInfo = new Recipe_Nutrion();
-
         $data = $request->query->get('recipe');
+
         if ($data) {
 
             list($kcal, $fats, $proteins, $carbs, $saFats, $salt, $sugars, $price, $amount) = array(0, 0, 0, 0, 0, 0, 0, 0, 0); //sum of all the params of the ingredients
@@ -83,29 +82,23 @@ class RecipeController extends Controller
 
             $em->persist($recipe);
             $em->persist($recipesNutriInfo);
-
             $em->flush();
+            
             return $this->render('recipe/view.html.twig', array('entity' => $recipe, 'nutrition' => $recipesNutriInfo));
-
         }
-
         return $this->render('search/search.html.twig');
     }
 
     /**
      * @param Request $request
      * @Route("search/search", name="raw_search")
-     *
-
      */
 
-    public function search(Request $request) //searches the Db for raw entities with the ajax query
-
+     //searches the Db for raw entities with the ajax query
+    public function search(Request $request) 
     {
-
         $entityManager = $this->getDoctrine()->getManager();
         $ajaxQuery = $request->request->get('query');
-
         $result = $entityManager->getRepository("AppBundle:Raw")->createQueryBuilder('o')
             ->where('o.name LIKE :n')
             ->setParameter('n', '%' . $ajaxQuery . '%')

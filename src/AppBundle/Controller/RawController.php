@@ -16,14 +16,12 @@ class RawController extends Controller
      *
      * @Route("/raw/create", name="raw_create")
      * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
-     *
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function create(Request $request)
     {
         $rawEntity = new Raw();
         $rawNutritionInfo = new Nutrition_Info();
-
         $params = $request->request->get('raw');
 
         if ($params) {
@@ -49,17 +47,15 @@ class RawController extends Controller
             $rawNutritionInfo->setSalt($params['salt']);
             $rawNutritionInfo->setSugars($params['sugars']);
 
-            $rawEntity->setNutritionInfo($rawNutritionInfo); //binds the nutrition info to the raw entity
-
+            //binds the nutrition info to the raw entity
+            $rawEntity->setNutritionInfo($rawNutritionInfo); 
             $em = $this->getDoctrine()->getManager();
             $em->persist($rawEntity);
             $em->persist($rawNutritionInfo);
-
             $em->flush();
-            return $this->redirectToRoute('raw_create');
 
+            return $this->render('raw/view.html.twig', array('entity' => $rawEntity, 'nutrition' => $rawNutritionInfo));
         }
-
         return $this->render('raw/create.html.twig');
 
     }
@@ -68,16 +64,13 @@ class RawController extends Controller
      * @param Request $request
      * @Route("raw/search", name="recipe_search")
      *
-
      */
 
-    public function search(Request $request) //search the Db for recipes entities with the ajax params
-
+    //search the Db for recipes entities with the ajax params
+    public function search(Request $request) 
     {
-
         $entityManager = $this->getDoctrine()->getManager();
         $ajaxQuery = $request->request->get('query');
-
         $result = $entityManager->getRepository("AppBundle:Recipe")->createQueryBuilder('o')
             ->where('o.name LIKE :n')
             ->setParameter('n', '%' . $ajaxQuery . '%')

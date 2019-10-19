@@ -10,130 +10,67 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 class CartController extends Controller
-{/**
-
-/* @Route("/cart/generate", name="cart_generate")
-/* @Security("is_granted('IS_AUTHENTICATED_FULLY')")
-
-/* @return \Symfony\Component\HttpFoundation\Response
- */
+{   /**
+    * @Route("/cart/generate", name="cart_generate")
+    * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
+    * @return \Symfony\Component\HttpFoundation\Response
+    */
     public function cartGenerateAction()
     {
-        $user = $this->getUser()->getId();
+
+        //delete user's old cart
         $deleteCart = $this->getDoctrine()
             ->getRepository(Cart::class)
             ->deleteCart();
-        $plan = $this->getDoctrine()->getRepository(WeekPlan::class)
-            ->findOneBy(array('userId' => $user));
+        $user = $this->getUser()->getId();
 
-        $sql = "SELECT Recipes.Id
-        FROM
-        (SELECT monday
-        from week_plan
-         WHERE
-         userId = {$user}
-        UNION
-        SELECT tuesday
-        FROM week_plan
-         WHERE
-         userId = {$user}
-         UNION ALL
-        SELECT wednesday
-        FROM week_plan
-         WHERE
-         userId = {$user}
-         UNION ALL
-        SELECT thursday
-        FROM week_plan
-         WHERE
-         userId = {$user}
-         UNION ALL
-        SELECT friday
-        FROM week_plan
-         WHERE
-         userId = {$user}
-         UNION ALL
-        SELECT saturday
-        FROM week_plan
-         WHERE
-         userId = {$user}
-         UNION ALL
-        SELECT sunday
-        FROM week_plan
-         WHERE
-         userId = {$user}
-        ) Week
+        //get all the recipes needed for the user's week plan
+        $recipes = $this->getDoctrine()
+            ->getRepository(Cart::class)
+            ->weekGetAllRecipes($user);
 
-        JOIN (
-        SELECT breakfast, id
-        FROM day_plan
-         UNION ALL
-        SELECT snack1, id
-        FROM day_plan
-             UNION ALL
-        SELECT dinner1, id
-        FROM day_plan
-             UNION ALL
-        SELECT snack2, id
-        FROM day_plan
-             UNION ALL
-        SELECT dinner2, id
-        FROM day_plan
-
-
-        ) Day ON Week.monday = Day.id
-        JOIN recipes Recipes ON Day.breakfast = Recipes.id";
-
-        $em = $this->getDoctrine()->getManager();
-        $conn = $em->getConnection();
-        $stmt = $conn->prepare($sql);
-        $stmt->execute();
-
-        $result = $stmt->fetchAll();
-        foreach ($result as $recipe) {
+        //Store all of the needed ingredients for the week plan
+        foreach ($recipes as $recipe) {
             $repo = $this->getDoctrine()->getRepository('AppBundle:Recipe');
-
-// this returns a single item
             $found = $repo->find($recipe["Id"]);
             $this->foreEachDays($found, $user);
-
         }
 
+        //View all the ingredients with amount needed and total price for the week
         return $this->redirect('view');
 
     }
     public function foreEachDays($day, $user)
     {
+        //get the data needed
+        $em = $this->getDoctrine()->getManager();
         $raws = $day->getRaws();
         $grams = $day->getArray();
+
+        //loop through all the recipes and calculate the quantity of the igredients
         for ($i = 0; $i < count($raws); $i++) {
 
-            $em = $this->getDoctrine()->getManager();
+            //find the ingredient by id
             $id = $raws[$i]->getId();
-
             $db = $this->getDoctrine()->getRepository('AppBundle:Raw');
-            $cartR = $this->getDoctrine()->getRepository('AppBundle:Cart');
 
+            //Get the user's cart entity
             $entity = $db->find($id);
-
             $repository = $this->getDoctrine()
                 ->getRepository(Cart::class);
 
+            //check if the igredient is already in the cart entity
             $q = $repository->createQueryBuilder('p')
                 ->where('p.rawId = :raw')
                 ->andWhere('p.userId = :user')
                 ->setParameter('raw', $entity)
                 ->setParameter('user', $user)
-
                 ->orderBy('p.rawId', 'ASC')
-
                 ->getQuery()
             ;
-
             $products = $q->getResult();
-
+            //Sum the ingrediet's quantity if the product is in the enetity
             if ($products) {
-
                 $oldGrams = $products[0]->getGrams();
                 $newGrams = $oldGrams += $grams[$i];
                 $q2 = $repository->createQueryBuilder('p')
@@ -142,19 +79,15 @@ class CartController extends Controller
                     ->setParameter('raw', $entity)
                     ->setParameter('user', $user)
                     ->update('AppBundle:Cart', 'p')
-
                     ->set('p.grams', $newGrams)
-
                     ->getQuery()
                 ;
-
                 $q2->execute();
-
+                //Add the igredient to the cart enetity
             } else {
                 $cartEntity = new Cart();
                 $cartEntity->setRawId($entity)->setUserId($user);
                 $cartEntity->setGrams($grams[$i]);
-
                 $em->persist($cartEntity);
                 $em->flush();
             }
@@ -166,28 +99,28 @@ class CartController extends Controller
      *
      * @Route("/cart/view", name="cart_view")
      * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
-     *
      * @return \Symfony\Component\HttpFoundation\Response
      */
 
     public function viewCartAction()
     {
+        //check if the user have week plan
         $user = $this->getUser();
         $userHasWeekPlan = ($this->getDoctrine()->getRepository(WeekPlan::class)
                 ->findOneBy(array('userId' => $this->getUser()->getId()))) ? true : false;
+
+        //get get user's cart data
         $repository = $this->getDoctrine()
             ->getRepository(Cart::class);
 
         $q = $repository->createQueryBuilder('p')
             ->andWhere('p.userId = :user')
             ->setParameter('user', $user)
-
             ->orderBy('p.rawId', 'ASC')
-
             ->getQuery()
         ;
-
         $products = $q->getResult();
+
         return $this->render('cart/view.html.twig', array('entity' => $products, 'userhasweek' => $userHasWeekPlan));
     }
 

@@ -10,14 +10,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 class ViewDayController extends Controller
-{/**
- * @param Request $request
- *
- * @Route("/day/view", name="day_view")
- * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
- *
- * @return \Symfony\Component\HttpFoundation\Response
- */
+{   /**
+    * @param Request $request
+    *
+    * @Route("/day/view", name="day_view")
+    * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
+    *
+    * @return \Symfony\Component\HttpFoundation\Response
+    */
     public function viewDay(Request $request)
     {
         $dayId = $request->query->get('day');

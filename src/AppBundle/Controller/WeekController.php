@@ -10,11 +10,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class WeekController extends Controller
 {
     /**
-
-    /* @Route("/week/view", name="week_view")
-    /* @Security("is_granted('IS_AUTHENTICATED_FULLY')")
-
-    /* @return \Symfony\Component\HttpFoundation\Response
+    * @Route("/week/view", name="week_view")
+    * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
+    * @return \Symfony\Component\HttpFoundation\Response
      */
     public function viewWeek()
     {

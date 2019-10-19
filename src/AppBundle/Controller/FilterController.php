@@ -8,13 +8,13 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 class FilterController extends Controller
-{/**
- * @param Request $request
- * @Route("/week/filter", name="week_filter")
- * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
- *
- * @return \Symfony\Component\HttpFoundation\Response
- */
+{   /**
+    * @param Request $request
+    * @Route("/week/filter", name="week_filter")
+    * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
+    *
+    * @return \Symfony\Component\HttpFoundation\Response
+    */
     public function filterWeek(Request $request)
     {
         $data = $request->request->get('filter');

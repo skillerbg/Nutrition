@@ -2,9 +2,9 @@
 
 namespace AppBundle\Repository;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+
 use AppBundle\Entity\Cart;
-use Doctrine\ORM\EntityManager;
-use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
  * CartRepository
@@ -14,9 +14,10 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  */
 class CartRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function deleteCart(){
+    public function deleteCart()
+    {
 
-$em = $this->getEntityManager();
+        $em = $this->getEntityManager();
         $repository = $em->getRepository('AppBundle:Cart');
         $entities = $repository->findAll();
 
@@ -24,6 +25,77 @@ $em = $this->getEntityManager();
             $em->remove($entity);
         }
         $em->flush();
+    }
+    public function weekGetAllRecipes($user){
+               //Get all recipes who are in the user's week plan
+               $em = $this->getEntityManager();
+
+               $plan = $em->getRepository('AppBundle:WeekPlan')
+               ->findOneBy(array('userId' => $user));
+           $sql = "SELECT Recipes.Id
+           FROM
+           (SELECT monday
+           from week_plan
+            WHERE
+            userId = {$user}
+           UNION
+           SELECT tuesday
+           FROM week_plan
+            WHERE
+            userId = {$user}
+            UNION ALL
+           SELECT wednesday
+           FROM week_plan
+            WHERE
+            userId = {$user}
+            UNION ALL
+           SELECT thursday
+           FROM week_plan
+            WHERE
+            userId = {$user}
+            UNION ALL
+           SELECT friday
+           FROM week_plan
+            WHERE
+            userId = {$user}
+            UNION ALL
+           SELECT saturday
+           FROM week_plan
+            WHERE
+            userId = {$user}
+            UNION ALL
+           SELECT sunday
+           FROM week_plan
+            WHERE
+            userId = {$user}
+           ) Week
+   
+           JOIN (
+           SELECT breakfast, id
+           FROM day_plan
+            UNION ALL
+           SELECT snack1, id
+           FROM day_plan
+                UNION ALL
+           SELECT dinner1, id
+           FROM day_plan
+                UNION ALL
+           SELECT snack2, id
+           FROM day_plan
+                UNION ALL
+           SELECT dinner2, id
+           FROM day_plan
+   
+   
+           ) Day ON Week.monday = Day.id
+           JOIN recipes Recipes ON Day.breakfast = Recipes.id";
+   
+           $conn = $em->getConnection();
+           $stmt = $conn->prepare($sql);
+           $stmt->execute();                     
+           $result = $stmt->fetchAll();
+           return $result;
+   
     }
 
 }

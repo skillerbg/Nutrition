@@ -19,7 +19,7 @@ class DefaultController extends Controller
             //$userData is used to tell twig which homepage templates to render
             $userData = array("filter" => false, "weekplan" => false);
             $em = $this->getDoctrine()->getManager();
-
+            
             if ($em->getRepository('AppBundle:Filter')->findOneBy(array('userId' => $this->getUser()->getId()))) {
                 $userData["filter"] = true;
             }

@@ -1,5 +1,5 @@
 {
-    "name": "yonko/.checkout",
+    "name": "yonko/checkout",
     "license": "proprietary",
     "type": "project",
     "autoload": {
